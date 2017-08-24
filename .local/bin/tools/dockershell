@@ -1,0 +1,27 @@
+#! /bin/sh
+CONTAINER=$1
+
+usage() {
+	echo 'dockershell [container]'
+	echo
+	echo 'Connect throw a container (tty, tmux, zsh and bash)'
+	echo 'Options :'
+	echo '     [container] Must correpond to the docker running name'
+	echo
+}
+
+if [ -z $CONTAINER ]; then
+	usage
+	exit 1
+fi
+
+CONTAINER=$(docker ps -a --no-trunc | grep "$CONTAINER\$" | awk '{print $1}' | head -n 1)
+shift
+
+if [ ! -z "$CONTAINER" ]; then
+	docker exec -ti $CONTAINER script -q -c "cd ~ && export SHELL=/bin/zsh; tmux -2 -u attach || tmux -2 -u new || /bin/zsh || /bin/bash" /dev/null
+	exit 0
+fi
+
+usage
+exit 1

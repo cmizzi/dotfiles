@@ -132,16 +132,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/bin/fasd" ] && eval "$(fasd --init auto)"
 
 # User configuration
-
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.zfunctions:$PATH"
+export PATH="$HOME/.local/bin/tools:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.captain/bin:$PATH"
 export PATH="$PATH:/usr/sbin"
-export EDITOR=vi
 
 # fzf
-
 export FZF_COMPLETION_OPTS='+c -x'
 export FZF_DEFAULT_COMMAND="rg -g '' --files"
 
