@@ -116,15 +116,6 @@ export HISTORY SAVEHIST HISTFILE HISTSIZE MAIL
 LS_OPTIONS="--color"
 export LS_OPTIONS
 
-# PostgreSQL configuration
-
-export PGHOST=127.0.0.1
-export PGUSER=postgres
-
-# MYSQL configuration
-
-export MYSQL_HOST=127.0.0.1
-
 # History configuration
 
 export HISTIGNORE='&:sudo rm *:rm *:sudo shutdown *'
@@ -158,10 +149,13 @@ export FZF_DEFAULT_COMMAND="rg -g '' --files"
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	export EDITOR="vi"
 else
 	export EDITOR="vi"
+	export PGHOST=127.0.0.1
+	export PGUSER=postgres
+	export MYSQL_HOST=127.0.0.1
 fi
 
 # Compilation flags
@@ -170,9 +164,9 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-function server () { /usr/bin/ssh -A -T -t $@ "tmux -2 -u attach || tmux -2 -u new || screen -r || screen || zsh" 2> /dev/null; }
+function server () { /usr/bin/ssh -T -t $@ "tmux -2 -u attach || tmux -2 -u new || screen -r || screen || zsh" 2> /dev/null; }
 function dl     () {
-	CONTAINER=$(docker ps -a --no-trunc | grep $1 | awk '{print $1}' | head -n 1)
+	CONTAINER=$(docker ps -a --no-trunc | grep "$1\$" | awk '{print $1}' | head -n 1)
 	docker logs -f --tail=100 $CONTAINER
 }
 
@@ -192,16 +186,12 @@ alias g="git"
 alias rsa='rsync -aizP'
 alias sucs="sort | uniq -c | sort -n"
 alias nautilus="nautilus --browser --no-desktop"
-alias deploy="bash /data/capistrano/cap"
-alias p="parallel"
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # fasd alias
 alias jj='dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}"'
 alias j='fasd_cd -d'     # cd, same functionality as j in autojump
 
 # Functions
-
 ax () {
 	if [ $# -eq 0 ]              ; then echo 'Gimme a file to unpack !' ; return ; fi
 	if [ !  -x  /usr/bin/atool ] ; then echo 'Need "agi atool"'         ; return ; fi
@@ -232,5 +222,4 @@ bindkey '^J'  fzf-fasd-widget
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
