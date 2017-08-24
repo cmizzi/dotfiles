@@ -1,0 +1,136 @@
+ft.lcdfilter : lcddefault
+Xft.dpi       : 96
+Xft.rgba      : subpixel
+Xft.hinting   : true
+Xft.hintstyle : hintslight
+Xft.antialias : true
+
+! test
+URxvt*buffered    : false
+URxvt*font        : xft:Source Code Pro Medium:pixelsize=14,xft:Menlo for Powerline:pixelsize=14
+URxvt*boldFont    : xft:Source Code Pro Semibold:pixelsize=14,xft:Menlo for Powerline:style=BoldForPowerline:pixelsize=14
+URxvt*letterSpace : -1
+URxvt.transparent : true
+URxvt.shading     : 20
+
+! URxvt.depth: 32
+URxvt.depth          : 0
+URxvt.background     : rgba:1111/1111/1111/cccc
+URxvt.foreground     : rgba:ffff/ffff/ffff/ffff
+URxvt.borderColor    : rgba:1111/1111/1111/aaaa
+URxvt.internalBorder : 0
+URxvt.externalBorder : 0
+
+URxvt.scrollBar         : off
+URxvt*scrollTtyOutput   : false
+URxvt*scrollWithBuffer  : true
+URxvt*scrollTtyKeypress : true
+URxvt.reverseVideo      : false
+URxvt.termName          : rxvt-256color
+
+! Plugins : Url Select & other exts
+URxvt.perl-ext             : default,url-select,font-size,clipboard
+URxvt.keysym.M-u           : perl:url-select:select_next
+URxvt.url-select.launcher  : /usr/bin/xdg-open
+URxvt.url-select.underline : false
+
+URxvt.keysym.C-Up   : perl:font-size:increase
+URxvt.keysym.C-Down : perl:font-size:decrease
+URxvt.keysym.C-C    : perl:clipboard:copy
+URxvt.keysym.C-V    : perl:clipboard:paste
+URxvt.keysym.C-A-V  : perl:clipboard:paste_escaped
+
+URxvt.keysym.S-Up    : \033[1;2A
+URxvt.keysym.S-Down  : \033[1;2B
+URxvt.keysym.S-Right : \033[1;2C
+URxvt.keysym.S-Left  : \033[1;2D
+URxvt.keysym.S-Home  : \033[1;2H
+URxvt.keysym.S-End   : \033[1;2F
+URxvt.keysym.C-Right : \033[1;5C
+URxvt.keysym.C-Left  : \033[1;5D
+
+URxvt.iso14755     : false
+URxvt.iso14755_52  : false
+URxvt.urgentOnBell : true
+URxvt.cursorBlink  : true
+
+! define some colourschemes
+! Molokai
+#define Molokai_black        #1B1D1E
+#define Molokai_red          #B60050
+#define Molokai_red2         #FF0000
+#define Molokai_green        #88BB22
+#define Molokai_brown        #C47F2C
+#define Molokai_blue         #30309B
+#define Molokai_purple       #7E40A5
+#define Molokai_cyan         #4699AF
+#define Molokai_light_grey   #9999AA
+#define Molokai_dark_grey    #303030
+#define Molokai_light_red    #F92672
+#define Molokai_light_green  #80FF00
+#define Molokai_yellow       #FFBA68
+#define Molokai_light_blue   #7070F0
+#define Molokai_light_purple #BB88DD
+#define Molokai_light_cyan   #66D9EF
+#define Molokai_white        #F8F8F2
+
+URxvt*background  : Molokai_black
+URxvt*foreground  : Molokai_white
+URxvt*cursorColor : Molokai_dark_grey
+URxvt*color0      : Molokai_black
+URxvt*color1      : Molokai_red
+URxvt*color2      : Molokai_green
+URxvt*color3      : Molokai_brown
+URxvt*color4      : Molokai_blue
+URxvt*color5      : Molokai_purple
+URxvt*color6      : Molokai_cyan
+URxvt*color7      : Molokai_light_grey
+URxvt*color8      : Molokai_dark_grey
+URxvt*color9      : Molokai_light_red
+URxvt*color10     : Molokai_light_green
+URxvt*color11     : Molokai_yellow
+URxvt*color12     : Molokai_light_blue
+URxvt*color13     : Molokai_light_purple
+URxvt*color14     : Molokai_light_cyan
+URxvt*color15     : Molokai_white
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #002b37, #002b37, #003642
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
+
+*background: #1D1F21
+! *background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+! *color2:  #98971a
+! *color10: #b8bb26
+! Less toxic Green
+*color2:  #b5bd68
+*color10: #4D6E4E
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2

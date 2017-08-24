@@ -7,6 +7,7 @@
 !/.local/
 
 # Files
+!/.Xresources.default
 !/.conkyrc.default
 !/.stalonetrayrc.default
 !/.screenrc
