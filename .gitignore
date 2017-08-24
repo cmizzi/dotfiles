@@ -8,6 +8,7 @@
 
 # Files
 !/.conkyrc.default
+!/.stalonetrayrc.default
 !/.screenrc
 !/.vimrc
 !/.gitignore
