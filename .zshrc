@@ -148,6 +148,11 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	export EDITOR="vi"
+
+	if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ] && [ -x "$(command -v tmux)" ]; then
+		tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+		exit
+	fi
 else
 	export EDITOR="vi"
 	export PGHOST=127.0.0.1
