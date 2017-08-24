@@ -6,6 +6,8 @@
 ################################################################################
 !/.local
 /.local/*
+!/.local/highlight.awk
+
 !/.local/bin
 /.local/bin/*
 !/.local/bin/tools/
