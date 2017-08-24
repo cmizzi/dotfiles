@@ -165,13 +165,7 @@ else
 	export MYSQL_HOST=127.0.0.1
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-function server () { /usr/bin/ssh -T -t $@ "tmux -2 -u attach || tmux -2 -u new || screen -r || screen || zsh" 2> /dev/null; }
+function server () { /usr/bin/ssh -A $@ }
 function dl     () {
 	CONTAINER=$(docker ps -a --no-trunc | grep "$1\$" | awk '{print $1}' | head -n 1)
 	docker logs -f --tail=100 $CONTAINER
