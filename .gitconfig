@@ -31,9 +31,6 @@
 [pull]
 	default = rebase
 
-[push]
-	default = simple
-
 [merge]
 	tool = kdiff3
 	summary = true
