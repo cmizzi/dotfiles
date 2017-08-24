@@ -141,9 +141,9 @@ set undolevels=1000
 set undoreload=10000
 set backup
 set backupskip=/tmp/*,/private/tmp/*
-set backupdir=~/tmp/nvim,~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=/tmp/nvim,~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set undodir=/tmp/nvim,~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/tmp/nvim,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=/tmp/nvim,~/.tmp,~/tmp,/var/tmp,/tmp
+set undodir=/tmp/nvim,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 " }}}
 " Indentation {{{
