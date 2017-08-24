@@ -1,0 +1,11 @@
+/*
+/*/
+/.vim/plugged/*
+
+!/.gitignore
+!/.vim/
+!/.vimrc
+!/.zshrc
+!/.tmux.conf
+!/.gitconfig
+!/.psqlrc

@@ -234,4 +234,3 @@ bindkey '^J'  fzf-fasd-widget
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.deployer_completion
