@@ -1,6 +1,7 @@
 /*
 /*/
 /.vim/plugged/*
+/.vim/.netrwhist
 
 !/.gitignore
 !/.vim/
