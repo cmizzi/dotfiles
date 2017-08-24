@@ -1,0 +1,26 @@
+\set QUIET
+\set ECHO none
+
+-- setting up the visual components
+-- \pset linestyle unicode
+-- \pset border 2
+\pset null ¤
+
+-- \timing
+\x auto
+
+-- setting up visual for command prompt
+\set PROMPT1 '%[%033[1;33;49m%]%~%[%033[1;36;49m%]%[%033[1;32;49m%]%x%[%033[1;37;49m%] %#%[%033[0m%] '
+\set PROMPT2 '[next] %R > '
+
+-- set some good defaults
+\set COMP_KEYWORD_CASE upper
+
+-- lets set some history!
+\set HISTCONTROL ignoreboth
+\set HISTFILE ~/.psql_history- :DBNAME
+
+\set killall 'SELECT pg_cancel_backend(pid) from pg_stat_activity where state = ''active'' and pid != pg_backend_pid();'
+\set activity 'SELECT pid, now() - query_start as duration, query from pg_stat_activity where state = ''active'' and pid != pg_backend_pid();'
+
+\set missing_indexes 'SELECT relname, seq_scan-idx_scan AS too_much_seq, case when seq_scan-idx_scan > 0 THEN ''Missing Index?'' ELSE ''OK'' END, pg_relation_size(relname::regclass) AS rel_size, seq_scan, idx_scan FROM pg_stat_all_tables WHERE schemaname=''public'' AND pg_relation_size(relname::regclass) > 80000 ORDER BY too_much_seq DESC;'
