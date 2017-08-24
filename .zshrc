@@ -45,13 +45,12 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	else
 		# Otherwise, load my custom theme
 		zplug "tylerreckart/hyperzsh", as:theme
+		PROMPT='$(_user_host)$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$reset_color%}$(git_prompt_short_sha)%{$fg[magenta]%}$(git_prompt_status)${_return_status}➜ '
 	fi
 
 	# Then, source plugins and add commands to $PATH
 	zplug check || zplug install
 	zplug load
-
-	PROMPT='$(_user_host)$(_python_venv)%{$fg[cyan]%}%c $(git_prompt_info)%{$reset_color%}$(git_prompt_short_sha)%{$fg[magenta]%}$(git_prompt_status)${_return_status}➜ '
 fi
 
 # Avoid history duplicates
@@ -131,10 +130,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # RVM
-
-# Neovim
-
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # fasd starting
 

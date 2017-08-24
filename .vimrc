@@ -9,25 +9,31 @@ endif
 
 call plug#begin("~/.vim/plugged")
 
+if has('nvim')
+	Plug 'roxma/nvim-completion-manager'
+	Plug 'Shougo/denite.nvim'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'SirVer/ultisnips'
+else
+	Plug 'shougo/unite.vim'
+end
+
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neomru.vim'
 Plug 'bling/vim-airline'
 Plug 'benekastah/neomake'
 Plug 'junegunn/vim-easy-align'
 Plug 'msanders/snipmate.vim'
-Plug 'tobyS/pdv' | Plug 'tobyS/vmustache' | Plug 'SirVer/ultisnips'
+Plug 'tobyS/pdv' | Plug 'tobyS/vmustache'
 Plug 'adoy/vim-php-refactoring-toolbox'
 Plug 'mattn/emmet-vim'
 Plug 'https://github.com/joonty/vdebug'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'jwalton512/vim-blade'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/nvim-completion-manager'
 Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -117,7 +123,10 @@ set foldmethod=indent
 set foldlevelstart=10
 set foldnestmax=10
 
-set inccommand=split
+if has('nvim')
+	set inccommand=split
+end
+
 set splitbelow
 set splitright
 set list
@@ -165,7 +174,12 @@ cmap w!! w !sudo tee > /dev/null %
 vmap <Enter> <Plug>(EasyAlign)
 vmap <c-Up> <Plug>MoveBlockUp
 vmap <c-Down> <Plug>MoveBlockDown
-nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+
+if has('nvim')
+	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+else
+	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
+end
 
 nmap <bar> <Plug>ZipClosed
 vmap <bar> <Plug>ZipClosedVisual
@@ -245,8 +259,11 @@ com! -nargs=1 Snip call LoadSnippets(<f-args>, &ft)
 autocmd BufReadPre,FileReadPre * :call LoadSnippets(&ft, &ft)
 
 let g:vim_php_refactoring_phpdoc = 'pdv#DocumentWithSnip()'
-let g:deoplete#enable_at_startup = 1
-set shortmess+=c
+
+if has('nvim')
+	let g:deoplete#enable_at_startup = 1
+	set shortmess+=c
+end
 
 let g:vdebug_options = {"path_maps": {"/var/www": "/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9001" }
 
@@ -277,21 +294,23 @@ let g:hugefile_trigger_size=10
 :auto InsertLeave * :setlocal isk-=-
 set completeopt=menu
 
-call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
-call denite#custom#source('file_rec', 'matchers', ['matcher_regexp'])
-call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-Right>', '<denite:jump_to_next_source>', 'noremap')
-call denite#custom#map('insert', '<C-Left>', '<denite:jump_to_previous_source>', 'noremap')
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+if has('nvim')
+	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('file_rec', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
+	call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+	call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+	call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+	call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+	call denite#custom#map('insert', '<C-Right>', '<denite:jump_to_next_source>', 'noremap')
+	call denite#custom#map('insert', '<C-Left>', '<denite:jump_to_previous_source>', 'noremap')
+	call denite#custom#var('grep', 'command', ['rg'])
+	call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
+end
 
 function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
@@ -308,47 +327,6 @@ aug QFClose
 	au!
 	au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
-
-" http://www.vim-fr.org/index.php/Urxvt
-
-if !has("gui_running")
-	" À défaut de pouvoir changer la forme du curseur
-	" en fonction du mode de Vim, on peut changer sa couleur
-	" en passant par des fonctions de contrôle.
-	if &term =~ "rxvt-unicode"
-		" From ECMA-48:
-		"   OSC - OPERATING SYSTEM COMMAND:
-		"     Representation: 09/13 or ESC 05/13 (this is \033] here)
-		"     OSC is used as the opening delimiter of a control string for operating system use.
-		"     The command string following may consist of a sequence of bit combinations
-		"     in the range 00/08 to 00/13 and 02/00 to 07/14.
-		"     The control string is closed by the terminating delimiter STRING TERMINATOR (ST).
-		"     The interpretation of the command string depends on the relevant operating system.
-		" From :h t_SI:
-		"   Added by Vim (there are no standard codes for these):
-		"     t_SI start insert mode (bar cursor shape)
-		"     t_EI end insert mode (block cursor shape)
-		let &t_SI = "\033]12;red\007"
-		let &t_EI = "\033]12;green\007"
-
-		:silent !echo -ne "\033]12;green\007"
-		autocmd VimLeave * :silent :!echo -ne "\033]12;green\007"
-	endif
-	" screen rajoute une couche qu'il faut percer.
-	if &term =~ "screen"
-		" From man screen:
-		"   Virtual Terminal -> Control Sequences:
-		"     ESC P  (A)  Device Control String
-		"                 Outputs a string directly to the host
-		"                 terminal without interpretation.
-		"     ESC \  (A)  String Terminator
-		let &t_SI = "\033P\033]12;red\007\033\\"
-		let &t_EI = "\033P\033]12;green\007\033\\"
-
-		:silent !echo -ne "\033P\033]12;green\007\033\\"
-		autocmd VimLeave * :silent :!echo -ne "\033P\033]12;green\007\033\\"
-	endif
-endif
 
 function! PhpSyntaxOverride()
 	hi! def link phpDocTags  phpDefine

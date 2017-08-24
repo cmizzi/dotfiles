@@ -57,10 +57,6 @@
 	changed = green
 	untracked = cyan
 
-[push]
-	default = simple
-[pull]
-	rebase = preserve
 [git-up "rebase"]
 	arguments = --preserve-merges
 [gui]
