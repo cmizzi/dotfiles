@@ -1,0 +1,63 @@
+[user]
+	email = cyril@lesiteimmo.com
+	name = Cyril Mizzi
+
+[core]
+	pager = less -FXRS -x3
+	whitespace = trailing-space,space-before-tab
+
+[alias]
+	fs  = !git fetch && git status -sb
+	st  = status
+	s   = status -sb
+	c   = checkout
+	cm  = checkout master
+	nb  = checkout -b
+	pr  = pull --rebase
+	lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lga = !"git lg --all"
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
+
+[apply]
+	whitespace = nowarn
+
+[merge]
+	tool = kdiff3
+	summary = true
+
+[cola]
+	tabwidth = 4
+	fontdiff = Ubuntu Mono derivative Powerline,10,-1,5,50,0,0,0,0,0
+	textwidth = 80
+	linebreak = false
+
+[rerere]
+	enabled = true
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[git-up "rebase"]
+	arguments = --preserve-merges
+[gui]
+	editor = vim

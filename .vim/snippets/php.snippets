@@ -1,0 +1,11 @@
+snippet rlsi
+	require_once "LSI.class.php";
+snippet ns
+	namespace ${1:`substitute(substitute(expand("%:p"), '\(^/\(\(\w\+\)/\)\{4\}\|/\w\+.php$\)', '', 'gi'), '/', '\\', 'g')`};
+snippet debug
+	echo "<pre>"; var_dump(${1}); echo "</pre>";
+snippet log
+	\LSI::getInstance()->logger->log_dump(${1});
+snippet measure
+	start_measure("${1:time}");
+	stop_measure("${1:time}");
