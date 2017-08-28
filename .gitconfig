@@ -13,7 +13,7 @@
 	c   = checkout
 	cm  = checkout master
 	nb  = checkout -b
-	pr  = pull --rebase
+	up  = pull --rebase=preserve --autostash
 	lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lga = !"git lg --all"
 
@@ -59,9 +59,6 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-
-[git-up "rebase"]
-	arguments = --preserve-merges
 
 [gui]
 	editor = vim
