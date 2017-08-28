@@ -10,10 +10,7 @@ endif
 call plug#begin("~/.vim/plugged")
 
 if has('nvim')
-	Plug 'roxma/nvim-completion-manager'
 	Plug 'Shougo/denite.nvim'
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'SirVer/ultisnips'
 else
 	Plug 'shougo/unite.vim'
@@ -261,7 +258,6 @@ autocmd BufReadPre,FileReadPre * :call LoadSnippets(&ft, &ft)
 let g:vim_php_refactoring_phpdoc = 'pdv#DocumentWithSnip()'
 
 if has('nvim')
-	let g:deoplete#enable_at_startup = 1
 	set shortmess+=c
 end
 
