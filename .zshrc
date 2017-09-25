@@ -13,3 +13,5 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 else
 	source "$HOME/.zsh/local.zsh"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
