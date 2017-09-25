@@ -1,7 +1,7 @@
 snippet rlsi
 	require_once "LSI.class.php";
 snippet ns
-	namespace ${1:`substitute(substitute(expand("%:p"), '\(^/\(\(\w\+\)/\)\{4\}\|/\w\+.php$\)', '', 'gi'), '/', '\\', 'g')`};
+	namespace ${1:`substitute(substitute(expand("%:h"), '\v^\w+\/(\u)', '\1', ''), '\/', '\\\', 'g')`};
 snippet debug
 	echo "<pre>"; var_dump(${1}); echo "</pre>";
 snippet log

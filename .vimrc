@@ -2,8 +2,7 @@
 " vim-plug (https://github.com/junegunn/vim-plug) settings {{{
 " Automatically install vim-plug and run PlugInstall if vim-plug not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -12,10 +11,13 @@ call plug#begin("~/.vim/plugged")
 if has('nvim')
 	Plug 'Shougo/denite.nvim'
 	Plug 'SirVer/ultisnips'
+	Plug 'roxma/nvim-completion-manager'
 else
 	Plug 'shougo/unite.vim'
 end
 
+Plug 'phpactor/phpactor', { 'do' : 'composer install' }
+Plug 'roxma/ncm-phpactor'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
@@ -265,30 +267,22 @@ let g:vdebug_options = {"path_maps": {"/var/www": "/data"}, "break_on_open": 1, 
 
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
-
-autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap  <Leader>e :call PhpExpandClass()<CR>
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap  <Leader>u :call PhpInsertUse()<CR>
-autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap  <Leader>s :call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>u   :call phpactor#UseAdd()<CR>
+autocmd FileType php noremap <Leader>e   :call phpactor#ClassExpand()<CR>
+autocmd FileType php noremap gd          :call phpactor#GotoDefinition()<CR>
+autocmd FileType php noremap <Leader>pd  :call phpactor#OffsetTypeInfo()<CR>
+autocmd FileType php noremap <Leader>i   :call phpactor#ReflectAtOffset()<CR>
+autocmd FileType php noremap <Leader>pfm :call phpactor#MoveFile()<CR>
+autocmd FileType php noremap <Leader>pfc :call phpactor#CopyFile()<CR>
+autocmd FileType php noremap <Leader>tt  :call phpactor#Transform()<CR>
+autocmd FileType php noremap <Leader>cc  :call phpactor#ClassNew()<CR>
+autocmd FileType php noremap <Leader>cr  :call phpactor#ClassReferences()<CR>
+autocmd FileType php noremap <Leader>s   :call PhpSortUse()<CR>
+autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 let g:php_namespace_sort_after_insert = 1
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
-
-:auto InsertEnter * :setlocal isk+=-
-:auto InsertLeave * :setlocal isk-=-
-set completeopt=menu
 
 if has('nvim')
 	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
@@ -329,6 +323,20 @@ function! PhpSyntaxOverride()
 	hi! def link phpDocParam phpType
 endfunction
 
+" Update PHPActor cwd each time a new buffer is accessed
+function! UpdatePHPActorPath()
+	" Change working dir to the current file
+	cd %:p:h
+
+	" Set 'gitdir' to be the folder containing .git
+	let gitdir = system("git rev-parse --show-toplevel")
+
+	" See if the command output starts with 'fatal' (if it does, not in a git repo)
+	if empty(matchstr(gitdir, '^fatal:.*'))
+		let g:phpactorInitialCwd = gitdir
+	endif
+endfunction
+
 augroup configgroup
 	autocmd!
 	autocmd VimEnter * highlight clear SignColumn
@@ -340,6 +348,8 @@ augroup configgroup
 	autocmd BufEnter *.zsh-theme setlocal filetype=zsh
 	autocmd BufEnter *.lock setlocal filetype=json
 	autocmd BufEnter Makefile setlocal noexpandtab
+
+	autocmd BufEnter *.php call UpdatePHPActorPath()
 augroup END
 
 " Append modeline after last line in buffer.
