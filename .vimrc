@@ -276,8 +276,9 @@ autocmd FileType php noremap <Leader>pfm :call phpactor#MoveFile()<CR>
 autocmd FileType php noremap <Leader>pfc :call phpactor#CopyFile()<CR>
 autocmd FileType php noremap <Leader>tt  :call phpactor#Transform()<CR>
 autocmd FileType php noremap <Leader>cc  :call phpactor#ClassNew()<CR>
-autocmd FileType php noremap <Leader>cr  :call phpactor#ClassReferences()<CR>
+autocmd FileType php noremap <Leader>cr  :call phpactor#FindReferences()<CR>
 autocmd FileType php noremap <Leader>s   :call PhpSortUse()<CR>
+autocmd FileType php nnoremap <silent><Leader>d :call phpactor#OffsetTypeInfo()<CR>
 autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 let g:php_namespace_sort_after_insert = 1
