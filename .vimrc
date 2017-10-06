@@ -9,50 +9,23 @@ let mapleader = ","
 
 call plug#begin("~/.vim/plugged")
 
-if has('nvim')
-	Plug 'Shougo/denite.nvim'
-	Plug 'roxma/nvim-completion-manager'
-	Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'benekastah/neomake'
-	Plug 'benjie/neomake-local-eslint.vim'
-else
-	Plug 'shougo/unite.vim'
-end
-
+Plug 'phpactor/phpactor', {'do': 'composer install'}
 Plug 'mhartington/oceanic-next'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'Shougo/neomru.vim'
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
 Plug 'SirVer/ultisnips'
 Plug 'tobyS/pdv' | Plug 'tobyS/vmustache'
 Plug 'mattn/emmet-vim'
 Plug 'joonty/vdebug'
-Plug 'jwalton512/vim-blade'
-Plug 'Shougo/echodoc.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'isRuslan/vim-es6'
-Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
-Plug 'elzr/vim-json'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'pearofducks/ansible-vim'
 Plug 'tpope/vim-repeat'
-Plug 'kchmck/vim-coffee-script'
 Plug 'sickill/vim-pasta'
 Plug 'tmhedberg/matchit'
-Plug 'evidens/vim-twig'
-Plug 'smerrill/vcl-vim-plugin'
-Plug 'kovetskiy/sxhkd-vim'
-Plug 'evanmiller/nginx-vim-syntax'
-Plug 'stephenway/postcss.vim'
-Plug 'posva/vim-vue'
-Plug 'robbles/logstash.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'kshenoy/vim-signature'
-Plug 'leafgarland/typescript-vim'
 Plug 'vim-scripts/colorizer'
 Plug 'matze/vim-move'
 Plug 'vimgineers/vim-hugefile'
@@ -61,7 +34,33 @@ Plug 'lucapette/vim-textobj-underscore'
 Plug 'jceb/vim-textobj-uri'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
-Plug 'j16180339887/Global.vim'
+Plug 'tpope/vim-commentary'
+
+" Syntax highlight
+Plug 'jwalton512/vim-blade'
+Plug 'isRuslan/vim-es6'
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'pearofducks/ansible-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'robbles/logstash.vim'
+Plug 'posva/vim-vue'
+Plug 'evidens/vim-twig'
+Plug 'smerrill/vcl-vim-plugin'
+Plug 'kovetskiy/sxhkd-vim'
+Plug 'chr4/nginx.vim'
+Plug 'stephenway/postcss.vim'
+Plug 'kchmck/vim-coffee-script'
+
+if has('nvim')
+	Plug 'Shougo/neomru.vim'
+	Plug 'Shougo/denite.nvim'
+	Plug 'roxma/nvim-completion-manager'
+	Plug 'benekastah/neomake'
+	Plug 'benjie/neomake-local-eslint.vim'
+else
+	Plug 'shougo/unite.vim'
+end
 
 call plug#end()
 
@@ -145,9 +144,6 @@ else
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
 end
 
-cnoremap <c-A> <Home>
-cnoremap <c-E> <End>
-cnoremap <c-K> <C-U>
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
 nnoremap <leader>t :%s/\s\+$//e<CR>:nohls<Cr>
@@ -170,62 +166,73 @@ nmap XX "_dd
 vmap X "_d
 nnoremap c "_c
 vnoremap c "_c
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <C-B> <Left>
-cnoremap <C-F> <Right>
-vnoremap . :norm.<CR>
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:neomake_php_lsi_maker = {
-			\ 'exe': 'phpmd',
-			\ 'args': ['%:p', 'text', '/data/gedeon/config/phpmd.xml'],
-			\ 'errorformat': '%E%f:%l%\s%m'
-			\ }
+let g:neomake_php_phpmd_maker = {
+	\ 'exe': 'phpmd',
+	\ 'args': ['%:p', 'text', '/data/gedeon/config/phpmd.xml'],
+	\ 'errorformat': '%E%f:%l%\s%m'
+\ }
 
-let g:neomake_php_enabled_makers = ['php', 'lsi']
-let g:neomake_typescript_enabled_makers = []
+let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_open_list = 2
 let g:neomake_airline = 1
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
 let g:vdebug_options = {"path_maps": {"/var/www": "/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9001" }
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-	\ 'php': ['php', '~/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
-	\ 'javascript': ['node', '/data/cmizzi/javascript-typescript-langserver/lib/language-server-stdio.js']
-	\ }
 
 function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
 	execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
+" Update PHPActor cwd each time a new buffer is accessed
+function! UpdatePHPActorPath()
+	" Change working dir to the current file
+	cd %:p:h
+
+	" Set 'gitdir' to be the folder containing .git
+	let gitdir = system("git rev-parse --show-toplevel")
+
+	" See if the command output starts with 'fatal' (if it does, not in a git repo)
+	if empty(matchstr(gitdir, '^fatal:.*'))
+		let g:phpactorInitialCwd = gitdir
+	endif
+endfunction
+
 augroup configgroup
 	autocmd!
-	autocmd FileType python      setlocal foldmethod=syntax
-	autocmd FileType php         nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-	autocmd FileType js          nnoremap <leader>doc <Plug>(jsdoc)
-	autocmd FileType vue         nnoremap <leader>doc <Plug>(jsdoc)
-	autocmd FileType php         noremap  gd :call LanguageClient_textDocument_definition()<CR>
 	autocmd VimEnter *           highlight clear SignColumn
-	autocmd FileType yaml        setlocal expandtab
-	autocmd FileType json        setlocal expandtab
-	autocmd FileType python      setlocal commentstring=#\ %s
 	autocmd BufEnter *.cls       setlocal filetype=java
 	autocmd BufEnter *.zsh-theme setlocal filetype=zsh
 	autocmd BufEnter *.lock      setlocal filetype=json
 	autocmd BufEnter Makefile    setlocal noexpandtab
+	autocmd BufEnter *.php       call UpdatePHPActorPath()
+	autocmd FileType yaml        setlocal expandtab
+	autocmd FileType json        setlocal expandtab
+	autocmd FileType python      setlocal commentstring=#\ %s
+	autocmd FileType python      setlocal foldmethod=syntax
+	autocmd FileType php         nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
 	autocmd FileType vue         syntax sync fromstart
+	autocmd FileType php         noremap <Leader>u :call phpactor#UseAdd()<CR>
+	autocmd FileType php         noremap <Leader>e :call phpactor#ClassExpand()<CR>
+	autocmd FileType php         noremap gd :call phpactor#GotoDefinition()<CR>
+	autocmd FileType php         noremap <Leader>mf :call phpactor#MoveFile()<CR>
+	autocmd FileType php         noremap <Leader>cf :call phpactor#CopyFile()<CR>
+	autocmd FileType php         noremap <Leader>tt :call phpactor#Transform()<CR>
+	autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
+	autocmd FileType php         setlocal omnifunc=phpactor#Complete
 augroup END
 
+" Will only be executed on Neovim
 if has('nvim')
+	" Inform Neovim to automake on new, read and write file state
 	call neomake#configure#automake('rnw')
+
+	" Configure denite sources, aliases, vars and maps
 	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('file_rec', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
@@ -241,4 +248,17 @@ if has('nvim')
 	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
+
+	" Setting up neovim-completion-manager source for PHPActor. Instead of using
+	" existing plugin in order to that, just register the source using the
+	" phpactor#Complete omnifunc
+	au User CmSetup call cm#register_source({'name' : 'phpactor',
+		\ 'priority': 9,
+		\ 'scoping': 1,
+		\ 'scopes': ['php'],
+		\ 'abbreviation': 'php',
+		\ 'word_pattern': '[$\w]+',
+		\ 'cm_refresh_patterns':['-\>', '::'],
+		\ 'cm_refresh': {'omnifunc': 'phpactor#Complete'},
+		\ })
 end
