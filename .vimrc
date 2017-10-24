@@ -35,6 +35,7 @@ Plug 'jceb/vim-textobj-uri'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
+Plug 'Yggdroot/indentLine'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -183,6 +184,8 @@ let g:vdebug_options = {"path_maps": {"/var/www": "/data"}, "break_on_open": 1, 
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
+let g:indentLine_char = '+'
+let g:indentLine_conceallevel = 0
 
 function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()

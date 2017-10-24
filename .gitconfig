@@ -16,6 +16,7 @@
 	up  = pull --rebase=preserve --autostash
 	lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lga = !"git lg --all"
+	ll  = !"rat --mode git.log --cmd 'git lg'"
 
 [color]
 	diff = auto

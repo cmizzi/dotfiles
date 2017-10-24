@@ -18,4 +18,6 @@
 !/.tmux.conf
 !/.gitconfig
 !/.psqlrc
+!/.screenrc
+~/.stalonetrayrc
 !.gitkeep
