@@ -35,12 +35,14 @@
 [merge]
 	tool = kdiff3
 	summary = true
+	keepbackup = false
 
 [cola]
 	tabwidth = 4
-	fontdiff = Ubuntu Mono derivative Powerline,10,-1,5,50,0,0,0,0,0
+	fontdiff = Source Code Pro for Powerline,8,-1,5,50,0,0,0,0,0
 	textwidth = 80
 	linebreak = false
+	spellcheck = false
 
 [rerere]
 	enabled = true

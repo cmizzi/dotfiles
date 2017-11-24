@@ -24,7 +24,7 @@ super + Escape
 
 # Show or empty Conky
 alt + {minus,equal}
-	bspc config -d focused right_padding {243,0}
+	bspc config -d focused right_padding {245,0}
 
 #
 # bspwm hotkeys

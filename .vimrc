@@ -10,7 +10,7 @@ let mapleader = ","
 call plug#begin("~/.vim/plugged")
 
 Plug 'phpactor/phpactor', {'do': 'composer install'}
-Plug 'mhartington/oceanic-next'
+Plug 'dracula/vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
@@ -36,6 +36,8 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
+Plug 'chaoren/vim-wordmotion'
+Plug 'terryma/vim-expand-region'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -45,7 +47,7 @@ Plug 'elzr/vim-json'
 Plug 'pearofducks/ansible-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'robbles/logstash.vim'
-Plug 'posva/vim-vue'
+Plug 'darthmall/vim-vue'
 Plug 'evidens/vim-twig'
 Plug 'smerrill/vcl-vim-plugin'
 Plug 'kovetskiy/sxhkd-vim'
@@ -73,9 +75,7 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-set background=dark
-colorscheme OceanicNext
-let g:airline_theme='oceanicnext'
+colorscheme dracula
 
 set ru
 set number
@@ -135,6 +135,7 @@ set formatoptions-=t
 set formatoptions+=j
 set formatoptions+=o
 set formatoptions+=r
+syntax sync minlines=100
 
 if has('nvim')
 	set inccommand=split
@@ -145,6 +146,8 @@ else
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
 end
 
+map { <Plug>(expand_region_expand)
+map } <Plug>(expand_region_shrink)
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
 nnoremap <leader>t :%s/\s\+$//e<CR>:nohls<Cr>
@@ -173,14 +176,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:neomake_php_phpmd_maker = {
 	\ 'exe': 'phpmd',
-	\ 'args': ['%:p', 'text', '/data/gedeon/config/phpmd.xml'],
+	\ 'args': ['%:p', 'text', '/home/data/lsi/config/phpmd.xml'],
 	\ 'errorformat': '%E%f:%l%\s%m'
 \ }
 
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_open_list = 2
 let g:neomake_airline = 1
-let g:vdebug_options = {"path_maps": {"/var/www": "/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9001" }
+let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9001" }
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
@@ -219,7 +222,6 @@ augroup configgroup
 	autocmd FileType python      setlocal commentstring=#\ %s
 	autocmd FileType python      setlocal foldmethod=syntax
 	autocmd FileType php         nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-	autocmd FileType vue         syntax sync fromstart
 	autocmd FileType php         noremap <Leader>u :call phpactor#UseAdd()<CR>
 	autocmd FileType php         noremap <Leader>e :call phpactor#ClassExpand()<CR>
 	autocmd FileType php         noremap gd :call phpactor#GotoDefinition()<CR>
