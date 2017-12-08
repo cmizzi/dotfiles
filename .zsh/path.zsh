@@ -1,7 +1,7 @@
 #! /bin/zsh
 # Configure PATH environment
 
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.zfunctions:$PATH"
 export PATH="$HOME/.local/bin/tools:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
