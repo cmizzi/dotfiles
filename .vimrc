@@ -126,9 +126,11 @@ set directory=/tmp/nvim,~/.tmp,/var/tmp,/tmp
 set undodir=/tmp/nvim,~/.tmp,/var/tmp,/tmp
 set writebackup
 set ts=4
-set sw=4
 set autoindent
 set smartindent
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 set cc=+1
 set tw=80
 set formatoptions-=t
@@ -187,8 +189,9 @@ let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open"
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
+
 let g:indentLine_char = '+'
-let g:indentLine_conceallevel = 0
+let g:indentLine_conceallevel = 1
 
 function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
