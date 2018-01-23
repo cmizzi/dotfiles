@@ -27,6 +27,7 @@ Plug 'sickill/vim-pasta'
 Plug 'tmhedberg/matchit'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'vim-scripts/colorizer'
+Plug 'tpope/vim-unimpaired'
 Plug 'matze/vim-move'
 Plug 'vimgineers/vim-hugefile'
 Plug 'kana/vim-textobj-user'
@@ -54,6 +55,12 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'chr4/nginx.vim'
 Plug 'stephenway/postcss.vim'
 Plug 'kchmck/vim-coffee-script'
+
+" Laravel specific
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'noahfrederick/vim-composer'
+Plug 'noahfrederick/vim-laravel'
 
 if has('nvim')
 	Plug 'Shougo/neomru.vim'
@@ -183,7 +190,7 @@ let g:neomake_php_phpmd_maker = {
 \ }
 
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 let g:neomake_airline = 1
 let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9001" }
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
@@ -232,6 +239,8 @@ augroup configgroup
 	autocmd FileType php         noremap <Leader>cf :call phpactor#CopyFile()<CR>
 	autocmd FileType php         noremap <Leader>tt :call phpactor#Transform()<CR>
 	autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
+	autocmd FileType php         noremap <Leader>mm :call phpactor#ContextMenu()<CR>
+    autocmd FileType php         vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 	autocmd FileType php         setlocal omnifunc=phpactor#Complete
 augroup END
 
