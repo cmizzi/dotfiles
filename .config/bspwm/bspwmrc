@@ -6,7 +6,7 @@ numlockx on &
 autocutsel -selection PRIMARY -fork &
 greenclip daemon &
 setxkbmap -layout us,fr -option '' -option grp:alt_space_toggle,grp_led:scroll
-xcompmgr &
+compton &
 xautolock -time 10 -locker 'lock' &
 clipit &
 sleep 1
