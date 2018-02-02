@@ -55,6 +55,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'chr4/nginx.vim'
 Plug 'stephenway/postcss.vim'
 Plug 'kchmck/vim-coffee-script'
+Plug 'joshdick/onedark.vim'
 
 " Laravel specific
 Plug 'tpope/vim-dispatch'
@@ -82,7 +83,8 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-colorscheme dracula
+let g:airline_theme='onedark'
+colorscheme onedark
 
 set ru
 set number
@@ -192,7 +194,7 @@ let g:neomake_php_phpmd_maker = {
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_open_list = 0
 let g:neomake_airline = 1
-let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9001" }
+let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9000" }
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
