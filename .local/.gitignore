@@ -3,4 +3,12 @@
 
 !/.gitignore
 !/bin/
+/bin/*
+!/bin/fzf
+!/bin/fzf-tmux
+!/bin/dockershell
+!/bin/fasd
+!/bin/fd
+!/bin/rg
+!/bin/wallheaven
 !/highlight.awk

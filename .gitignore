@@ -1,5 +1,6 @@
 /*
 /*/
+!.gitignore
 
 # Directories
 !/.zsh/
@@ -13,7 +14,6 @@
 !/.stalonetrayrc.default
 !/.screenrc
 !/.vimrc
-!/.gitignore
 !/.zshrc
 !/.tmux.conf
 !/.gitconfig

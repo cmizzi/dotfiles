@@ -1,0 +1,6 @@
+*
+!.gitignore
+!sxhkd/
+!bspwm/
+!sxhkd/*
+!bspwm/*
