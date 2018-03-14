@@ -137,7 +137,7 @@ set writebackup
 set ts=4
 set autoindent
 set smartindent
-set expandtab
+set noexpandtab
 set shiftwidth=4
 set softtabstop=4
 set cc=+1
@@ -147,15 +147,6 @@ set formatoptions+=j
 set formatoptions+=o
 set formatoptions+=r
 syntax sync minlines=100
-
-if has('nvim')
-	set inccommand=split
-	set shortmess+=c
-
-	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-else
-	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
-end
 
 map { <Plug>(expand_region_expand)
 map } <Plug>(expand_region_shrink)
@@ -221,6 +212,27 @@ function! UpdatePHPActorPath()
 	endif
 endfunction
 
+function! OpenDenite()
+	cd %:p:h
+	let gitdir = finddir('.git', ';')
+	let source = gitdir != '' ? 'file_rec/git' : 'file_rec'
+
+	if gitdir != ''
+		execute 'cd' printf('%s/..', gitdir)
+	endif
+
+	execute ":Denite buffer file_mru " . source
+endfunction
+
+if has('nvim')
+	set inccommand=split
+	set shortmess+=c
+
+	nnoremap <silent> <leader>o :<C-u>call OpenDenite()<CR>
+else
+	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
+end
+
 augroup configgroup
 	autocmd!
 	autocmd VimEnter *           highlight clear SignColumn
@@ -254,13 +266,14 @@ if has('nvim')
 	" Configure denite sources, aliases, vars and maps
 	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('file_rec', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('file_rec/git', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
 	call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 	call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
 	call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
 	call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-	call denite#custom#map('insert', '<C-Right>', '<denite:jump_to_next_source>', 'noremap')
-	call denite#custom#map('insert', '<C-Left>', '<denite:jump_to_previous_source>', 'noremap')
+	call denite#custom#map('insert', '<C-]>', '<denite:jump_to_next_source>', 'noremap')
+	call denite#custom#map('insert', '<C-[>', '<denite:jump_to_previous_source>', 'noremap')
 	call denite#custom#var('grep', 'command', ['rg'])
 	call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 	call denite#custom#var('grep', 'recursive_opts', [])
@@ -281,3 +294,14 @@ if has('nvim')
 		\ 'cm_refresh': {'omnifunc': 'phpactor#Complete'},
 		\ })
 end
+
+fun! <SID>StripTrailingWhitespaces()
+	if match(expand('%p'), ".*horizon.*") == -1
+		let l = line(".")
+		let c = col(".")
+		%s/\s\+$//e
+		call cursor(l, c)
+	endif
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
