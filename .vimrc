@@ -55,7 +55,9 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'chr4/nginx.vim'
 Plug 'stephenway/postcss.vim'
 Plug 'kchmck/vim-coffee-script'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
+Plug 'romainl/flattened'
+Plug 'vim-airline/vim-airline-themes'
 
 " Laravel specific
 Plug 'tpope/vim-dispatch'
@@ -83,8 +85,9 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-let g:airline_theme='onedark'
-colorscheme onedark
+let g:airline_theme='solarized'
+" colorscheme onedark
+colorscheme flattened_light
 
 set ru
 set number

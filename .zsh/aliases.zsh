@@ -14,5 +14,6 @@ alias sucs="sort | uniq -c | sort -n"
 alias nautilus="nautilus --browser --no-desktop"
 alias jj='dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}"'
 alias j='fasd_cd -d'
+alias a='php artisan'
 
 # vim: ft=zsh
