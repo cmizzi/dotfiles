@@ -10,7 +10,7 @@ let mapleader = ","
 call plug#begin("~/.vim/plugged")
 
 Plug 'phpactor/phpactor', {'do': 'composer install'}
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
@@ -35,16 +35,14 @@ Plug 'lucapette/vim-textobj-underscore'
 Plug 'jceb/vim-textobj-uri'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
-Plug 'tpope/vim-commentary'
-Plug 'Yggdroot/indentLine'
 Plug 'chaoren/vim-wordmotion'
 Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-commentary'
+Plug 'pangloss/vim-javascript'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
 Plug 'isRuslan/vim-es6'
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
 Plug 'pearofducks/ansible-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'robbles/logstash.vim'
@@ -78,16 +76,13 @@ end
 call plug#end()
 
 filetype plugin indent on
-filetype off
 syntax on
 
 if (has("termguicolors"))
 	set termguicolors
 endif
 
-let g:airline_theme='solarized'
-" colorscheme onedark
-colorscheme flattened_light
+colorscheme dracula
 
 set ru
 set number
@@ -188,7 +183,7 @@ let g:neomake_php_phpmd_maker = {
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_open_list = 0
 let g:neomake_airline = 1
-let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9000" }
+let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9000", "timeout" : 20, }
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
@@ -236,6 +231,14 @@ else
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
 end
 
+" Start autocompletion after 4 chars
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+
 augroup configgroup
 	autocmd!
 	autocmd VimEnter *           highlight clear SignColumn
@@ -272,7 +275,7 @@ if has('nvim')
 	call denite#custom#source('file_rec/git', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
 	call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-	call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+	call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-c', '--exclude-standard', '--recurse-submodules'])
 	call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
 	call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 	call denite#custom#map('insert', '<C-]>', '<denite:jump_to_next_source>', 'noremap')
