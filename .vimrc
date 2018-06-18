@@ -10,7 +10,6 @@ let mapleader = ","
 call plug#begin("~/.vim/plugged")
 
 Plug 'phpactor/phpactor', {'do': 'composer install'}
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
@@ -39,6 +38,7 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
+Plug 'joshdick/onedark.vim'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -46,7 +46,7 @@ Plug 'isRuslan/vim-es6'
 Plug 'pearofducks/ansible-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'robbles/logstash.vim'
-Plug 'darthmall/vim-vue'
+Plug 'posva/vim-vue'
 Plug 'evidens/vim-twig'
 Plug 'smerrill/vcl-vim-plugin'
 Plug 'kovetskiy/sxhkd-vim'
@@ -82,7 +82,8 @@ if (has("termguicolors"))
 	set termguicolors
 endif
 
-colorscheme dracula
+set background=dark
+colorscheme onedark
 
 set ru
 set number
@@ -267,7 +268,7 @@ augroup END
 " Will only be executed on Neovim
 if has('nvim')
 	" Inform Neovim to automake on new, read and write file state
-	call neomake#configure#automake('rnw')
+	call neomake#configure#automake('rnwi')
 
 	" Configure denite sources, aliases, vars and maps
 	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
