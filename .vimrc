@@ -9,7 +9,7 @@ let mapleader = ","
 
 call plug#begin("~/.vim/plugged")
 
-Plug 'phpactor/phpactor', {'do': 'composer install'}
+Plug 'phpactor/phpactor', {'do': 'composer install', 'branch': 'develop'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-easy-align'
