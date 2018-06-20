@@ -65,3 +65,5 @@
 
 [gui]
 	editor = vim
+[commit]
+	gpgsign = true
