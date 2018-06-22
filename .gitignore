@@ -19,5 +19,6 @@
 !/.gitconfig
 !/.psqlrc
 !/.screenrc
+!/.conkyrc
 ~/.stalonetrayrc
 !.gitkeep
