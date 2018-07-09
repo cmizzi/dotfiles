@@ -149,6 +149,7 @@ syntax sync minlines=100
 
 map { <Plug>(expand_region_expand)
 map } <Plug>(expand_region_shrink)
+map <leader>ba :bufdo bd<CR>
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
 nnoremap <leader>t :%s/\s\+$//e<CR>:nohls<Cr>
