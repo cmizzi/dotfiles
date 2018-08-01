@@ -66,7 +66,9 @@ Plug 'noahfrederick/vim-laravel'
 if has('nvim')
 	Plug 'Shougo/neomru.vim'
 	Plug 'Shougo/denite.nvim'
-	Plug 'roxma/nvim-completion-manager'
+	Plug 'ncm2/ncm2'
+	Plug 'roxma/nvim-yarp'
+	Plug 'phpactor/ncm2-phpactor'
 	Plug 'benekastah/neomake'
 	Plug 'benjie/neomake-local-eslint.vim'
 else
@@ -208,7 +210,7 @@ function! UpdatePHPActorPath()
 
 	" See if the command output starts with 'fatal' (if it does, not in a git repo)
 	if empty(matchstr(gitdir, '^fatal:.*'))
-		let g:phpactorInitialCwd = gitdir
+		let g:phpactorInitialCwd = substitute(gitdir, '\n\+$', '', '')
 	endif
 endfunction
 
@@ -232,14 +234,6 @@ if has('nvim')
 else
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
 end
-
-" Start autocompletion after 4 chars
-let g:ycm_min_num_of_chars_for_completion = 4
-let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_enable_diagnostic_highlighting = 0
-" Don't show YCM's preview window [ I find it really annoying ]
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
 
 augroup configgroup
 	autocmd!
@@ -288,6 +282,9 @@ if has('nvim')
 	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
+
+	autocmd BufEnter * call ncm2#enable_for_buffer()
+	set completeopt=noinsert,menuone,noselect
 
 	" Setting up neovim-completion-manager source for PHPActor. Instead of using
 	" existing plugin in order to that, just register the source using the
