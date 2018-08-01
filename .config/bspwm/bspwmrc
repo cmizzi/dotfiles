@@ -45,6 +45,7 @@ bspc rule -a thunderbird desktop='^VIII'
 bspc rule -a discord desktop='^IX'
 bspc rule -a git-cola state=floating
 bspc rule -a zazu state=floating
+bspc rule -a gnome-calculator state=floating
 # }}}
 
 # vim: syn=sh
