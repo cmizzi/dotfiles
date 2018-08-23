@@ -36,7 +36,7 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	zplug "changyuheng/zsh-interactive-cd"
 
 	# Configure theme
-	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ "$USER" = "root" ]; then
 		# If we're on SSH, just load the agnoster theme
 		zplug "themes/agnoster", from:oh-my-zsh
 	else
@@ -46,12 +46,6 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 
 	zplug check || zplug install
 	zplug load
-
-	# Just override prompt for specific theme (cannot be done in the condition
-	# as the theme is not loaded yet)
-	if zplug check tylerreckart/hyperzsh; then
-		PROMPT='%{$fg[cyan]%}%c $(git_prompt_info)%{$reset_color%}$(git_prompt_short_sha)%{$fg[magenta]%}$(git_prompt_status)${_return_status}➜ '
-	fi
 fi
 
 # vim: ft=zsh
