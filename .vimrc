@@ -80,9 +80,9 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-if (has("termguicolors"))
-	set termguicolors
-endif
+" if (has("termguicolors"))
+" 	set termguicolors
+" endif
 
 set background=dark
 colorscheme onedark
@@ -310,3 +310,5 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+set t_Co=256
