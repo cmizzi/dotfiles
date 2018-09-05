@@ -70,7 +70,7 @@ conky.config = {
 
 conky.text = [[
 ${voffset 30}
-${font Ubuntu:size=20}${alignc}${time %k:%M}${font Ubuntu:size=8}
+${font Ubuntu:size=20}${alignc}${time %k:%M:%S}${font Ubuntu:size=8}
 ${alignc}${time %a %b %d %Y}
 ${voffset 20}
 
