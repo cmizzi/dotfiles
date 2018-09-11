@@ -1,11 +1,6 @@
 #! /bin/zsh
 # Define functions
 
-# Shortcut to connect to SSH with user agent forwarding
-function server () {
-	/usr/bin/ssh -A $@
-}
-
 # Shortcut to access Docker logs
 function dl() {
 	CONTAINER=$(docker ps -a --no-trunc | grep "$1\$" | awk '{print $1}' | head -n 1)
@@ -66,5 +61,17 @@ __dockershell() {
 }
 
 compdef __dockershell dockershell
+
+# Shortcut to connect to SSH with user agent forwarding
+server () {
+	/usr/bin/ssh -A $1
+}
+
+__server () {
+	_arguments \
+		"1: :($(cat ~/.ssh/config | grep -Ei '^host' | grep -v '*' | sed 's/host \(.*\)/\1/i'))"
+}
+
+compdef __server server
 
 # vim: ft=zsh
