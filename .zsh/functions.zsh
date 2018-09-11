@@ -36,17 +36,35 @@ function v() {
 	file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
-dockerexec() {
-	ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$1" | head -1))
+dockershell() {
+	if [ "$1" == "service" ]; then
+		ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$2" | head -1))
+	else
+		ID=$2
+	fi;
+
 	docker exec -t -i "$ID" bash
 }
 
+__dockershell() {
+	local state
 
-__dockerexec() {
-	_arguments "1: :($(docker service ls -q --format '{{.Name}}'))"
+	_arguments \
+		"1: :->kind" \
+		"*: :->containers" \
+
+	case $state in
+		(kind) compadd "$@" service container ;;
+		(*)
+			if [ "$words[2]" == "service" ]; then
+				_arguments "*:services:($((docker info 2> /dev/null | grep -i 'swarm: active') && docker service ls -q --format '{{.Name}}'))"
+			else
+				_arguments "*:containers:($(docker ps -q --format '{{.Names}}'))"
+			fi;
+		;;
+	esac
 }
 
-compdef __dockerexec dockerexec
+compdef __dockershell dockershell
 
 # vim: ft=zsh
-
