@@ -37,7 +37,7 @@ function v() {
 }
 
 dockershell() {
-	if [ "$1" == "service" ]; then
+	if [ "$1" = "service" ]; then
 		ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$2" | head -1))
 	else
 		ID=$2
@@ -56,7 +56,7 @@ __dockershell() {
 	case $state in
 		(kind) compadd "$@" service container ;;
 		(*)
-			if [ "$words[2]" == "service" ]; then
+			if [ "$words[2]" = "service" ]; then
 				_arguments "*:services:($((docker info 2> /dev/null | grep -i 'swarm: active') && docker service ls -q --format '{{.Name}}'))"
 			else
 				_arguments "*:containers:($(docker ps -q --format '{{.Names}}'))"
