@@ -1,12 +1,6 @@
 #! /bin/zsh
 # Define functions
 
-# Shortcut to access Docker logs
-function dl() {
-	CONTAINER=$(docker ps -a --no-trunc | grep "$1\$" | awk '{print $1}' | head -n 1)
-	docker logs -f --tail=100 $CONTAINER
-}
-
 # Tail with custom colors (DEBUG, INFO, ERROR and WARN)
 function ctail() {
 	tail "$@" | awk -f "$HOME/.local/highlight.awk"
@@ -31,6 +25,21 @@ function v() {
 	file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
+# Shortcut to access Docker logs
+dl() {
+	if [ "$1" = "service" ]; then
+		ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$2" | head -1))
+		docker service logs -f --tail 100 $ID
+
+		exit 0
+	fi;
+
+	docker logs -f --tail 100 $2
+}
+
+compdef __dockershell dl
+
+# Shortcut to log in container/service
 dockershell() {
 	if [ "$1" = "service" ]; then
 		ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$2" | head -1))
