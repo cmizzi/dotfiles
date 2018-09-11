@@ -23,5 +23,6 @@ bindkey "^A"      beginning-of-line
 bindkey "^E"      end-of-line
 bindkey "^[^["    vi-cmd-mode
 bindkey "^[[3~"   delete-char
+bindkey "\e[Z"    reverse-menu-complete
 
 # vim: ft=zsh
