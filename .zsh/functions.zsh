@@ -46,7 +46,7 @@ __dockerexec() {
 	_arguments "1: :($(docker service ls -q --format '{{.Name}}'))"
 }
 
-compdef __dkse dkse
+compdef __dockerexec dockerexec
 
 # vim: ft=zsh
 
