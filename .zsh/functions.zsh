@@ -36,4 +36,17 @@ function v() {
 	file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
+dockerexec() {
+	ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$1" | head -1))
+	docker exec -t -i "$ID" bash
+}
+
+
+__dockerexec() {
+	_arguments "1: :($(docker service ls -q --format '{{.Name}}'))"
+}
+
+compdef __dkse dkse
+
 # vim: ft=zsh
+
