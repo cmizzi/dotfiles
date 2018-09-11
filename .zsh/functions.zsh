@@ -28,10 +28,8 @@ function v() {
 # Shortcut to access Docker logs
 dl() {
 	if [ "$1" = "service" ]; then
-		ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$2" | head -1))
-		docker service logs -f --tail 100 $ID
-
-		exit 0
+		docker service logs -f --tail 100 $2
+		return
 	fi;
 
 	docker logs -f --tail 100 $2
