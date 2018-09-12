@@ -45,7 +45,7 @@ dockershell() {
 		ID=$2
 	fi;
 
-	docker exec -t -i "$ID" bash
+	docker exec -t -i -e PS1="$ID:\w# " "$ID" bash --noprofile --norc
 }
 
 __dockershell() {
