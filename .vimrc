@@ -256,8 +256,16 @@ augroup configgroup
 	autocmd FileType php         noremap <Leader>tt :call phpactor#Transform()<CR>
 	autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
 	autocmd FileType php         noremap <Leader>mm :call phpactor#ContextMenu()<CR>
-    autocmd FileType php         vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 	autocmd FileType php         setlocal omnifunc=phpactor#Complete
+
+	" Extract expression (normal mode)
+	autocmd FileType php nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
+
+	" Extract expression from selection
+	autocmd FileType php vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
+
+	" Extract method from selection
+	autocmd FileType php vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 augroup END
 
 " Will only be executed on Neovim
