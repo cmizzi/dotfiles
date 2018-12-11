@@ -8,7 +8,7 @@ greenclip daemon &
 setxkbmap -layout us,fr -option '' -option grp:alt_space_toggle,grp_led:scroll
 compton &
 xautolock -time 10 -locker 'lock' &
-clipit &
+copyq &
 sleep 1
 
 feh --randomize --bg-fill ~/Pictures/Wallpapers/*
@@ -46,6 +46,7 @@ bspc rule -a discord desktop='^IX'
 bspc rule -a git-cola state=floating
 bspc rule -a zazu state=floating
 bspc rule -a gnome-calculator state=floating
+bspc rule -a copyq state=floating
 # }}}
 
 # vim: syn=sh

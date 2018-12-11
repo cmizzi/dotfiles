@@ -9,3 +9,34 @@ snippet log
 snippet measure
 	start_measure("${1:time}");
 	stop_measure("${1:time}");
+snippet test
+	/**
+	 * @test
+	 */
+	public function ${1:method}() {
+	}
+snippet class
+	class ${1:name} {
+		/**
+		 * __construct
+		 *
+		 * @return void
+		 */
+		public function __construct() {
+			// ...
+		}
+	}
+snippet strict
+	declare(strict_types=1);
+snippet public
+	/**
+	 * @return void
+	 */
+	public function ${1:name}() {
+	}
+snippet private
+	/**
+	 * @return void
+	 */
+	private function ${1:name}() {
+	}

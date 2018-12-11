@@ -94,4 +94,8 @@ function precmd() {
   fi
 }
 
+function homestead() {
+    ( cd /home/data/homestead && vagrant $* )
+}
+
 # vim: ft=zsh

@@ -39,6 +39,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -46,8 +48,11 @@ Plug 'isRuslan/vim-es6'
 Plug 'pearofducks/ansible-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'robbles/logstash.vim'
-Plug 'posva/vim-vue'
+Plug 'storyn26383/vim-vue'
 Plug 'evidens/vim-twig'
+Plug 'pangloss/vim-javascript'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'smerrill/vcl-vim-plugin'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'chr4/nginx.vim'
@@ -187,10 +192,22 @@ let g:neomake_php_phpmd_maker = {
 let g:neomake_php_enabled_makers = ['php', 'phpmd']
 let g:neomake_open_list = 0
 let g:neomake_airline = 1
-let g:vdebug_options = {"path_maps": {"/var/www": "/home/data"}, "break_on_open": 1, "watch_window_style": "compact", "port": "9000", "timeout" : 20, }
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
+
+let g:vdebug_options = {
+	\ "path_maps": {
+		\ "/var/www/html": "/home/data/dev.lesiteimmo",
+		\ "/var/www/gedeon": "/home/data/lsi",
+		\ "/home/vagrant/code": "/home/cyril/code",
+		\ "/home/vagrant/code/webhealth.app": "/home/data/cmizzi/webhealth.app"
+	\ },
+	\ "break_on_open": 1,
+	\ "watch_window_style": "compact",
+	\ "port": "9000",
+	\ "timeout" : 20
+	\ }
 
 let g:indentLine_char = '+'
 let g:indentLine_conceallevel = 1
@@ -257,6 +274,9 @@ augroup configgroup
 	autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
 	autocmd FileType php         noremap <Leader>mm :call phpactor#ContextMenu()<CR>
 	autocmd FileType php         setlocal omnifunc=phpactor#Complete
+
+	au FileType go nmap <leader>u <Plug>go-import
+	au FileType go setlocal omnifunc=go#complete#Complete
 
 	" Extract expression (normal mode)
 	autocmd FileType php nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>

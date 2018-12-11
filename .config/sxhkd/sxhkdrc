@@ -1,7 +1,3 @@
-# Manage volume
-XF86Audio{RaiseVolume,LowerVolume}
-	amixer set Master 5{+,-} unmute
-
 # Start screensaver
 ctrl + alt + l
 	xautolock -locknow
@@ -25,6 +21,25 @@ super + Escape
 # Show or empty Conky
 alt + {minus,equal}
 	bspc config -d focused right_padding {245,0}
+
+##################
+##### VOLUME #####
+##################
+
+# Raise volume
+# note: also ensures audio is enabled
+XF86AudioRaiseVolume
+	amixer -q set Master 5%+ on
+
+# Lower volume
+# note: intentionally does not unmute
+XF86AudioLowerVolume
+	amixer -q set Master 5%-
+
+# Mute audio
+# note: mute always sets audio off (intentially no toggle)
+XF86AudioMute
+	amixer -q set Master off
 
 XF86AudioPlay
 	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
