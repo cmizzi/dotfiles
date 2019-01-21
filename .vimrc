@@ -41,6 +41,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'TaDaa/vimade'
+Plug 'airblade/vim-rooter'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -111,7 +113,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set autochdir
 set wildmenu
 set showmatch
 set modelines=5
@@ -180,6 +181,10 @@ vmap X "_d
 nnoremap c "_c
 vnoremap c "_c
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+cabbrev e <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'e ' . expand("%:p:h") : 'e')<CR>
+
+let g:rooter_disable_map = 1
+let g:rooter_patterns = ['composer.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -189,7 +194,13 @@ let g:neomake_php_phpmd_maker = {
 	\ 'errorformat': '%E%f:%l%\s%m'
 \ }
 
-let g:neomake_php_enabled_makers = ['php', 'phpmd']
+let g:neomake_php_psalm_maker = {
+	\ 'exe': './vendor/bin/psalm',
+	\ 'args': ['--output-format=pylint', '%:p'],
+	\ 'errorformat': '%E%f:%l:%m'
+\ }
+
+let g:neomake_php_enabled_makers = ['php', 'phpmd', 'psalm']
 let g:neomake_open_list = 0
 let g:neomake_airline = 1
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
@@ -198,8 +209,7 @@ let g:hugefile_trigger_size=10
 
 let g:vdebug_options = {
 	\ "path_maps": {
-		\ "/var/www/html": "/home/data/dev.lesiteimmo",
-		\ "/var/www/gedeon": "/home/data/lsi",
+		\ "/var/www/html/horizon": "/home/data/horizon",
 		\ "/home/vagrant/code": "/home/cyril/code",
 		\ "/home/vagrant/code/webhealth.app": "/home/data/cmizzi/webhealth.app"
 	\ },
@@ -215,20 +225,6 @@ let g:indentLine_conceallevel = 1
 function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
 	execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-" Update PHPActor cwd each time a new buffer is accessed
-function! UpdatePHPActorPath()
-	" Change working dir to the current file
-	cd %:p:h
-
-	" Set 'gitdir' to be the folder containing .git
-	let gitdir = system("git rev-parse --show-toplevel")
-
-	" See if the command output starts with 'fatal' (if it does, not in a git repo)
-	if empty(matchstr(gitdir, '^fatal:.*'))
-		let g:phpactorInitialCwd = substitute(gitdir, '\n\+$', '', '')
-	endif
 endfunction
 
 function! OpenDenite()
@@ -259,7 +255,6 @@ augroup configgroup
 	autocmd BufEnter *.zsh-theme setlocal filetype=zsh
 	autocmd BufEnter *.lock      setlocal filetype=json
 	autocmd BufEnter Makefile    setlocal noexpandtab
-	autocmd BufEnter *.php       call UpdatePHPActorPath()
 	autocmd FileType yaml        setlocal expandtab
 	autocmd FileType json        setlocal expandtab
 	autocmd FileType python      setlocal commentstring=#\ %s
