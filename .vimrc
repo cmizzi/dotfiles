@@ -209,9 +209,9 @@ let g:hugefile_trigger_size=10
 
 let g:vdebug_options = {
 	\ "path_maps": {
-		\ "/var/www/html/horizon": "/home/data/horizon",
-		\ "/home/vagrant/code": "/home/cyril/code",
-		\ "/home/vagrant/code/webhealth.app": "/home/data/cmizzi/webhealth.app"
+		\ "/var/www/html": "/home/data/dev.lesiteimmo",
+		\ "/var/www/gedeon": "/home/data/lsi",
+		\ "/var/www/Drasill": "/home/data/Drasill",
 	\ },
 	\ "break_on_open": 1,
 	\ "watch_window_style": "compact",
@@ -227,23 +227,17 @@ function! ExecuteMacroOverVisualRange()
 	execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-function! OpenDenite()
-	cd %:p:h
-	let gitdir = finddir('.git', ';')
-	let source = gitdir != '' ? 'file_rec/git' : 'file_rec'
-
-	if gitdir != ''
-		execute 'cd' printf('%s/..', gitdir)
-	endif
-
-	execute ":Denite buffer file_mru " . source
+" Update PHPActor cwd each time a new buffer is accessed
+function! UpdatePHPActorPath()
+	let g:phpactorInitialCwd = getcwd()
 endfunction
 
 if has('nvim')
 	set inccommand=split
 	set shortmess+=c
 
-	nnoremap <silent> <leader>o :<C-u>call OpenDenite()<CR>
+	" execute ":Denite buffer file_mru " . source
+	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file_rec<CR>
 else
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
 end
@@ -254,6 +248,7 @@ augroup configgroup
 	autocmd BufEnter *.cls       setlocal filetype=java
 	autocmd BufEnter *.zsh-theme setlocal filetype=zsh
 	autocmd BufEnter *.lock      setlocal filetype=json
+	autocmd BufEnter *.php       call UpdatePHPActorPath()
 	autocmd BufEnter Makefile    setlocal noexpandtab
 	autocmd FileType yaml        setlocal expandtab
 	autocmd FileType json        setlocal expandtab
