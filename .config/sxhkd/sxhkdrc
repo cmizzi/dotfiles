@@ -22,6 +22,9 @@ super + Escape
 alt + {minus,equal}
 	bspc config -d focused right_padding {245,0}
 
+alt + p
+	terminology --exec "xclip -o | vim -"
+
 ##################
 ##### VOLUME #####
 ##################
