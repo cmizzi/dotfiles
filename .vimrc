@@ -11,7 +11,7 @@ call plug#begin("~/.vim/plugged")
 
 Plug 'phpactor/phpactor', {'do': 'composer install', 'branch': 'develop'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'bling/vim-airline'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'SirVer/ultisnips'
 Plug 'tobyS/pdv' | Plug 'tobyS/vmustache'
@@ -38,11 +38,11 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
-Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'TaDaa/vimade'
 Plug 'airblade/vim-rooter'
+Plug 'itchyny/lightline.vim'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -60,9 +60,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'chr4/nginx.vim'
 Plug 'stephenway/postcss.vim'
 Plug 'kchmck/vim-coffee-script'
-" Plug 'joshdick/onedark.vim'
 Plug 'romainl/flattened'
-Plug 'vim-airline/vim-airline-themes'
 
 " Laravel specific
 Plug 'tpope/vim-dispatch'
@@ -87,12 +85,9 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-" if (has("termguicolors"))
-" 	set termguicolors
-" endif
-
 set background=dark
-colorscheme onedark
+colorscheme palenight
+set t_Co=256
 
 set ru
 set number
@@ -186,8 +181,6 @@ cabbrev e <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'e ' . expand("%:p:h") : 
 let g:rooter_disable_map = 1
 let g:rooter_patterns = ['composer.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 let g:neomake_php_phpmd_maker = {
 	\ 'exe': 'phpmd',
 	\ 'args': ['%:p', 'text', '/home/data/lsi/config/phpmd.xml'],
@@ -202,7 +195,6 @@ let g:neomake_php_psalm_maker = {
 
 let g:neomake_php_enabled_makers = ['php', 'phpmd', 'psalm']
 let g:neomake_open_list = 0
-let g:neomake_airline = 1
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
 let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
@@ -236,8 +228,7 @@ if has('nvim')
 	set inccommand=split
 	set shortmess+=c
 
-	" execute ":Denite buffer file_mru " . source
-	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file_rec<CR>
+	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file_rec/git<CR>
 else
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
 end
@@ -341,5 +332,3 @@ vnoremap <silent> # :<C-U>
 	\gV:call setreg('"', old_reg, old_regtype)<CR>
 
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-set t_Co=256
