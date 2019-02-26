@@ -188,7 +188,7 @@ let g:neomake_php_phpmd_maker = {
 \ }
 
 let g:neomake_php_psalm_maker = {
-	\ 'exe': './vendor/bin/psalm',
+	\ 'exe': 'psalm',
 	\ 'args': ['--output-format=pylint', '%:p'],
 	\ 'errorformat': '%E%f:%l:%m'
 \ }
