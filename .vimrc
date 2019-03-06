@@ -9,7 +9,8 @@ let mapleader = ","
 
 call plug#begin("~/.vim/plugged")
 
-Plug 'phpactor/phpactor', {'do': 'composer install', 'branch': 'develop'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'phpactor/phpactor', {'do': 'composer install', 'branch': 'develop'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -43,6 +44,7 @@ Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'airblade/vim-rooter'
 Plug 'itchyny/lightline.vim'
+Plug 'luochen1990/rainbow'
 
 " Syntax highlight
 Plug 'jwalton512/vim-blade'
@@ -73,7 +75,7 @@ if has('nvim')
 	Plug 'Shougo/denite.nvim'
 	Plug 'ncm2/ncm2'
 	Plug 'roxma/nvim-yarp'
-	Plug 'phpactor/ncm2-phpactor'
+	" Plug 'phpactor/ncm2-phpactor'
 	Plug 'benekastah/neomake'
 	Plug 'benjie/neomake-local-eslint.vim'
 else
@@ -90,6 +92,7 @@ colorscheme palenight
 set t_Co=256
 
 set ru
+set updatetime=300
 set number
 set relativenumber
 set lazyredraw
@@ -148,6 +151,7 @@ set formatoptions-=t
 set formatoptions+=j
 set formatoptions+=o
 set formatoptions+=r
+set signcolumn=yes
 syntax sync minlines=100
 
 map { <Plug>(expand_region_expand)
@@ -180,6 +184,7 @@ cabbrev e <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'e ' . expand("%:p:h") : 
 
 let g:rooter_disable_map = 1
 let g:rooter_patterns = ['composer.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+let g:rainbow_active = 1
 
 let g:neomake_php_phpmd_maker = {
 	\ 'exe': 'phpmd',
@@ -246,27 +251,59 @@ augroup configgroup
 	autocmd FileType python      setlocal commentstring=#\ %s
 	autocmd FileType python      setlocal foldmethod=syntax
 	autocmd FileType php         nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-	autocmd FileType php         noremap <Leader>u :call phpactor#UseAdd()<CR>
-	autocmd FileType php         noremap <Leader>e :call phpactor#ClassExpand()<CR>
-	autocmd FileType php         noremap gd :call phpactor#GotoDefinition()<CR>
-	autocmd FileType php         noremap <Leader>mf :call phpactor#MoveFile()<CR>
-	autocmd FileType php         noremap <Leader>cf :call phpactor#CopyFile()<CR>
-	autocmd FileType php         noremap <Leader>tt :call phpactor#Transform()<CR>
-	autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
-	autocmd FileType php         noremap <Leader>mm :call phpactor#ContextMenu()<CR>
-	autocmd FileType php         setlocal omnifunc=phpactor#Complete
+	" autocmd FileType php         noremap <Leader>u :call phpactor#UseAdd()<CR>
+	" autocmd FileType php         noremap <Leader>e :call phpactor#ClassExpand()<CR>
+	" autocmd FileType php         noremap gd :call phpactor#GotoDefinition()<CR>
+	" autocmd FileType php         noremap <Leader>mf :call phpactor#MoveFile()<CR>
+	" autocmd FileType php         noremap <Leader>cf :call phpactor#CopyFile()<CR>
+	" autocmd FileType php         noremap <Leader>tt :call phpactor#Transform()<CR>
+	" autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
+	" autocmd FileType php         noremap <Leader>mm :call phpactor#ContextMenu()<CR>
+	" autocmd FileType php         setlocal omnifunc=phpactor#Complete
 
 	au FileType go nmap <leader>u <Plug>go-import
 	au FileType go setlocal omnifunc=go#complete#Complete
 
 	" Extract expression (normal mode)
-	autocmd FileType php nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
+	" autocmd FileType php nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
 
 	" Extract expression from selection
-	autocmd FileType php vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
+	" autocmd FileType php vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 
 	" Extract method from selection
-	autocmd FileType php vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+	" autocmd FileType php vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+	function! s:show_documentation()
+		if &filetype == 'vim'
+			execute 'h '.expand('<cword>')
+		else
+			call CocAction('doHover')
+		endif
+	endfunction
+
+	autocmd CursorHold * silent call CocActionAsync('highlight')
+	nnoremap <silent> K :call <SID>show_documentation()<CR>
+	nmap <leader>rn <Plug>(coc-rename)
+	vmap <leader>f  <Plug>(coc-format-selected)
+	nmap <leader>f  <Plug>(coc-format-selected)
+	" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+	vmap <leader>a  <Plug>(coc-codeaction-selected)
+	nmap <leader>a  <Plug>(coc-codeaction-selected)
+	" Remap keys for gotos
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+
+	" Remap for do codeAction of current line
+	nmap <leader>ac  <Plug>(coc-codeaction)
+	" Fix autofix problem of current line
+	nmap <leader>qf  <Plug>(coc-fix-current)
+
+	" Use `:Format` for format current buffer
+	command! -nargs=0 Format :call CocAction('format')
+
+	" Use `:Fold` for fold current buffer
+	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 augroup END
 
 " Will only be executed on Neovim
@@ -298,16 +335,27 @@ if has('nvim')
 	" Setting up neovim-completion-manager source for PHPActor. Instead of using
 	" existing plugin in order to that, just register the source using the
 	" phpactor#Complete omnifunc
-	au User CmSetup call cm#register_source({'name' : 'phpactor',
-		\ 'priority': 9,
-		\ 'scoping': 1,
-		\ 'scopes': ['php'],
-		\ 'abbreviation': 'php',
-		\ 'word_pattern': '[$\w]+',
-		\ 'cm_refresh_patterns':['-\>', '::'],
-		\ 'cm_refresh': {'omnifunc': 'phpactor#Complete'},
-		\ })
+	" au User CmSetup call cm#register_source({'name' : 'phpactor',
+	" 	\ 'priority': 9,
+	" 	\ 'scoping': 1,
+	" 	\ 'scopes': ['php'],
+	" 	\ 'abbreviation': 'php',
+	" 	\ 'word_pattern': '[$\w]+',
+	" 	\ 'cm_refresh_patterns':['-\>', '::'],
+	" 	\ 'cm_refresh': {'omnifunc': 'phpactor#Complete'},
+	" 	\ })
 end
+
+let g:lightline = {
+	\ 'colorscheme': 'wombat',
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'cocstatus': 'coc#status'
+	\ },
+\ }
 
 fun! <SID>StripTrailingWhitespaces()
 	if match(expand('%p'), ".*horizon.*") == -1
