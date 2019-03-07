@@ -24,5 +24,12 @@ export NVM_DIR="$CURDIR/.nvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$CURDIR/.rvm/bin"
-
 export PATH="$CURDIR/.yarn/bin:$PATH"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export ANDROID_HOME="/usr/lib/android/sdk"
+export PATH="${PATH}:${ANDROID_HOME}tools/:${ANDROID_HOME}platform-tools/"
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+if [ -f /home/cyril/.tnsrc ]; then
+    source /home/cyril/.tnsrc
+fi
