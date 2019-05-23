@@ -45,7 +45,14 @@ dockershell() {
 		ID=$2
 	fi;
 
-	docker exec -t -i -e PS1="$ID:\w# " "$ID" bash --noprofile --norc
+	SHELL=$3
+
+	if [ -z $SHELL ]; then
+		# try using bash by default : if not found, fallback on sh
+		SHELL="command -v bash > /dev/null 2>&1 && bash --noprofile --norc || sh"
+	fi
+
+	docker exec -t -i -e PS1="$ID:\w# " "$ID" sh -c $SHELL
 }
 
 __dockershell() {
