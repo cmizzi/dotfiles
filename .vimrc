@@ -1,4 +1,5 @@
-" vim-plug (https://github.com/junegunn/vim-plug) settings {{{
+" Plugins {{{
+" vim-plug (https://github.com/junegunn/vim-plug) settings
 " Automatically install vim-plug and run PlugInstall if vim-plug not found
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -10,7 +11,6 @@ let mapleader = ","
 call plug#begin("~/.vim/plugged")
 
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Plug 'phpactor/phpactor', {'do': 'composer install', 'branch': 'develop'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -21,40 +21,28 @@ Plug 'joonty/vdebug'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
-Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
-Plug 'sickill/vim-pasta'
-Plug 'tmhedberg/matchit'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'vim-scripts/colorizer'
-Plug 'tpope/vim-unimpaired'
-Plug 'matze/vim-move'
 Plug 'vimgineers/vim-hugefile'
-Plug 'kana/vim-textobj-user'
 Plug 'lucapette/vim-textobj-underscore'
+Plug 'kana/vim-textobj-user'
 Plug 'jceb/vim-textobj-uri'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'chaoren/vim-wordmotion'
-Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
-Plug 'pangloss/vim-javascript'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'airblade/vim-rooter'
 Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
 
 " Syntax highlight
+Plug 'pangloss/vim-javascript'
 Plug 'jwalton512/vim-blade'
-Plug 'isRuslan/vim-es6'
 Plug 'pearofducks/ansible-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'robbles/logstash.vim'
 Plug 'storyn26383/vim-vue'
 Plug 'evidens/vim-twig'
-Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'smerrill/vcl-vim-plugin'
@@ -62,36 +50,33 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'chr4/nginx.vim'
 Plug 'stephenway/postcss.vim'
 Plug 'kchmck/vim-coffee-script'
-Plug 'romainl/flattened'
-
-" Laravel specific
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-projectionist'
-Plug 'noahfrederick/vim-composer'
 Plug 'noahfrederick/vim-laravel'
+
+" theme
+Plug 'crusoexia/vim-monokai'
 
 if has('nvim')
 	Plug 'Shougo/neomru.vim'
 	Plug 'Shougo/denite.nvim'
-	Plug 'ncm2/ncm2'
 	Plug 'roxma/nvim-yarp'
-	" Plug 'phpactor/ncm2-phpactor'
 	Plug 'benekastah/neomake'
-	Plug 'benjie/neomake-local-eslint.vim'
 else
 	Plug 'shougo/unite.vim'
 end
 
 call plug#end()
-
+" }}}
+" Configuration {{{
 filetype plugin indent on
 syntax on
 
-set background=dark
-colorscheme palenight
+colorscheme monokai
 set t_Co=256
+set termguicolors
 
 set ru
+set nocompatible
+set runtimepath^=~/.vim/plugged/coc.nvim
 set updatetime=300
 set number
 set relativenumber
@@ -102,8 +87,7 @@ set autoread
 set laststatus=2
 set showcmd
 set hidden
-set cmdheight=1
-set noshowmode
+set cmdheight=2
 set mousehide
 set mouse=a
 set cursorline
@@ -111,8 +95,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set wildmenu
-set showmatch
 set modelines=5
 set modeline
 set clipboard-=unnamed
@@ -128,12 +110,12 @@ set splitbelow
 set splitright
 set list
 set listchars=tab:+\ ,eol:-
-set nostartofline
 set rtp+=~/.fzf
 set undofile
 set undolevels=1000
 set undoreload=10000
 set backup
+set backupcopy=yes
 set backupskip=/tmp/*,/private/tmp/*
 set backupdir=~/tmp/nvim,~/.tmp,/var/tmp,/tmp
 set directory=/tmp/nvim,~/.tmp,/var/tmp,/tmp
@@ -145,27 +127,35 @@ set smartindent
 set noexpandtab
 set shiftwidth=4
 set softtabstop=4
-set cc=+1
 set tw=80
-set formatoptions-=t
-set formatoptions+=j
-set formatoptions+=o
-set formatoptions+=r
 set signcolumn=yes
 syntax sync minlines=100
+" }}}
+" Global functions {{{
+function! ExecuteMacroOverVisualRange()
+	echo "@".getcmdline()
+	execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
-map { <Plug>(expand_region_expand)
-map } <Plug>(expand_region_shrink)
-map <leader>ba :bufdo bd<CR>
+fun! <SID>StripTrailingWhitespaces()
+	if match(expand('%p'), ".*horizon.*") == -1
+		let l = line(".")
+		let c = col(".")
+		%s/\s\+$//e
+		call cursor(l, c)
+	endif
+endfun
+
+function! CocCurrentFunction()
+	return get(b:, 'coc_current_function', '')
+endfunction
+" }}}
+" Global keyboard shortcuts {{{
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
 nnoremap <leader>t :%s/\s\+$//e<CR>:nohls<Cr>
 nnoremap <leader><CR> :nohls<CR>
 nnoremap <leader>bd :Bclose!<CR>
-cmap w!! w !sudo tee > /dev/null %
-vmap <Enter> <Plug>(EasyAlign)
-vmap <s-Up> <Plug>MoveBlockUp
-vmap <s-Down> <Plug>MoveBlockDown
 nnoremap <Leader>p "*]p
 nnoremap <Leader>P "*]P
 nnoremap <Leader>y :y*<cr>
@@ -174,16 +164,50 @@ nnoremap <Leader>d ^"*d$
 vnoremap <Leader>y "*y
 vnoremap <Leader>c "*c
 vnoremap <Leader>d "*d
-nmap X "_d
-nmap XX "_dd
-vmap X "_d
-nnoremap c "_c
-vnoremap c "_c
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-cabbrev e <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'e ' . expand("%:p:h") : 'e')<CR>
 
-let g:rooter_disable_map = 1
-let g:rooter_patterns = ['composer.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+map <leader>ba :bufdo bd<CR>
+vmap <Enter> <Plug>(EasyAlign)
+cmap w!! w !sudo tee > /dev/null %
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy/<C-R><C-R>=substitute(escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR> gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U> let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR> gvy?<C-R><C-R>=substitute(escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR> gV:call setreg('"', old_reg, old_regtype)<CR>
+" }}}
+" Editor specific {{{
+if has('nvim')
+	set shortmess+=c
+
+	" Inform Neovim to automake on new, read and write file state
+	call neomake#configure#automake('rnwi')
+
+	" Configure denite sources, aliases, vars and maps
+	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('file/rec', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('file/rec/git', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
+	call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+
+	call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-c', '--exclude-standard', '--recurse-submodules'])
+	call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+	call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+	call denite#custom#map('insert', '<C-]>', '<denite:jump_to_next_source>', 'noremap')
+	call denite#custom#map('insert', '<C-[>', '<denite:jump_to_previous_source>', 'noremap')
+	call denite#custom#var('grep', 'command', ['rg'])
+	call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
+
+	" Specific Neovim keyboard mapping
+	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file/rec/git<CR>
+else
+	" Specific Vim keyboard mapping
+	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
+end
+" }}}
+" Plugins configurations {{{
 let g:rainbow_active = 1
 
 let g:neomake_php_phpmd_maker = {
@@ -201,7 +225,6 @@ let g:neomake_php_psalm_maker = {
 let g:neomake_php_enabled_makers = ['php', 'phpmd', 'psalm']
 let g:neomake_open_list = 0
 let g:pdv_template_dir = $HOME . "/.vim/snippets/pdv"
-let g:colorizer_nomap = 1
 let g:hugefile_trigger_size=10
 
 let g:vdebug_options = {
@@ -219,164 +242,80 @@ let g:vdebug_options = {
 let g:indentLine_char = '+'
 let g:indentLine_conceallevel = 1
 
-function! ExecuteMacroOverVisualRange()
-	echo "@".getcmdline()
-	execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-" Update PHPActor cwd each time a new buffer is accessed
-function! UpdatePHPActorPath()
-	let g:phpactorInitialCwd = getcwd()
-endfunction
-
-if has('nvim')
-	set inccommand=split
-	set shortmess+=c
-
-	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file_rec/git<CR>
-else
-	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
-end
-
-augroup configgroup
+let g:lightline = {
+	\ 'colorscheme': 'wombat',
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'cocstatus': 'coc#status',
+	\   'currentfunction': 'CocCurrentFunction'
+	\ },
+\ }
+" }}}
+" Groups {{{
+" Syntax specific
+augroup defineAutoCmd
 	autocmd!
-	autocmd VimEnter *           highlight clear SignColumn
-	autocmd BufEnter *.cls       setlocal filetype=java
+
+	autocmd VimEnter * highlight clear SignColumn
 	autocmd BufEnter *.zsh-theme setlocal filetype=zsh
-	autocmd BufEnter *.lock      setlocal filetype=json
-	autocmd BufEnter *.php       call UpdatePHPActorPath()
-	autocmd BufEnter Makefile    setlocal noexpandtab
-	autocmd FileType yaml        setlocal expandtab
-	autocmd FileType json        setlocal expandtab
-	autocmd FileType python      setlocal commentstring=#\ %s
-	autocmd FileType python      setlocal foldmethod=syntax
-	autocmd FileType php         nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-	" autocmd FileType php         noremap <Leader>u :call phpactor#UseAdd()<CR>
-	" autocmd FileType php         noremap <Leader>e :call phpactor#ClassExpand()<CR>
-	" autocmd FileType php         noremap gd :call phpactor#GotoDefinition()<CR>
-	" autocmd FileType php         noremap <Leader>mf :call phpactor#MoveFile()<CR>
-	" autocmd FileType php         noremap <Leader>cf :call phpactor#CopyFile()<CR>
-	" autocmd FileType php         noremap <Leader>tt :call phpactor#Transform()<CR>
-	" autocmd FileType php         noremap <Leader>fr :call phpactor#FindReferences()<CR>
-	" autocmd FileType php         noremap <Leader>mm :call phpactor#ContextMenu()<CR>
-	" autocmd FileType php         setlocal omnifunc=phpactor#Complete
+	autocmd BufEnter *.lock setlocal filetype=json
+	autocmd BufEnter Makefile setlocal noexpandtab
+	autocmd FileType yaml setlocal expandtab
+	autocmd FileType json setlocal expandtab
+	autocmd FileType python setlocal commentstring=#\ %s
+	autocmd FileType python setlocal foldmethod=syntax
+	autocmd FileType php nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
+    autocmd FileType javascript setlocal sw=4
+    autocmd FileType javascript setlocal ts=4
+	autocmd FileType vue setlocal sw=2
+	autocmd FileType vue setlocal ts=2
+	autocmd FileType go nmap <leader>u <Plug>go-import
+	autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+augroup END
 
-	au FileType go nmap <leader>u <Plug>go-import
-	au FileType go setlocal omnifunc=go#complete#Complete
+" coc.nvim specific
+augroup cocx
+	autocmd!
 
-	" Extract expression (normal mode)
-	" autocmd FileType php nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
-
-	" Extract expression from selection
-	" autocmd FileType php vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
-
-	" Extract method from selection
-	" autocmd FileType php vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 	function! s:show_documentation()
-		if &filetype == 'vim'
+		if (index(['vim','help'], &filetype) >= 0)
 			execute 'h '.expand('<cword>')
 		else
 			call CocAction('doHover')
 		endif
 	endfunction
 
+	inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+	" Use `[c` and `]c` to navigate diagnostics
+	nmap <silent> [c <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 	autocmd CursorHold * silent call CocActionAsync('highlight')
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+	" Show documentation
 	nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 	nmap <leader>rn <Plug>(coc-rename)
-	vmap <leader>f  <Plug>(coc-format-selected)
-	nmap <leader>f  <Plug>(coc-format-selected)
-	" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-	vmap <leader>a  <Plug>(coc-codeaction-selected)
-	nmap <leader>a  <Plug>(coc-codeaction-selected)
-	" Remap keys for gotos
+	vmap <leader>f <Plug>(coc-format-selected)
+	nmap <leader>f <Plug>(coc-format-selected)
+	vmap <leader>a <Plug>(coc-codeaction-selected)
+	nmap <leader>a <Plug>(coc-codeaction-selected)
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
 	nmap <silent> gi <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
+	nmap <leader>ac <Plug>(coc-codeaction)
+	nmap <leader>qf <Plug>(coc-fix-current)
 
-	" Remap for do codeAction of current line
-	nmap <leader>ac  <Plug>(coc-codeaction)
-	" Fix autofix problem of current line
-	nmap <leader>qf  <Plug>(coc-fix-current)
-
-	" Use `:Format` for format current buffer
 	command! -nargs=0 Format :call CocAction('format')
-
-	" Use `:Fold` for fold current buffer
-	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+	command! -nargs=? Fold :call CocAction('fold', <f-args>)
 augroup END
+" }}}
 
-" Will only be executed on Neovim
-if has('nvim')
-	" Inform Neovim to automake on new, read and write file state
-	call neomake#configure#automake('rnwi')
-
-	" Configure denite sources, aliases, vars and maps
-	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
-	call denite#custom#source('file_rec', 'matchers', ['matcher_regexp'])
-	call denite#custom#source('file_rec/git', 'matchers', ['matcher_regexp'])
-	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
-	call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-	call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-c', '--exclude-standard', '--recurse-submodules'])
-	call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-	call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-	call denite#custom#map('insert', '<C-]>', '<denite:jump_to_next_source>', 'noremap')
-	call denite#custom#map('insert', '<C-[>', '<denite:jump_to_previous_source>', 'noremap')
-	call denite#custom#var('grep', 'command', ['rg'])
-	call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-
-	autocmd BufEnter * call ncm2#enable_for_buffer()
-	set completeopt=noinsert,menuone,noselect
-
-	" Setting up neovim-completion-manager source for PHPActor. Instead of using
-	" existing plugin in order to that, just register the source using the
-	" phpactor#Complete omnifunc
-	" au User CmSetup call cm#register_source({'name' : 'phpactor',
-	" 	\ 'priority': 9,
-	" 	\ 'scoping': 1,
-	" 	\ 'scopes': ['php'],
-	" 	\ 'abbreviation': 'php',
-	" 	\ 'word_pattern': '[$\w]+',
-	" 	\ 'cm_refresh_patterns':['-\>', '::'],
-	" 	\ 'cm_refresh': {'omnifunc': 'phpactor#Complete'},
-	" 	\ })
-end
-
-let g:lightline = {
-	\ 'colorscheme': 'wombat',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-	\ },
-	\ 'component_function': {
-	\   'cocstatus': 'coc#status'
-	\ },
-\ }
-
-fun! <SID>StripTrailingWhitespaces()
-	if match(expand('%p'), ".*horizon.*") == -1
-		let l = line(".")
-		let c = col(".")
-		%s/\s\+$//e
-		call cursor(l, c)
-	endif
-endfun
-
-" Search for selected text, forwards or backwards.
-vnoremap <silent> * :<C-U>
-	\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-	\gvy/<C-R><C-R>=substitute(
-	\escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-	\gV:call setreg('"', old_reg, old_regtype)<CR>
-
-vnoremap <silent> # :<C-U>
-	\let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-	\gvy?<C-R><C-R>=substitute(
-	\escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-	\gV:call setreg('"', old_reg, old_regtype)<CR>
-
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" vim:foldmethod=marker:foldlevel=0:modelines=1
