@@ -10,7 +10,6 @@ let mapleader = ","
 
 call plug#begin("~/.vim/plugged")
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -31,7 +30,6 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'chaoren/vim-wordmotion'
 Plug 'tpope/vim-commentary'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
 
@@ -56,6 +54,7 @@ Plug 'noahfrederick/vim-laravel'
 Plug 'crusoexia/vim-monokai'
 
 if has('nvim')
+	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 	Plug 'Shougo/neomru.vim'
 	Plug 'Shougo/denite.nvim'
 	Plug 'roxma/nvim-yarp'
@@ -75,7 +74,6 @@ set t_Co=256
 set termguicolors
 
 set ru
-set nocompatible
 set runtimepath^=~/.vim/plugged/coc.nvim
 set updatetime=300
 set number
@@ -87,7 +85,8 @@ set autoread
 set laststatus=2
 set showcmd
 set hidden
-set cmdheight=2
+set cmdheight=1
+set inccommand=nosplit
 set mousehide
 set mouse=a
 set cursorline
@@ -117,7 +116,7 @@ set undoreload=10000
 set backup
 set backupcopy=yes
 set backupskip=/tmp/*,/private/tmp/*
-set backupdir=~/tmp/nvim,~/.tmp,/var/tmp,/tmp
+set backupdir=/tmp/nvim,~/.tmp,/var/tmp,/tmp
 set directory=/tmp/nvim,~/.tmp,/var/tmp,/tmp
 set undodir=/tmp/nvim,~/.tmp,/var/tmp,/tmp
 set writebackup
@@ -261,21 +260,18 @@ augroup defineAutoCmd
 
 	autocmd VimEnter * highlight clear SignColumn
 	autocmd BufEnter *.zsh-theme setlocal filetype=zsh
-	autocmd BufEnter *.lock setlocal filetype=json
+	autocmd BufEnter *.lock,.babelrc setlocal filetype=json
 	autocmd BufEnter Makefile setlocal noexpandtab
 	autocmd FileType yaml setlocal expandtab
 	autocmd FileType json setlocal expandtab
 	autocmd FileType python setlocal commentstring=#\ %s
 	autocmd FileType python setlocal foldmethod=syntax
 	autocmd FileType php nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-    autocmd FileType javascript setlocal sw=4
-    autocmd FileType javascript setlocal ts=4
-	autocmd FileType vue setlocal sw=2
-	autocmd FileType vue setlocal ts=2
 	autocmd FileType go nmap <leader>u <Plug>go-import
 	autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 augroup END
 
+if has('nvim')
 " coc.nvim specific
 augroup cocx
 	autocmd!
@@ -316,6 +312,7 @@ augroup cocx
 	command! -nargs=0 Format :call CocAction('format')
 	command! -nargs=? Fold :call CocAction('fold', <f-args>)
 augroup END
+endif
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0:modelines=1
