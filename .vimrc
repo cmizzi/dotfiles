@@ -51,7 +51,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noahfrederick/vim-laravel'
 
 " theme
-Plug 'crusoexia/vim-monokai'
+Plug 'ayu-theme/ayu-vim'
 
 if has('nvim')
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
@@ -69,7 +69,8 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-colorscheme monokai
+let ayucolor="mirage"
+colorscheme ayu
 set t_Co=256
 set termguicolors
 
@@ -198,6 +199,44 @@ if has('nvim')
 	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
+
+	" Define mappings
+	autocmd FileType denite call s:denite_my_settings()
+
+	function! s:denite_my_settings() abort
+		nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+		nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
+		nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+		nnoremap <silent><buffer><expr> q denite#do_map('quit')
+		nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+		nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+
+		call denite#custom#option('_', {
+			\ 'wincol': 0,
+			\ 'winheight': 20,
+			\ 'winrow': 0,
+			\ 'winwidth': &columns,
+		\ })
+	endfunction
+
+	call denite#custom#option('_', {
+		\ 'wincol': 0,
+		\ 'winheight': 20,
+		\ 'winrow': 0,
+		\ 'winwidth': winwidth('%'),
+	\ })
+
+	call denite#custom#option('default', {
+		\ 'prompt': '❯❯❯:',
+		\ 'statusline': v:false,
+		\ 'highlight_matched_char': 'Underlined',
+		\ 'cursor_shape': v:true,
+		\ 'cursor_wrap': v:true,
+		\ 'split': 'floating',
+	\ })
+
+	call denite#custom#option('list', {})
+	call denite#custom#option('mpc', { 'mode': 'normal', 'winheight': 20 })
 
 	" Specific Neovim keyboard mapping
 	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file/rec/git<CR>
