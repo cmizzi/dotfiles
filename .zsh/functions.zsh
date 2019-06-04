@@ -55,6 +55,25 @@ dockershell() {
 	docker exec -t -i -e PS1="$ID:\w# " "$ID" sh -c $SHELL
 }
 
+dockerwatch() {
+	if [ "$1" = "service" ]; then
+		ID=$(docker inspect --format '{{.Status.ContainerStatus.ContainerID}}' $(docker service ps -q "$2" | head -1))
+	else
+		ID=$2
+	fi;
+
+	SHELL=$@[3,-1]
+
+	if [ -z $SHELL ]; then
+		# try using bash by default : if not found, fallback on sh
+		SHELL="uptime"
+	fi
+
+	watch -d "docker exec -t -i -e PS1=\"$ID:\w# \" \"$ID\" sh -c $SHELL"
+}
+
+compdef __dockershell dockerwatch
+
 __dockershell() {
 	local state
 
