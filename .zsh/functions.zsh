@@ -62,14 +62,14 @@ dockerwatch() {
 		ID=$2
 	fi;
 
-	SHELL=$@[3,-1]
+	COMMAND=$@[3,-1]
 
 	if [ -z $SHELL ]; then
 		# try using bash by default : if not found, fallback on sh
-		SHELL="uptime"
+		COMMAND="uptime"
 	fi
 
-	watch -d "docker exec -t -i -e PS1=\"$ID:\w# \" \"$ID\" sh -c $SHELL"
+	watch -d "docker exec -t -i -e PS1=\"$ID:\w# \" \"$ID\" sh -c \"$COMMAND\""
 }
 
 compdef __dockershell dockerwatch
