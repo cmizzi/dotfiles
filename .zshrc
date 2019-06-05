@@ -26,10 +26,13 @@ export NVM_DIR="$CURDIR/.nvm"
 export PATH="$PATH:$CURDIR/.rvm/bin"
 export PATH="$CURDIR/.yarn/bin:$PATH"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export ANDROID_HOME="/usr/lib/android/sdk"
-export PATH="${PATH}:${ANDROID_HOME}tools/:${ANDROID_HOME}platform-tools/"
+export ANDROID_HOME="/home/cyril/.android/sdk"
+export PATH="${ANDROID_HOME}/emulator:/opt/gradle/gradle-5.2.1/bin:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:{$PATH}"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 if [ -f /home/cyril/.tnsrc ]; then
     source /home/cyril/.tnsrc
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/mc mc

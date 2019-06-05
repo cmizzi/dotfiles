@@ -3,7 +3,6 @@
 export PATH="$HOME/.phpenv/bin:$PATH"
 
 (( ${+commands[keychain]} )) && eval `keychain --eval --quiet id_rsa`
-(( ${+commands[phpenv]} )) && eval "$(phpenv init -)"
 
 export EDITOR="vi"
 export PGHOST=127.0.0.1
