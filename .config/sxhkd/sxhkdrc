@@ -4,7 +4,7 @@ ctrl + alt + l
 
 # Open terminal
 super + Return
-	terminology
+	alacritty
 
 # Program launcher
 super + space

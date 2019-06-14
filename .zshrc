@@ -29,6 +29,7 @@ export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export ANDROID_HOME="/home/cyril/.android/sdk"
 export PATH="${ANDROID_HOME}/emulator:/opt/gradle/gradle-5.2.1/bin:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:{$PATH}"
 export _JAVA_AWT_WM_NONREPARENTING=1
+export GO111MODULE=on
 
 if [ -f /home/cyril/.tnsrc ]; then
     source /home/cyril/.tnsrc

@@ -51,7 +51,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noahfrederick/vim-laravel'
 
 " theme
-Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 
 if has('nvim')
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
@@ -69,8 +69,8 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-let ayucolor="mirage"
-colorscheme ayu
+set background=light
+colorscheme gruvbox
 set t_Co=256
 set termguicolors
 
@@ -306,7 +306,6 @@ augroup defineAutoCmd
 	autocmd FileType python setlocal commentstring=#\ %s
 	autocmd FileType python setlocal foldmethod=syntax
 	autocmd FileType php nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>
-	autocmd FileType go nmap <leader>u <Plug>go-import
 	autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 augroup END
 
