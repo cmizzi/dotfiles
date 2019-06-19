@@ -45,14 +45,14 @@ dockershell() {
 		ID=$2
 	fi;
 
-	SHELL=$3
+	CMD=$3
 
-	if [ -z $SHELL ]; then
+	if [ -z $CMD]; then
 		# try using bash by default : if not found, fallback on sh
-		SHELL="command -v bash > /dev/null 2>&1 && bash --noprofile --norc || sh"
+		CMD="command -v bash > /dev/null 2>&1 && bash --noprofile --norc || sh"
 	fi
 
-	docker exec -t -i -e PS1="$ID:\w# " "$ID" sh -c $SHELL
+	docker exec -t -i -e PS1="$ID:\w# " "$ID" sh -c $CMD
 }
 
 dockerwatch() {
@@ -64,7 +64,7 @@ dockerwatch() {
 
 	COMMAND=$@[3,-1]
 
-	if [ -z $SHELL ]; then
+	if [ -z $CMD ]; then
 		# try using bash by default : if not found, fallback on sh
 		COMMAND="uptime"
 	fi

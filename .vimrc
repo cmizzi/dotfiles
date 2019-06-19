@@ -69,7 +69,7 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-set background=light
+set background=dark
 colorscheme gruvbox
 set t_Co=256
 set termguicolors

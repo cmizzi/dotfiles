@@ -10,6 +10,12 @@ setxkbmap -layout us,fr -option '' -option grp:alt_space_toggle,grp_led:scroll
 compton &
 xautolock -time 10 -locker 'lock' &
 copyq &
+synclient HorizTwoFingerScroll=1
+synclient VertScrollDelta=-257
+synclient HorizScrollDelta=-257
+synclient LockedDrags=1
+synclient LockedDragTimeout=200
+libinput-gestures &
 sleep 1
 
 feh --randomize --bg-fill ~/Pictures/Wallpapers/*
