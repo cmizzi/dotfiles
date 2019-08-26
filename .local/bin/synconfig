@@ -1,0 +1,6 @@
+synclient HorizTwoFingerScroll=1
+synclient VertScrollDelta=-257
+synclient HorizScrollDelta=-257
+synclient LockedDrags=1
+synclient LockedDragTimeout=200
+libinput-gestures &

@@ -11,7 +11,7 @@ alias gg="git grep -I --untracked"
 alias g="git"
 alias rsa='rsync -azip --info=progress2'
 alias sucs="sort | uniq -c | sort -n"
-alias nautilus="nautilus --browser --no-desktop"
+alias nautilus="nautilus --browser"
 alias jj='dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}"'
 alias j='fasd_cd -d'
 alias a='php artisan'

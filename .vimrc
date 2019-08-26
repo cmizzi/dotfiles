@@ -32,6 +32,8 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
+Plug 'tpope/vim-unimpaired'
+Plug 'terryma/vim-multiple-cursors'
 
 " Syntax highlight
 Plug 'pangloss/vim-javascript'
@@ -69,7 +71,7 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-set background=dark
+set background=light
 colorscheme gruvbox
 set t_Co=256
 set termguicolors
@@ -165,6 +167,10 @@ vnoremap <Leader>y "*y
 vnoremap <Leader>c "*c
 vnoremap <Leader>d "*d
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+let g:multi_cursor_quit_key = '<Esc>'
+let g:multi_cursor_exit_from_insert_mode = 1
+let g:multi_cursor_exit_from_visual_mode = 1
 
 map <leader>ba :bufdo bd<CR>
 vmap <Enter> <Plug>(EasyAlign)
@@ -269,6 +275,7 @@ let g:vdebug_options = {
 	\ "path_maps": {
 		\ "/var/www/html": "/home/data/dev.lesiteimmo",
 		\ "/var/www/gedeon": "/home/data/lsi",
+		\ "/var/www/lsi": "/home/data/lsi",
 		\ "/var/www/Drasill": "/home/data/Drasill",
 	\ },
 	\ "break_on_open": 1,
@@ -302,6 +309,9 @@ augroup defineAutoCmd
 	autocmd BufEnter *.lock,.babelrc setlocal filetype=json
 	autocmd BufEnter Makefile setlocal noexpandtab
 	autocmd FileType yaml setlocal expandtab
+	autocmd FileType html,vue setlocal nowrap
+	autocmd FileType html,vue setlocal textwidth=0
+	autocmd FileType html,vue setlocal wrapmargin=0
 	autocmd FileType json setlocal expandtab
 	autocmd FileType python setlocal commentstring=#\ %s
 	autocmd FileType python setlocal foldmethod=syntax

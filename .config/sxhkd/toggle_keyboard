@@ -1,0 +1,11 @@
+#! /bin/bash
+
+xset -led 2 led off
+
+if [[ $(setxkbmap -print | grep xkb_symbols | awk '{print $4}' | awk -F"+" '{print $2}') =~ 'fr' ]]; then
+	setxkbmap -layout us,fr -option ''
+else
+	setxkbmap -layout fr,us -option ''
+	xset -led 2 led on
+fi
+

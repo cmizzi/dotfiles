@@ -2,20 +2,15 @@
 
 # Startup scripts {{{
 xrandr --output HDMI-2 --left-of HDMI-1
+setxkbmap -layout us,fr -option ''
 sxhkd &
 numlockx on &
 autocutsel -selection PRIMARY -fork &
 greenclip daemon &
-setxkbmap -layout us,fr -option '' -option grp:alt_space_toggle,grp_led:scroll
 compton &
-xautolock -time 10 -locker 'lock' &
+xautolock -time 10 -locker 'lock' -corners 0000 &
 copyq &
-synclient HorizTwoFingerScroll=1
-synclient VertScrollDelta=-257
-synclient HorizScrollDelta=-257
-synclient LockedDrags=1
-synclient LockedDragTimeout=200
-libinput-gestures &
+/home/cyril/.local/bin/synconfig
 sleep 1
 
 feh --randomize --bg-fill ~/Pictures/Wallpapers/*

@@ -4,7 +4,7 @@ ctrl + alt + l
 
 # Open terminal
 super + Return
-	alacritty
+	kitty
 
 # Program launcher
 super + space
@@ -12,7 +12,7 @@ super + space
 
 # Print screen
 @Print
-	scrot -s ~/Downloads/$(date +%s).jpg
+	scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
 
 # Reload sxhkdr configuration file
 super + Escape
@@ -24,6 +24,9 @@ alt + {minus,equal}
 
 alt + p
 	terminology --exec "xclip -o | vim -"
+
+alt + space
+	~/.config/sxhkd/toggle_keyboard
 
 ##################
 ##### VOLUME #####
