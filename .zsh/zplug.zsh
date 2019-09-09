@@ -38,7 +38,7 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	# Configure theme
 	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ "$USER" = "root" ]; then
 		# If we're on SSH, just load the agnoster theme
-		zplug "themes/nebirhos", from:oh-my-zsh
+		zplug "themes/trapd00r", from:oh-my-zsh
 	else
 		# Otherwise, load my custom theme
 		zplug "tylerreckart/hyperzsh", as:theme
