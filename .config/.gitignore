@@ -2,5 +2,9 @@
 !.gitignore
 !sxhkd/
 !bspwm/
+!kitty/
+!polybar/
 !sxhkd/*
 !bspwm/*
+!kitty/*
+!polybar/*

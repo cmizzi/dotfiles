@@ -19,6 +19,10 @@ function ax () {
 	rm -rf $TMP
 }
 
+function dps () {
+	docker ps -a --format 'table {{ .ID }}\t{{ .Names }}\t{{ .Status }}'
+}
+
 # Edit file from fzf registry
 function v() {
 	local file
@@ -122,6 +126,10 @@ function precmd() {
 
 function homestead() {
     ( cd /home/data/homestead && vagrant $* )
+}
+
+function gown() {
+	git ls-files --others --exclude-standard | xargs sudo chown $USER:$USER
 }
 
 function certdates() {

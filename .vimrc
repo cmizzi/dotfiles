@@ -312,6 +312,9 @@ augroup defineAutoCmd
 	autocmd FileType html,vue setlocal nowrap
 	autocmd FileType html,vue setlocal textwidth=0
 	autocmd FileType html,vue setlocal wrapmargin=0
+	autocmd FileType html,vue setlocal ts=4
+	autocmd FileType html,vue setlocal sw=4
+	autocmd FileType html,vue setlocal noexpandtab
 	autocmd FileType json setlocal expandtab
 	autocmd FileType python setlocal commentstring=#\ %s
 	autocmd FileType python setlocal foldmethod=syntax

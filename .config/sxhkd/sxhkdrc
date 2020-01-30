@@ -8,7 +8,7 @@ super + Return
 
 # Program launcher
 super + space
-	rofi -show run
+	sh ~/.config/polybar/scripts/rmenu_wi_1
 
 # Print screen
 @Print
@@ -20,7 +20,7 @@ super + Escape
 
 # Show or empty Conky
 alt + {minus,equal}
-	bspc config -d focused right_padding {245,0}
+	bspc config -d focused right_padding {250,0}
 
 alt + p
 	terminology --exec "xclip -o | vim -"
@@ -134,7 +134,10 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	eval "$(xdotool getmouselocation --shell)" \
+    && xdotool mousemove 960 1185 click 1 \
+	&& bspc {desktop -f,node -d} '^{1-9,10}' \
+    && xdotool mousemove --screen $SCREEN $X $Y
 
 #
 # preselect
