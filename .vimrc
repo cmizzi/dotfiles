@@ -53,7 +53,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noahfrederick/vim-laravel'
 
 " theme
-Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
 
 if has('nvim')
 	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
@@ -71,8 +71,8 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-set background=dark
-colorscheme gruvbox
+let ayucolor="mirage"
+colorscheme ayu
 set t_Co=256
 set termguicolors
 
