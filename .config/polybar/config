@@ -87,8 +87,8 @@ scroll-down = i3wm-wsprev
 ;== Module Location ========================================================
 
 modules-left = arch workspaces
-modules-right = pkg spotify volume network date powermenu
- 
+modules-right = pkg spotify volume cpu memory network date powermenu
+
 ;== Modules ========================================================
 
 [module/arch]
@@ -122,23 +122,21 @@ label-occupied-padding = 1
 
 ;==========================================================
 
-[module/spotify]
-type = custom/script
-interval = 1
-format = <label>
-exec = python ~/.config/polybar/scripts/spotify.py -f '{play_pause} {song} - {artist} - {album}'
-format-underline = #1db954
-format-padding = 2
-label-maxlen = 40
-label-minlen = 39
-
-;==========================================================
-
 [module/pkg]
 type = custom/script
 exec = ~/.config/polybar/scripts/updates.sh
 format-padding = 2
 tail = true
+
+[module/spotify]
+type = custom/script
+interval = 1
+format = <label>
+exec = python ~/.config/polybar/scripts/spotify.py -p '[playing],[paused]' -f '{play_pause} {song}' --font=1
+format-underline = ${color.shade1}
+format-padding = 2
+label-maxlen = 40
+label-minlen = 39
 
 [module/volume]
 type = internal/alsa
@@ -147,7 +145,7 @@ format-volume-padding = 2
 label-volume = %percentage%%
 label-muted = "婢"
 label-muted-padding = 2
-
+format-underline = ${color.shade2}
 ramp-volume-0 = 奄
 ramp-volume-1 = 奄
 ramp-volume-2 = 奔
@@ -155,6 +153,39 @@ ramp-volume-3 = 奔
 ramp-volume-4 = 墳
 ramp-volume-5 = 墳
 ramp-volume-6 = 墳
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload>
+label-padding = 2
+label = CPU %percentage:3%%
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+format-underline = ${color.shade3}
+
+[module/memory]
+type = internal/memory
+interval = 1
+label-padding = 2
+format = <label> <ramp-used>
+label = RAM %gb_used:8%/%gb_total:8%
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+format-underline = ${color.blue-gray}
 
 [module/network]
 type = internal/network
@@ -164,6 +195,7 @@ unknown-as-up = true
 format-connected-padding = 2
 label-connected = %local_ip% %downspeed:9% %upspeed:9%
 tail = true
+format-underline = ${color.shade5}
 
 [module/date]
 type = internal/date

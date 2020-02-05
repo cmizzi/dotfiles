@@ -36,7 +36,7 @@ conky.config = {
 	draw_outline = false,
 	draw_shades = false,
 	use_xft = true,
-	font = 'Ubuntu:size=8',
+	font = 'Fantasque Sans Mono:size=8',
 	gap_x = 0,
 	gap_y = 0,
 	minimum_height = 1080,
@@ -99,7 +99,7 @@ ${goto 30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top nam
 ${goto 30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top name 5}${goto 185}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top cpu 5}%${color}
 
 ${offset 10}${cpugraph 50,220 color1 color s}
-${goto 139}${loadavg 1} | ${loadavg 2} | ${loadavg 3}
+${goto 30}${loadavg 1} | ${loadavg 2} | ${loadavg 3}
 
 ${goto 20}${color1}${font Ubuntu:size=11}MEM PROCESSES${font}${color}
 
@@ -110,7 +110,7 @@ ${goto 30}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top
 ${goto 30}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem name 5}${goto 185}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem mem 5}%${color}
 
 ${offset 10}${memgraph 30,220 color1 color 100 -l -t}
-${goto 104}${mem} / ${memmax} (${memperc}%)
+${goto 30}${mem} / ${memmax} (${memperc}%)
 
 ${goto 20}${color1}${font Ubuntu:size=11}DISCS${font}${color}
 
