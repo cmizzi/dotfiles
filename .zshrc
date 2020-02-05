@@ -1,5 +1,7 @@
 CURDIR=$(dirname ${(%):-%N})
 
+eval "$(starship init zsh)"
+
 source "$CURDIR/.zsh/zplug.zsh"
 source "$CURDIR/.zsh/path.zsh"
 source "$CURDIR/.zsh/default.zsh"
