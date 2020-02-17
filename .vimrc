@@ -56,7 +56,7 @@ Plug 'noahfrederick/vim-laravel'
 Plug 'ayu-theme/ayu-vim'
 
 if has('nvim')
-	Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'Shougo/neomru.vim'
 	Plug 'Shougo/denite.nvim'
 	Plug 'roxma/nvim-yarp'
@@ -77,7 +77,7 @@ set t_Co=256
 set termguicolors
 
 set ru
-set runtimepath^=~/.vim/plugged/coc.nvim
+set runtimepath+=~/.vim/plugged/coc.nvim
 set updatetime=300
 set number
 set relativenumber

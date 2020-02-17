@@ -132,11 +132,9 @@ tail = true
 type = custom/script
 interval = 1
 format = <label>
-exec = python ~/.config/polybar/scripts/spotify.py -p '[playing],[paused]' -f '{play_pause} {song}' --font=1
+exec = python ~/.config/polybar/scripts/spotify.py -p '[playing],[paused]' -f '{play_pause} {song} - {artist} - {album}' --font=1
 format-underline = ${color.shade1}
 format-padding = 2
-label-maxlen = 40
-label-minlen = 39
 
 [module/volume]
 type = internal/alsa
