@@ -53,7 +53,7 @@ dockershell() {
 
 	if [ -z $CMD]; then
 		# try using bash by default : if not found, fallback on sh
-		CMD="command -v bash > /dev/null 2>&1 && bash --noprofile --norc || sh"
+		CMD="command -v bash > /dev/null 2>&1 && bash --noprofile || sh"
 	fi
 
 	docker exec -t -i -e PS1="$ID:\w# " "$ID" sh -c $CMD

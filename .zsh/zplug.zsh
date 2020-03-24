@@ -33,6 +33,8 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	zplug "plugins/php", from:oh-my-zsh, if:"which php"
 	zplug "plugins/sudo", from:oh-my-zsh
 	zplug "plugins/symfony", from:oh-my-zsh
+	zplug "plugins/helm", from:oh-my-zsh
+	zplug "plugins/kubectl", from:oh-my-zsh
 	zplug "changyuheng/zsh-interactive-cd"
 
 	# Configure theme
@@ -47,5 +49,8 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	zplug check || zplug install
 	zplug load
 fi
+
+source <(helm completion zsh)
+source <(kubectl completion zsh)
 
 # vim: ft=zsh

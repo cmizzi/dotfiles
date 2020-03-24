@@ -53,7 +53,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noahfrederick/vim-laravel'
 
 " theme
-Plug 'ayu-theme/ayu-vim'
+Plug 'drewtempelmeyer/palenight.vim'
 
 if has('nvim')
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -71,8 +71,8 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-let ayucolor="mirage"
-colorscheme ayu
+set background=dark
+colorscheme palenight
 set t_Co=256
 set termguicolors
 
@@ -288,7 +288,7 @@ let g:indentLine_char = '+'
 let g:indentLine_conceallevel = 1
 
 let g:lightline = {
-	\ 'colorscheme': 'wombat',
+	\ 'colorscheme': 'palenight',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
