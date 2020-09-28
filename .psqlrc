@@ -6,7 +6,7 @@
 -- \pset border 2
 \pset null ¤
 
--- \timing
+\timing
 \x auto
 
 -- setting up visual for command prompt

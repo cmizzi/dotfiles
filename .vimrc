@@ -10,6 +10,8 @@ let mapleader = ","
 
 call plug#begin("~/.vim/plugged")
 
+Plug 'mhinz/vim-startify'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -34,6 +36,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-unimpaired'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'phpactor/phpactor', {'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o'}
 
 " Syntax highlight
 Plug 'pangloss/vim-javascript'
@@ -51,6 +54,11 @@ Plug 'chr4/nginx.vim'
 Plug 'stephenway/postcss.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'noahfrederick/vim-laravel'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'mxw/vim-jsx'
 
 " theme
 Plug 'drewtempelmeyer/palenight.vim'
@@ -167,6 +175,10 @@ vnoremap <Leader>y "*y
 vnoremap <Leader>c "*c
 vnoremap <Leader>d "*d
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+nnoremap <silent><C-w>z :MaximizerToggle<CR>
+vnoremap <silent><C-w>z :MaximizerToggle<CR>gv
+inoremap <silent><C-w>z <C-o>:MaximizerToggle<CR>
+nnoremap <C-_> :NERDTreeToggle<CR>
 
 let g:multi_cursor_quit_key = '<Esc>'
 let g:multi_cursor_exit_from_insert_mode = 1
@@ -188,9 +200,9 @@ if has('nvim')
 	call neomake#configure#automake('rnwi')
 
 	" Configure denite sources, aliases, vars and maps
-	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
-	call denite#custom#source('file/rec', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('file/rec/git', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('file/rec', 'matchers', ['matcher_regexp'])
+	call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
 	call denite#custom#source('buffer', 'matchers', ['matcher_regexp'])
 	call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 
@@ -245,7 +257,7 @@ if has('nvim')
 	call denite#custom#option('mpc', { 'mode': 'normal', 'winheight': 20 })
 
 	" Specific Neovim keyboard mapping
-	nnoremap <silent> <leader>o :<C-u>Denite buffer file_mru file/rec/git<CR>
+	nnoremap <silent> <leader>o :<C-u>Denite buffer file/rec/git file_mru<CR>
 else
 	" Specific Vim keyboard mapping
 	nnoremap <silent> <leader>o :<C-u>Unite buffer file_mru file<CR>
@@ -309,12 +321,12 @@ augroup defineAutoCmd
 	autocmd BufEnter *.lock,.babelrc setlocal filetype=json
 	autocmd BufEnter Makefile setlocal noexpandtab
 	autocmd FileType yaml setlocal expandtab
-	autocmd FileType html,vue setlocal nowrap
-	autocmd FileType html,vue setlocal textwidth=0
-	autocmd FileType html,vue setlocal wrapmargin=0
-	autocmd FileType html,vue setlocal ts=4
-	autocmd FileType html,vue setlocal sw=4
-	autocmd FileType html,vue setlocal noexpandtab
+	autocmd FileType html,vue,blade setlocal nowrap
+	autocmd FileType html,vue,blade setlocal textwidth=0
+	autocmd FileType html,vue,blade setlocal wrapmargin=0
+	autocmd FileType html,vue,blade setlocal ts=4
+	autocmd FileType html,vue,blade setlocal sw=4
+	autocmd FileType html,vue,blade setlocal noexpandtab
 	autocmd FileType json setlocal expandtab
 	autocmd FileType python setlocal commentstring=#\ %s
 	autocmd FileType python setlocal foldmethod=syntax
@@ -359,6 +371,7 @@ augroup cocx
 	nmap <silent> gr <Plug>(coc-references)
 	nmap <leader>ac <Plug>(coc-codeaction)
 	nmap <leader>qf <Plug>(coc-fix-current)
+	vnoremap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 
 	command! -nargs=0 Format :call CocAction('format')
 	command! -nargs=? Fold :call CocAction('fold', <f-args>)

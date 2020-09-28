@@ -120,15 +120,15 @@ ${goto 30}SWAP${goto 80}${swap}${goto 135} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
-${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp1s0} ${goto 120}/ ${totaldown enp1s0}
-${offset 10}${downspeedgraph enp1s0 30,220 color1 color 100 -l -t}
+${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp2s0} ${goto 120}/ ${totaldown enp2s0}
+${offset 10}${downspeedgraph enp2s0 30,220 color1 color 100 -l -t}
 
-${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp1s0} ${goto 120}/ ${totalup enp1s0}
-${offset 10}${upspeedgraph enp1s0 30,220 color1 color 100 -l -t}
+${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp2s0} ${goto 120}/ ${totalup enp2s0}
+${offset 10}${upspeedgraph enp2s0 30,220 color1 color 100 -l -t}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
-${goto 30}${color}Lan IP${color}${goto 130}${addr enp1s0}
+${goto 30}${color}Lan IP${color}${goto 130}${addr enp2s0}
 ${goto 30}${color}Inbound Ports${color}${goto 130}${tcp_portmon 1 32767 count}
 ${goto 30}${color}Outbound Ports${color}${goto 130}${tcp_portmon 32768 61000 count}
 ]]

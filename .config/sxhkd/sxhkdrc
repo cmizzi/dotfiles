@@ -4,7 +4,7 @@ ctrl + alt + l
 
 # Open terminal
 super + Return
-	kitty
+	alacritty
 
 # Program launcher
 super + space
@@ -12,7 +12,7 @@ super + space
 
 # Print screen
 @Print
-	scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
+    scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
 
 # Reload sxhkdr configuration file
 super + Escape
@@ -32,12 +32,12 @@ alt + space
 # Raise volume
 # note: also ensures audio is enabled
 XF86AudioRaiseVolume
-	amixer -q set Master 5%+ on
+	amixer -c 2 -q set PCM,0 5%+ on
 
 # Lower volume
 # note: intentionally does not unmute
 XF86AudioLowerVolume
-	amixer -q set Master 5%-
+	amixer -c 2 -q set PCM,0 5%-
 
 # Mute audio
 # note: mute always sets audio off (intentially no toggle)
@@ -54,12 +54,10 @@ XF86AudioNext
 	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
 ctrl + Page_Down
-	ddcutil setvcp 10 10 --display 1
-	ddcutil setvcp 10 10 --display 2
+	parallel ::: "ddcutil setvcp 10 10 --display 1" "ddcutil setvcp 10 10 --display 2"
 
 ctrl + Page_Up
-	ddcutil setvcp 10 80 --display 1
-	ddcutil setvcp 10 80 --display 2
+	parallel ::: "ddcutil setvcp 10 80 --display 1" "ddcutil setvcp 10 80 --display 2"
 #
 # bspwm hotkeys
 #
