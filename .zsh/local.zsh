@@ -1,6 +1,5 @@
 #! /bin/zsh
 # Execute following code if we're working on a local machine
-export PATH="$HOME/.phpenv/bin:$PATH"
 
 (( ${+commands[keychain]} )) && eval `keychain --eval --quiet id_rsa`
 

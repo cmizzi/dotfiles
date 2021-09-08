@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # Startup scripts {{{
-xrandr --output DVI-I-1 --right-of HDMI-0
+xrandr --output DVI-I-1-1 --primary --scale 1.001x1.001 --mode 1920x1080 --output DVI-I-2-2 --mode 1920x1080 --right-of DVI-I-1-1
 setxkbmap -layout us,fr -option ''
 sxhkd &
 numlockx on &
@@ -20,8 +20,8 @@ polybar main &
 # }}}
 
 # Monitor configuration {{{
-bspc monitor DVI-I-1 -n right -d I II III IV
-bspc monitor HDMI-0 -n left -d V VI VII VIII IX X
+bspc monitor DVI-I-1-1 -n left -d I II III IV
+bspc monitor DVI-I-2-2 -n right -d V VI VII VIII IX X
 # }}}
 
 # Global configuration {{{
@@ -40,7 +40,7 @@ bspc config top_padding 0
 bspc config left_padding 0
 bspc config right_padding 0
 bspc config bottom_padding 0
-bspc config -m left top_padding 0
+bspc config -m right top_padding 0
 # }}}
 
 # Internal rules {{{

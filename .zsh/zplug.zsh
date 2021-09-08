@@ -22,7 +22,6 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	zplug 'lib/key-bindings', from:oh-my-zsh
 	zplug 'lib/misc', from:oh-my-zsh
 	zplug 'lib/spectrum', from:oh-my-zsh
-	zplug 'lib/theme-and-appearance', from:oh-my-zsh
 	zplug "plugins/mix", from:oh-my-zsh
 	zplug "plugins/git", from:oh-my-zsh, if:"which git"
 	zplug "plugins/command-not-found", from:oh-my-zsh
@@ -33,24 +32,9 @@ if [[ -f "$HOME/.zplug/init.zsh" ]]; then
 	zplug "plugins/php", from:oh-my-zsh, if:"which php"
 	zplug "plugins/sudo", from:oh-my-zsh
 	zplug "plugins/symfony", from:oh-my-zsh
-	zplug "plugins/helm", from:oh-my-zsh
-	zplug "plugins/kubectl", from:oh-my-zsh
 	zplug "changyuheng/zsh-interactive-cd"
 
-	# Configure theme
-	if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ "$USER" = "root" ]; then
-		# If we're on SSH, just load the agnoster theme
-		zplug "themes/trapd00r", from:oh-my-zsh
-	else
-		# Otherwise, load my custom theme
-		zplug "tylerreckart/hyperzsh", as:theme
-	fi
-
-	zplug check || zplug install
 	zplug load
 fi
-
-source <(helm completion zsh)
-source <(kubectl completion zsh)
 
 # vim: ft=zsh

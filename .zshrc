@@ -1,5 +1,6 @@
 CURDIR=$(dirname ${(%):-%N})
 
+export PATH="$CURDIR/.cargo/bin:$PATH"
 eval "$(starship init zsh)"
 
 source "$CURDIR/.zsh/zplug.zsh"
@@ -28,7 +29,6 @@ export NVM_DIR="$CURDIR/.nvm"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$CURDIR/.rvm/bin"
 export PATH="$CURDIR/.yarn/bin:$PATH"
-export PATH="$CURDIR/.cargo/bin:$PATH"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export ANDROID_HOME="/home/cyril/.android/sdk"
 export PATH="${ANDROID_HOME}/emulator:/opt/gradle/gradle-5.2.1/bin:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:{$PATH}"

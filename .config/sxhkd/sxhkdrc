@@ -32,12 +32,14 @@ alt + space
 # Raise volume
 # note: also ensures audio is enabled
 XF86AudioRaiseVolume
-	amixer -c 2 -q set PCM,0 5%+ on
+	amixer sset Master 5%+; \
+	amixer --card 1 sset "USB Audio" 5%+
 
 # Lower volume
 # note: intentionally does not unmute
 XF86AudioLowerVolume
-	amixer -c 2 -q set PCM,0 5%-
+	amixer sset Master 5%-; \
+	amixer --card 1 sset "USB Audio" 5%-
 
 # Mute audio
 # note: mute always sets audio off (intentially no toggle)
@@ -45,13 +47,13 @@ XF86AudioMute
 	amixer -q set Master off
 
 XF86AudioPlay
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+	playerctl play-pause --player=spotify
 
 XF86AudioPrev
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+	playerctl previous --player=spotify
 
 XF86AudioNext
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	playerctl next --player=spotify
 
 ctrl + Page_Down
 	parallel ::: "ddcutil setvcp 10 10 --display 1" "ddcutil setvcp 10 10 --display 2"
@@ -129,10 +131,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	eval "$(xdotool getmouselocation --shell)" \
-    && xdotool mousemove 960 1185 click 1 \
-	&& bspc {desktop -f,node -d} '^{1-9,10}' \
-    && xdotool mousemove --screen $SCREEN $X $Y
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect

@@ -37,7 +37,7 @@ conky.config = {
 	draw_shades = false,
 	use_xft = true,
 	font = 'Fantasque Sans Mono:size=8',
-	gap_x = 0,
+	gap_x = -1920,
 	gap_y = 0,
 	minimum_height = 1080,
 	minimum_width = 240,
@@ -89,6 +89,9 @@ ${goto 30}${if_match ${cpu cpu1} > 50}${color1}${else}${color}${endif}CPU 1${got
 ${goto 30}${if_match ${cpu cpu2} > 50}${color1}${else}${color}${endif}CPU 2${goto 70}${if_match ${cpu cpu2} > 50}${color1}${else}${color}${endif}${cpubar cpu2 10,120}${goto 200}${cpu cpu2}%${color}
 ${goto 30}${if_match ${cpu cpu3} > 50}${color1}${else}${color}${endif}CPU 3${goto 70}${if_match ${cpu cpu3} > 50}${color1}${else}${color}${endif}${cpubar cpu3 10,120}${goto 200}${cpu cpu3}%${color}
 ${goto 30}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}CPU 4${goto 70}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}${cpubar cpu4 10,120}${goto 200}${cpu cpu4}%${color}
+${goto 30}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}CPU 5${goto 70}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}${cpubar cpu5 10,120}${goto 200}${cpu cpu5}%${color}
+${goto 30}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}CPU 6${goto 70}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}${cpubar cpu6 10,120}${goto 200}${cpu cpu6}%${color}
+${goto 30}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}CPU 7${goto 70}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}${cpubar cpu7 10,120}${goto 200}${cpu cpu7}%${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}CPU PROCESSES${font}${color}
 
@@ -120,15 +123,15 @@ ${goto 30}SWAP${goto 80}${swap}${goto 135} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
-${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp2s0} ${goto 120}/ ${totaldown enp2s0}
-${offset 10}${downspeedgraph enp2s0 30,220 color1 color 100 -l -t}
+${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enx0c379623eacc} ${goto 120}/ ${totaldown enx0c379623eacc}
+${offset 10}${downspeedgraph enx0c379623eacc 30,220 color1 color 100 -l -t}
 
-${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp2s0} ${goto 120}/ ${totalup enp2s0}
-${offset 10}${upspeedgraph enp2s0 30,220 color1 color 100 -l -t}
+${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enx0c379623eacc} ${goto 120}/ ${totalup enx0c379623eacc}
+${offset 10}${upspeedgraph enx0c379623eacc 30,220 color1 color 100 -l -t}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
-${goto 30}${color}Lan IP${color}${goto 130}${addr enp2s0}
+${goto 30}${color}Lan IP${color}${goto 130}${addr enx0c379623eacc}
 ${goto 30}${color}Inbound Ports${color}${goto 130}${tcp_portmon 1 32767 count}
 ${goto 30}${color}Outbound Ports${color}${goto 130}${tcp_portmon 32768 61000 count}
 ]]

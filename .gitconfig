@@ -13,10 +13,11 @@
 	c   = checkout
 	cm  = checkout master
 	nb  = checkout -b
-	up  = pull --rebase=preserve --autostash
+	up  = pull --rebase=merges --autostash
 	lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lga = !"git lg --all"
 	ll  = !"rat --mode git.log --cmd 'git lg'"
+	ui  = !"gitui"
 
 [color]
 	diff = auto
@@ -66,4 +67,6 @@
 [gui]
 	editor = vim
 [commit]
-	gpgsign = true
+	# gpgsign = true
+[init]
+	defaultBranch = main
