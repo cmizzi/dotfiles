@@ -20,9 +20,6 @@ nnoremap Y y$
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Keep cursor in place when joining lines
-nnoremap J mzJ`z
-
 " Tabs
 nmap <silent> <leader>tL :tabnext<cr>
 nmap <silent> <leader>tH :tabprevious<cr>
@@ -49,9 +46,10 @@ nnoremap <silent> <leader>sd <cmd>lua vim.lsp.buf.declaration()<cr>
 
 " Miscellaneous
 nnoremap <silent> <leader><space> :nohlsearch<cr>
+nnoremap <silent> <Leader><Enter> :%s/\s\+$//e<CR>
 
 "
-" Window 
+" Window
 "
 " Cycle splits
 nnoremap <tab> <c-w>w
@@ -65,7 +63,7 @@ nmap <silent> <leader>h :split<cr>
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>  " Focus active split
 nnoremap <leader>= :wincmd =<cr>                " Balance open splits
 
-" Simplify split movement 
+" Simplify split movement
 nmap <c-j> <c-w><c-j>
 nmap <c-k> <c-w><c-k>
 nmap <c-h> <c-w><c-h>
@@ -98,7 +96,7 @@ nnoremap <leader>k :m .-2<cr>==
 "
 nmap <silent> <leader>lv :call LaravelGoToDefinition()<cr> " See config/laravel.vim
 nmap <leader>lm :!php artisan make:
-nmap <leader>pt :!php artisan pest:test 
+nmap <leader>pt :!php artisan pest:test
 nmap <leader>rw :vsp routes/web.php<cr>
 
 "
@@ -109,21 +107,13 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 "
-" compe
+" EasyAlign
 "
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR> compe#confirm('<CR>')
-inoremap <silent><expr> <C-e> compe#close('<C-e>')
-inoremap <silent><expr> <C-f> compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d> compe#scroll({ 'delta': -4 })
+xmap <Enter> <Plug>(EasyAlign)
+nmap <Enter> <Plug>(EasyAlign)
 
 "
 " Plugins
 "
-nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<cr>
-nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<cr>
-
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>

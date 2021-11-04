@@ -10,9 +10,15 @@ augroup filetype_settings
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType json setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType lua setlocal ts=2 sw=2 sts=2 expandtab
+    autocmd FileType crystal setlocal ts=2 sw=2 sts=2 expandtab textwidth=80 colorcolumn=80
 augroup END
 
 augroup framework_filetype_settings
     autocmd!
     autocmd BufRead,BufNewFile *.blade.php setlocal commentstring={{--\ %s\ --}} filetype=blade
+augroup END
+
+augroup DetectIndent
+   autocmd!
+   autocmd BufReadPost *  DetectIndent
 augroup END
