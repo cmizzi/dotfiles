@@ -27,10 +27,11 @@ nmap <silent> <leader>tN :tabnew<cr>
 nmap <silent> <leader>tC :tabclose<cr>
 
 " Telescope
-nmap <leader>o <cmd>Telescope find_files find_command=rg,--files,--no-ignore,--hidden<cr>
-nmap <leader>b <cmd>Telescope buffers<cr>
-nmap <leader>lg <cmd>Telescope live_grep<cr>
+nmap <leader>o <cmd>lua require('telescope.builtin').git_files()<cr>
+nmap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nmap <leader>lg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nmap <leader>fb <cmd>Telescope current_buffer_fuzzy_find<cr>
+nmap <leader>t <cmd>lua require('telescope.builtin').treesitter()<cr>
 nnoremap <silent> <leader>gd <cmd>lua require'telescope.builtin'.lsp_definitions{}<cr>
 nnoremap <silent> <leader>f <cmd>lua require'telescope.builtin'.lsp_document_symbols{}<cr>
 nnoremap <silent> <leader>r <cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols{}<cr>
