@@ -3,9 +3,7 @@
 --
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local on_attach = function ()
-    -- Nothing.
-end
+local on_attach = require'virtualtypes'.on_attach
 
 -- Configure servers.
 lspconfig.html.setup({ cmd = { 'html-languageserver', '--stdio' }, filetypes = { 'html', 'blade' }, on_attach = on_attach, capabilities = capabitilies })

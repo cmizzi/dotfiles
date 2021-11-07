@@ -1,69 +1,59 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
+  -- Self-managed bundler.
   use { 'wbthomason/packer.nvim', opt = true }
 
-  -- Simplify management of vim configuration (https://github.com/jesseleite/vim-sourcery).
+  -- Simplify management of vim configuration.
   use 'jesseleite/vim-sourcery'
 
-  -- Colorscheme and statusbar.
+  -- Colorscheme.
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
     config = function()
-      -- Options (see available options below)
       vim.g.rose_pine_variant = 'moon'
-
-      -- Load colorscheme after options
       vim.cmd('colorscheme rose-pine')
     end
   })
 
+  -- Statusbar.
   use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
 
   -- Syntax analysis and fixing
-  use 'dense-analysis/ale'
-
-  -- Quickstart config for the nvim LSP client
-  use 'jubnzv/virtual-types.nvim'
-
-  -- Telescope
-  -- Telescope dependencies
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
 
   -- Telescope itself
-  use 'nvim-telescope/telescope.nvim'
-
-  -- fzf extension for fuzzy finding in Telescope
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    }
+  }
 
   -- nvim abstraction for tree-sitter (parser generator)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
-  -- Improve behaviour of built-in netrw
-  use 'tpope/vim-vinegar'
 
   -- LSP.
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'hrsh7th/cmp-cmdline'},
-      {'hrsh7th/nvim-cmp'},
-      {'saadparwaiz1/cmp_luasnip'}
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'lukas-reineke/cmp-under-comparator' },
+      { 'ray-x/lsp_signature.nvim' },
+      { 'jubnzv/virtual-types.nvim' },
     },
   }
 
   -- Snippets.
-  use { 
-    'L3MON4D3/LuaSnip',
-    requires = {
-      'rafamadriz/friendly-snippets'
-    }
-  }
+  use { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' } }
 
   -- Comment.
   use {
@@ -87,9 +77,7 @@ return require('packer').startup(function()
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+        --
       }
     end
   }
@@ -104,14 +92,13 @@ return require('packer').startup(function()
   use 'junegunn/vim-easy-align'
   use 'benmills/vimux'
   use 'christoomey/vim-tmux-navigator'
-  use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
   use 'tpope/vim-surround'
   use 'vim-test/vim-test'
   use 'jiangmiao/auto-pairs'
   use 'steelsojka/headwind.nvim'
-  use 'ray-x/lsp_signature.nvim'
   use 'triglav/vim-visual-increment'
   use 'roryokane/detectindent'
+  use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -127,7 +114,5 @@ return require('packer').startup(function()
   use 'vim-crystal/vim-crystal'
 
   -- PHP Specific.
-  use 'tobyS/vmustache'
   use 'jwalton512/vim-blade'
-  use { 'tobyS/pdv', ft = 'php' }
 end)
