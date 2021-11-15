@@ -1,0 +1,1 @@
+/home/cyril/code/tree-sitter-php/queries/tags.scm

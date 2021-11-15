@@ -12,7 +12,7 @@ super + space
 
 # Print screen
 @Print
-    scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
+    maim -s | xclip -selection clipboard -t image/png
 
 # Reload sxhkdr configuration file
 super + Escape

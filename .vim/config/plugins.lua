@@ -33,22 +33,85 @@ return require('packer').startup(function()
   }
 
   -- nvim abstraction for tree-sitter (parser generator)
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      { 'nvim-treesitter/playground' },
+    },
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = "maintained",
+        highlight = {
+          enable = true,
+
+          -- Temporary enable Vim regex for PHP because the tree-sitter is not smart enough to autoindent multilines
+          -- comment block.
+          additional_vim_regex_highlighting = { "php" },
+        },
+        indent = {
+          enable = true,
+
+          -- Temporary disable auto-indent from tree-sitter because of the same reason as above.
+          disable = { "php" }
+        },
+        playground = {
+          enable = true,
+          disable = {},
+          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+          persist_queries = false, -- Whether the query persists across vim sessions
+          keybindings = {
+            toggle_query_editor = 'o',
+            toggle_hl_groups = 'i',
+            toggle_injected_languages = 't',
+            toggle_anonymous_nodes = 'a',
+            toggle_language_display = 'I',
+            focus_language = 'f',
+            unfocus_language = 'F',
+            update = 'R',
+            goto_node = '<cr>',
+            show_help = '?',
+          },
+        }
+      }
+
+      local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+
+      parser_config.blade = {
+        install_info = {
+          url = "~/code/tree-sitter-php/",
+          files = {"src/parser.c", "src/scanner.cc"},
+        },
+        filetype = "blade",
+      }
+
+      parser_config.html.used_by = "blade";
+    end
+  }
 
   -- LSP.
   use {
     'neovim/nvim-lspconfig',
     requires = {
+      { 'williamboman/nvim-lsp-installer' },
+      { 'jose-elias-alvarez/null-ls.nvim' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip' },
+      { 'David-Kunz/cmp-npm' },
       { 'hrsh7th/cmp-nvim-lua' },
       { 'lukas-reineke/cmp-under-comparator' },
       { 'ray-x/lsp_signature.nvim' },
       { 'jubnzv/virtual-types.nvim' },
+      {
+        'kosayoda/nvim-lightbulb',
+        config = function()
+          vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+        end
+      }
     },
   }
 
@@ -92,13 +155,24 @@ return require('packer').startup(function()
   use 'junegunn/vim-easy-align'
   use 'benmills/vimux'
   use 'christoomey/vim-tmux-navigator'
-  use 'tpope/vim-surround'
+  use 'blackCauldron7/surround.nvim'
   use 'vim-test/vim-test'
   use 'jiangmiao/auto-pairs'
   use 'steelsojka/headwind.nvim'
   use 'triglav/vim-visual-increment'
   use 'roryokane/detectindent'
   use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function ()
+      require('nvim-ts-autotag').setup {
+        autotag = {
+          enable = true,
+          filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'blade' },
+        }
+      }
+    end
+  }
   use {
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
@@ -113,6 +187,6 @@ return require('packer').startup(function()
   -- Crystal specific.
   use 'vim-crystal/vim-crystal'
 
-  -- PHP Specific.
-  use 'jwalton512/vim-blade'
+  -- Blade specific.
+  -- use 'jwalton512/vim-blade'
 end)

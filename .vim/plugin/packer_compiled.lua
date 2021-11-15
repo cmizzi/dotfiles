@@ -100,6 +100,11 @@ _G.packer_plugins = {
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
+  ["cmp-npm"] = {
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/cmp-npm",
+    url = "https://github.com/David-Kunz/cmp-npm"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -161,6 +166,11 @@ _G.packer_plugins = {
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -176,15 +186,33 @@ _G.packer_plugins = {
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
+  ["nvim-lightbulb"] = {
+    config = { "\27LJ\2\ns\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Tautocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()\bcmd\bvim\0" },
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-lightbulb",
+    url = "https://github.com/kosayoda/nvim-lightbulb"
+  },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
+    config = { "\27LJ\2\nﬁ\5\0\0\5\0\26\0#6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\0025\3\b\0005\4\t\0=\4\n\3=\3\v\0025\3\f\0004\4\0\0=\4\n\0035\4\r\0=\4\14\3=\3\15\2B\0\2\0016\0\0\0'\2\16\0B\0\2\0029\0\17\0B\0\1\0025\1\22\0005\2\19\0005\3\20\0=\3\21\2=\2\23\1=\1\18\0009\1\24\0'\2\18\0=\2\25\1K\0\1\0\fused_by\thtml\17install_info\1\0\1\rfiletype\nblade\nfiles\1\3\0\0\17src/parser.c\19src/scanner.cc\1\0\1\burl\28~/code/tree-sitter-php/\nblade\23get_parser_configs\28nvim-treesitter.parsers\15playground\16keybindings\1\0\n\21toggle_hl_groups\6i\24toggle_query_editor\6o\vupdate\6R\14show_help\6?\14goto_node\t<cr>\21unfocus_language\6F\19focus_language\6f\28toggle_language_display\6I\27toggle_anonymous_nodes\6a\30toggle_injected_languages\6t\1\0\3\15updatetime\3\25\20persist_queries\1\venable\2\vindent\fdisable\1\2\0\0\bphp\1\0\1\venable\2\14highlight&additional_vim_regex_highlighting\1\2\0\0\bphp\1\0\1\venable\2\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\0" },
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-ts-autotag"] = {
+    config = { "\27LJ\2\n∂\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\fautotag\1\0\0\14filetypes\1\b\0\0\thtml\15javascript\20javascriptreact\20typescriptreact\vsvelte\bvue\nblade\1\0\1\venable\2\nsetup\20nvim-ts-autotag\frequire\0" },
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -196,6 +224,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/opt/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  playground = {
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/playground",
+    url = "https://github.com/nvim-treesitter/playground"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -212,6 +245,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
+  },
+  ["surround.nvim"] = {
+    loaded = true,
+    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/surround.nvim",
+    url = "https://github.com/blackCauldron7/surround.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -235,11 +273,6 @@ _G.packer_plugins = {
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
-  ["vim-blade"] = {
-    loaded = true,
-    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/vim-blade",
-    url = "https://github.com/jwalton512/vim-blade"
-  },
   ["vim-crystal"] = {
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/vim-crystal",
@@ -259,11 +292,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cyril/.local/share/nvim/site/pack/packer/start/vim-sourcery",
     url = "https://github.com/jesseleite/vim-sourcery"
-  },
-  ["vim-surround"] = {
-    loaded = true,
-    path = "/home/cyril/.local/share/nvim/site/pack/packer/start/vim-surround",
-    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-test"] = {
     loaded = true,
@@ -303,26 +331,38 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: rose-pine
-time([[Config for rose-pine]], true)
-try_loadstring("\27LJ\2\nb\0\0\3\0\6\0\t6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0'\2\5\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\tmoon\22rose_pine_variant\6g\bvim\0", "config", "rose-pine")
-time([[Config for rose-pine]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
 -- Config for: todo-comments.nvim
 time([[Config for todo-comments.nvim]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
 time([[Config for todo-comments.nvim]], false)
+-- Config for: nvim-ts-autotag
+time([[Config for nvim-ts-autotag]], true)
+try_loadstring("\27LJ\2\n∂\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\fautotag\1\0\0\14filetypes\1\b\0\0\thtml\15javascript\20javascriptreact\20typescriptreact\vsvelte\bvue\nblade\1\0\1\venable\2\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
+time([[Config for nvim-ts-autotag]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-lightbulb
+time([[Config for nvim-lightbulb]], true)
+try_loadstring("\27LJ\2\ns\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Tautocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()\bcmd\bvim\0", "config", "nvim-lightbulb")
+time([[Config for nvim-lightbulb]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nﬁ\5\0\0\5\0\26\0#6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\0025\3\b\0005\4\t\0=\4\n\3=\3\v\0025\3\f\0004\4\0\0=\4\n\0035\4\r\0=\4\14\3=\3\15\2B\0\2\0016\0\0\0'\2\16\0B\0\2\0029\0\17\0B\0\1\0025\1\22\0005\2\19\0005\3\20\0=\3\21\2=\2\23\1=\1\18\0009\1\24\0'\2\18\0=\2\25\1K\0\1\0\fused_by\thtml\17install_info\1\0\1\rfiletype\nblade\nfiles\1\3\0\0\17src/parser.c\19src/scanner.cc\1\0\1\burl\28~/code/tree-sitter-php/\nblade\23get_parser_configs\28nvim-treesitter.parsers\15playground\16keybindings\1\0\n\21toggle_hl_groups\6i\24toggle_query_editor\6o\vupdate\6R\14show_help\6?\14goto_node\t<cr>\21unfocus_language\6F\19focus_language\6f\28toggle_language_display\6I\27toggle_anonymous_nodes\6a\30toggle_injected_languages\6t\1\0\3\15updatetime\3\25\20persist_queries\1\venable\2\vindent\fdisable\1\2\0\0\bphp\1\0\1\venable\2\14highlight&additional_vim_regex_highlighting\1\2\0\0\bphp\1\0\1\venable\2\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\nb\0\0\3\0\6\0\t6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0'\2\5\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\tmoon\22rose_pine_variant\6g\bvim\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
 if should_profile then save_profiles() end
 
 end)
