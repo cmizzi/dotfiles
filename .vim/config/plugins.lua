@@ -127,12 +127,7 @@ return require('packer').startup(function()
     end
   }
 
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
+  use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
 
   -- Trouble detector.
   use {
@@ -155,13 +150,14 @@ return require('packer').startup(function()
   use 'junegunn/vim-easy-align'
   use 'benmills/vimux'
   use 'christoomey/vim-tmux-navigator'
-  use 'blackCauldron7/surround.nvim'
   use 'vim-test/vim-test'
   use 'jiangmiao/auto-pairs'
   use 'steelsojka/headwind.nvim'
   use 'triglav/vim-visual-increment'
   use 'roryokane/detectindent'
   use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
+  use { 'blackCauldron7/surround.nvim', config = function() require"surround".setup { mappings_style = "surround" } end }
+  use { 'jghauser/mkdir.nvim', config = function() require('mkdir') end }
   use {
     'windwp/nvim-ts-autotag',
     config = function ()

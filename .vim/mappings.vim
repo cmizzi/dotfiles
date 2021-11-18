@@ -103,13 +103,6 @@ nmap <leader>pt :!php artisan pest:test
 nmap <leader>rw :vsp routes/web.php<cr>
 
 "
-" UltiSnips
-"
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-"
 " EasyAlign
 "
 xmap <Enter> <Plug>(EasyAlign)
