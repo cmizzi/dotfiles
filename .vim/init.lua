@@ -1,6 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+require('packer').startup(function()
   -- Self-managed bundler.
   use { 'wbthomason/packer.nvim', opt = true }
 
@@ -176,13 +176,6 @@ return require('packer').startup(function()
       require("gitsigns").setup()
     end
   }
-
-  -- Godot specific.
-  use 'calviken/vim-gdscript3'
-
-  -- Crystal specific.
-  use 'vim-crystal/vim-crystal'
-
-  -- Blade specific.
-  -- use 'jwalton512/vim-blade'
 end)
+
+vim.call('sourcery#init')
