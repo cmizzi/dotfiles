@@ -41,3 +41,35 @@ require "lsp_signature".setup {
     doc_lines = 5,
     trigger_on_newline = true
 }
+
+local kind = {
+  Text = "TSText",
+  Method = "TSFunction",
+  Function = "TSFunction",
+  Constructor = "TSConstructor",
+  Field = "TSField",
+  Variable = "TSVariable",
+  Class = "TSVariableBuiltin",
+  Interface = "TSVariableBuiltin",
+  Module = "TSVariableBuiltin",
+  Property = "TSProperty",
+  Unit = "TSInclude",
+  Value = "TSText",
+  Enum = "TSVariableBuiltin",
+  Keyword = "TSKeyword",
+  Snippet = "TSTag",
+  Color = "TSText",
+  File = "TSInclude",
+  Reference = "TSVariable",
+  Folder = "TSText",
+  EnumMember = "TSField",
+  Constant = "TSConstant",
+  Struct = "TSVariableBuiltin",
+  Event = "TSText",
+  Operator = "TSOperator",
+  TypeParameter = "TSParameter"
+}
+
+for key, value in pairs(kind) do
+  vim.cmd("highlight! link CmpItemKind" .. key .. " " .. value)
+end

@@ -9,6 +9,7 @@ augroup filetype_settings
     autocmd FileType blade setlocal ts=2 sw=2 sts=2 expandtab ft=blade
     autocmd FileType css setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 expandtab
+    autocmd FileType javascriptreact setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType json setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType lua setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType crystal setlocal ts=2 sw=2 sts=2 expandtab textwidth=80 colorcolumn=80

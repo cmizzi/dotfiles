@@ -47,13 +47,13 @@ require('packer').startup(function()
 
           -- Temporary enable Vim regex for PHP because the tree-sitter is not smart enough to autoindent multilines
           -- comment block.
-          additional_vim_regex_highlighting = { "php" },
+          additional_vim_regex_highlighting = { "php", "javascript" },
         },
         indent = {
           enable = true,
 
           -- Temporary disable auto-indent from tree-sitter because of the same reason as above.
-          disable = { "php" }
+          disable = { "php", "javascript" }
         },
         playground = {
           enable = true,
@@ -77,15 +77,7 @@ require('packer').startup(function()
 
       local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
-      parser_config.blade = {
-        install_info = {
-          url = "~/code/tree-sitter-php/",
-          files = {"src/parser.c", "src/scanner.cc"},
-        },
-        filetype = "blade",
-      }
-
-      parser_config.html.used_by = "blade";
+      parser_config.php.used_by = "blade";
     end
   }
 
@@ -106,6 +98,7 @@ require('packer').startup(function()
       { 'lukas-reineke/cmp-under-comparator' },
       { 'ray-x/lsp_signature.nvim' },
       { 'jubnzv/virtual-types.nvim' },
+      { 'onsails/lspkind-nvim' },
       {
         'kosayoda/nvim-lightbulb',
         config = function()
@@ -155,6 +148,7 @@ require('packer').startup(function()
   use 'steelsojka/headwind.nvim'
   use 'triglav/vim-visual-increment'
   use 'roryokane/detectindent'
+  use { 'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup() end }
   use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
   use { 'blackCauldron7/surround.nvim', config = function() require"surround".setup { mappings_style = "surround" } end }
   use { 'jghauser/mkdir.nvim', config = function() require('mkdir') end }
