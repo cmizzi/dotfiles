@@ -7,7 +7,7 @@ local on_attach = require'virtualtypes'.on_attach
 local lsp_installer = require("nvim-lsp-installer")
 local null_ls = require("null-ls")
 
-null_ls.config({
+null_ls.setup({
     sources = {
         null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.formatting.rustywind.with({
@@ -18,7 +18,7 @@ null_ls.config({
 })
 
 -- Configure servers.
-lspconfig["null-ls"].setup({ on_attach = on_attach })
+-- lspconfig["null-ls"].setup({ on_attach = on_attach })
 
 -- Automatic servers.
 lsp_installer.on_server_ready(function(server)

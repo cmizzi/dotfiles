@@ -8,7 +8,7 @@ numlockx on &
 autocutsel -selection PRIMARY -fork &
 greenclip daemon &
 compton &
-xautolock -time 30 -locker 'lock' -corners 0000 &
+xautolock -time 30 -locker 'i3lock' -corners 0000 &
 copyq &
 /home/cyril/.local/bin/synconfig
 sleep 1
@@ -20,8 +20,8 @@ polybar main &
 # }}}
 
 # Monitor configuration {{{
-bspc monitor DVI-I-1-1 -n left -d I II III IV
-bspc monitor DVI-I-2-2 -n right -d V VI VII VIII IX X
+bspc monitor DP-2 -n left -d I II III IV
+bspc monitor DP-3 -n right -d V VI VII VIII IX X
 # }}}
 
 # Global configuration {{{

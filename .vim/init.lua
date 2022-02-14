@@ -150,7 +150,7 @@ require('packer').startup(function()
   use 'roryokane/detectindent'
   use { 'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup() end }
   use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
-  use { 'blackCauldron7/surround.nvim', config = function() require"surround".setup { mappings_style = "surround" } end }
+  use { 'tpope/vim-surround' }
   use { 'jghauser/mkdir.nvim', config = function() require('mkdir') end }
   use {
     'windwp/nvim-ts-autotag',

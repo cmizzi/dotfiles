@@ -1,6 +1,7 @@
 *
 !.gitignore
 !starship.toml
+!alacritty.yml
 !sxhkd/
 !bspwm/
 !kitty/

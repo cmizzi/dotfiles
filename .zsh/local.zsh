@@ -1,7 +1,7 @@
 #! /bin/zsh
 # Execute following code if we're working on a local machine
 
-(( ${+commands[keychain]} )) && eval `keychain --eval --quiet id_rsa`
+(( ${+commands[keychain]} )) && eval `keychain --eval --quiet id_ed25519`
 
 export EDITOR="vi"
 export PGHOST=127.0.0.1

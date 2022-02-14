@@ -8,7 +8,7 @@ super + Return
 
 # Program launcher
 super + space
-	sh ~/.config/polybar/scripts/rmenu_wi_1
+	rofi -show run
 
 # Print screen
 @Print

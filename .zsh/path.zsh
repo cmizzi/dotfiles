@@ -9,9 +9,10 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/home/data/bin"
-export PATH="$HOME/go/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
-export GOPATH="/home/cyril/go"
+export GOPATH="/usr/local/go"
 export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # vim: ft=zsh
