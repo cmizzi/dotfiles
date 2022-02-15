@@ -11,3 +11,5 @@ export MAIL=/var/spool/mail/$USERNAME
 
 alias ls="exa -F"
 alias ll="exa -lah"
+
+source <(kubectl completion zsh)

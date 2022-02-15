@@ -33,13 +33,13 @@ alt + space
 # note: also ensures audio is enabled
 XF86AudioRaiseVolume
 	amixer sset Master 5%+; \
-	amixer --card 1 sset "USB Audio" 5%+
+	amixer --card 1 sset "PCM" 5%+
 
 # Lower volume
 # note: intentionally does not unmute
 XF86AudioLowerVolume
 	amixer sset Master 5%-; \
-	amixer --card 1 sset "USB Audio" 5%-
+	amixer --card 1 sset "PCM" 5%-
 
 # Mute audio
 # note: mute always sets audio off (intentially no toggle)
