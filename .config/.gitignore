@@ -2,6 +2,8 @@
 !.gitignore
 !starship.toml
 !alacritty.yml
+!k9s/
+!dunst/
 !sxhkd/
 !bspwm/
 !kitty/
@@ -10,3 +12,5 @@
 !bspwm/*
 !kitty/*
 !polybar/*
+!dunst/*
+!k9s/*
