@@ -37,7 +37,8 @@ conky.config = {
 	draw_shades = false,
 	use_xft = true,
 	font = 'Source Code Pro for Powerline:size=8',
-	gap_x = -3840,
+	-- gap_x = -3840,
+	gap_x = -1920,
 	gap_y = 0,
 	minimum_height = 1080,
 	minimum_width = 240,
@@ -123,15 +124,15 @@ ${goto 30}SWAP${goto 80}${swap}${goto 135} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
-${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enx0c379623eacc} ${goto 120}/ ${totaldown enx0c379623eacc}
-${offset 10}${downspeedgraph enx0c379623eacc 30,220 color1 color 100 -l -t}
+${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enx00249b54a0c9} ${goto 120}/ ${totaldown enx00249b54a0c9}
+${offset 10}${downspeedgraph enx00249b54a0c9 30,220 color1 color 100 -l -t}
 
-${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enx0c379623eacc} ${goto 120}/ ${totalup enx0c379623eacc}
-${offset 10}${upspeedgraph enx0c379623eacc 30,220 color1 color 100 -l -t}
+${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enx00249b54a0c9} ${goto 120}/ ${totalup enx00249b54a0c9}
+${offset 10}${upspeedgraph enx00249b54a0c9 30,220 color1 color 100 -l -t}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
-${goto 30}${color}Lan IP${color}${goto 130}${addr enx0c379623eacc}
+${goto 30}${color}Lan IP${color}${goto 130}${addr enx00249b54a0c9}
 ${goto 30}${color}Inbound Ports${color}${goto 130}${tcp_portmon 1 32767 count}
 ${goto 30}${color}Outbound Ports${color}${goto 130}${tcp_portmon 32768 61000 count}
 ]]

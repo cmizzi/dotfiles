@@ -117,7 +117,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro for Powerline
+    family: MonoLisa
 
   # Bold font face
   #bold:

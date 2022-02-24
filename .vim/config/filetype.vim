@@ -13,6 +13,8 @@ augroup filetype_settings
     autocmd FileType json setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType lua setlocal ts=2 sw=2 sts=2 expandtab
     autocmd FileType crystal setlocal ts=2 sw=2 sts=2 expandtab textwidth=80 colorcolumn=80
+    autocmd FileType dockerfile setlocal ts=4 sw=4 sts=4 expandtab textwidth=80 colorcolumn=80
+    autocmd FileType sh setlocal ts=4 sw=4 sts=4 expandtab textwidth=80 colorcolumn=80
 augroup END
 
 augroup framework_filetype_settings

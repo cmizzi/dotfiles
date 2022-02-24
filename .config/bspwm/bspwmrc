@@ -1,7 +1,8 @@
 #! /bin/sh
 
+xrandr --output eDP-1 --off --output DP-2 --auto --primary --output DP-3 --auto --right-of DP-2
+
 # Startup scripts {{{
-xrandr --output DVI-I-1-1 --primary --scale 1.001x1.001 --mode 1920x1080 --output DVI-I-2-2 --mode 1920x1080 --right-of DVI-I-1-1
 setxkbmap -layout us,fr -option ''
 sxhkd &
 numlockx on &
@@ -20,8 +21,20 @@ polybar main &
 # }}}
 
 # Monitor configuration {{{
-bspc monitor DP-2 -n left -d I II III IV
-bspc monitor DP-3 -n right -d V VI VII VIII IX X
+
+bspc config remove_unplugged_monitors true
+bspc config remove_disabled_monitors true
+
+# Tree screens, disabled lid.
+bspc monitor DP-2 -n left -d I II III IV V
+bspc monitor DP-3 -n right -d VI VII VIII IX X
+
+# Single screen
+# bspc monitor eDP-1 -n left -d I II III IV V VI VII VIII IX X
+
+# Two screens
+# bspc monitor eDP-1 -n left -d I II III IV V
+# bspc monitor DP-3 -n right -d VI VII VIII IX X
 # }}}
 
 # Global configuration {{{
@@ -33,13 +46,13 @@ bspc config split_ratio           0.52
 bspc config borderless_monocle    true
 bspc config gapless_monocle       false
 bspc config focus_follows_pointer true
-bspc config focused_border_color  "#9ccfd8"
-bspc config normal_border_color   "#817c9c"
-bspc config presel_feedback_color "#f0bb48"
+bspc config focused_border_color '#e1b2d4'
+bspc config normal_border_color '#1A1826'
 bspc config top_padding 0
 bspc config left_padding 0
 bspc config right_padding 0
 bspc config bottom_padding 0
+bspc config -m left top_padding 45
 # }}}
 
 # Internal rules {{{

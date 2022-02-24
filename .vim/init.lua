@@ -12,7 +12,10 @@ require('packer').startup(function()
     'rose-pine/neovim',
     as = 'rose-pine',
     config = function()
-      vim.g.rose_pine_variant = 'moon'
+      require('rose-pine').setup({
+        dark_variant = 'moon',
+      })
+
       vim.cmd('colorscheme rose-pine')
     end
   })
@@ -38,6 +41,7 @@ require('packer').startup(function()
     run = ':TSUpdate',
     requires = {
       { 'nvim-treesitter/playground' },
+      { "IndianBoy42/tree-sitter-just", opt = true },
     },
     config = function()
       require'nvim-treesitter.configs'.setup {
@@ -77,9 +81,12 @@ require('packer').startup(function()
 
       local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
-      parser_config.php.used_by = "blade";
+      parser_config.php.filetype_to_parsername = "blade";
     end
   }
+
+  -- Fallback if there's no Treesitter configuration for a specific language.
+  use 'sheerun/vim-polyglot'
 
   -- LSP.
   use {
@@ -147,6 +154,7 @@ require('packer').startup(function()
   use 'jiangmiao/auto-pairs'
   use 'steelsojka/headwind.nvim'
   use 'triglav/vim-visual-increment'
+  use 'towolf/vim-helm'
   use 'roryokane/detectindent'
   use { 'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup() end }
   use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }
