@@ -45,7 +45,7 @@ require('packer').startup(function()
     },
     config = function()
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = "maintained",
+        ensure_installed = "all",
         highlight = {
           enable = true,
 
@@ -60,7 +60,7 @@ require('packer').startup(function()
           disable = { "php", "javascript" }
         },
         playground = {
-          enable = true,
+          enable = false,
           disable = {},
           updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
           persist_queries = false, -- Whether the query persists across vim sessions

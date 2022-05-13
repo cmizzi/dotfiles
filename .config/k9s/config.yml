@@ -12,18 +12,112 @@ k9s:
     buffer: 5000
     sinceSeconds: 60
     fullScreenLogs: false
-    textWrap: false
+    textWrap: true
     showTime: false
-  currentContext: neokube
-  currentCluster: neokube
+  currentContext: delfingen-dev
+  currentCluster: gke_ebusiness-ita864ff708_europe-west1_delfingen-dev
   clusters:
-    minikube:
+    gke_catalogue-bench_europe-west1_catalogue-bench:
       namespace:
-        active: default
+        active: all
         favorites:
+        - all
+        - bench
         - default
       view:
-        active: po
+        active: servicemonitor
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_ebusiness-ita864ff708_europe-west1_delfingen-dev:
+      namespace:
+        active: integration
+        favorites:
+        - validation
+        - vault
+        - external-secrets
+        - secrets
+        - integration
+        - crossplane-system
+        - all
+        - default
+      view:
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_neo9-catalogue-259610_europe-west1_catalogue-dev:
+      namespace:
+        active: validation
+        favorites:
+        - monitoring
+        - system-tools
+        - efk
+        - validation
+        - integration
+        - kube-system
+        - all
+        - default
+      view:
+        active: jobs
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    gke_neo9-software-factory_europe-west1_sf:
+      namespace:
+        active: gitlab
+        favorites:
+        - sonarqube
+        - keycloak
+        - gitlab
+        - crossplane-system
+        - all
+        - default
+      view:
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    kind-kind:
+      namespace:
+        active: all
+        favorites:
+        - all
+        - default
+      view:
+        active: pod
       featureGates:
         nodeShell: false
       shellPod:
@@ -43,7 +137,7 @@ k9s:
         - all
         - default
       view:
-        active: deployments
+        active: issuers
       featureGates:
         nodeShell: false
       shellPod:

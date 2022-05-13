@@ -56,4 +56,5 @@ if [ -f '/home/cmizzi/Code/neo9/google-cloud-sdk/path.zsh.inc' ]; then . '/home/
 if [ -f '/home/cmizzi/Code/neo9/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cmizzi/Code/neo9/google-cloud-sdk/completion.zsh.inc'; fi
 
 source <(stern --completion=zsh)
+source <(helm completion zsh)
 

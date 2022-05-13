@@ -7,6 +7,9 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  experimental = {
+    ghost_text = true
+  },
   snippet = {
     expand = function(args)
        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -22,6 +25,8 @@ cmp.setup({
       c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()

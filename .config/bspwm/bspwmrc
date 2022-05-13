@@ -1,6 +1,7 @@
 #! /bin/sh
 
 xrandr --output eDP-1 --off --output DP-2 --auto --primary --output DP-3 --auto --right-of DP-2
+# xrandr --output eDP-1 --auto --primary --output DP-2 --auto --right-of eDP-1
 
 # Startup scripts {{{
 setxkbmap -layout us,fr -option ''
@@ -30,7 +31,8 @@ bspc monitor DP-2 -n left -d I II III IV V
 bspc monitor DP-3 -n right -d VI VII VIII IX X
 
 # Single screen
-# bspc monitor eDP-1 -n left -d I II III IV V VI VII VIII IX X
+# bspc monitor DP-2 -n right -d I II III IV V
+# bspc monitor eDP-1 -n left -d VI VII VIII IX X
 
 # Two screens
 # bspc monitor eDP-1 -n left -d I II III IV V

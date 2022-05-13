@@ -1,6 +1,6 @@
 [global]
-  monitor = 0
-  follow = mouse
+  monitor = 1
+  follow = none
   shrink = no
   padding = 20
   horizontal_padding = 20
@@ -16,7 +16,7 @@
   separator_color = "#151515"
 
   sort = no
-  font = Overpass 10.5
+  font = MonoLisa 10.5
   markup = full
   format = "<b>%s</b>\n%b"
   alignment = left

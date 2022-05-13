@@ -20,6 +20,7 @@ alias wip="git add . && git commit -am 'wip'"
 alias nah="git reset --hard && git clean -df"
 alias k=kubectl
 alias phpunit="./vendor/bin/phpunit"
+alias clock="clockify-cli"
 compdef __start_kubectl k
 
 # vim: ft=zsh

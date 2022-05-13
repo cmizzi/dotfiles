@@ -1,7 +1,6 @@
 --
 -- LSP config
 --
-local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local on_attach = require'virtualtypes'.on_attach
 local lsp_installer = require("nvim-lsp-installer")
@@ -17,9 +16,6 @@ null_ls.setup({
     }
 })
 
--- Configure servers.
--- lspconfig["null-ls"].setup({ on_attach = on_attach })
-
 -- Automatic servers.
 lsp_installer.on_server_ready(function(server)
     local opts = {
@@ -31,6 +27,16 @@ lsp_installer.on_server_ready(function(server)
     -- if server.name == "tsserver" then
     --     opts.root_dir = function() ... end
     -- end
+
+    if server.name == "yamlls" then
+      opts.settings = {
+        yaml = {
+          schemas = {
+            ["kubernetes"] = "/*.yaml"
+          }
+        }
+      }
+    end
 
     server:setup(opts)
 end)

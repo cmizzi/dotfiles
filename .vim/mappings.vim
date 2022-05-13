@@ -27,7 +27,7 @@ nmap <silent> <leader>tN :tabnew<cr>
 nmap <silent> <leader>tC :tabclose<cr>
 
 " Telescope
-nmap <leader>o <cmd>lua require('telescope.builtin').git_files()<cr>
+nmap <leader>o <cmd>lua require('telescope.builtin').find_files()<cr>
 nmap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
 nmap <leader>lg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nmap <leader>fb <cmd>Telescope current_buffer_fuzzy_find<cr>

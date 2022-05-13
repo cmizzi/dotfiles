@@ -7,14 +7,6 @@ local builtin = require('telescope.builtin')
 
 telescope.setup {
   defaults = {
-    path_display = { },
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close,
-      }
-    },
-    file_ignore_patterns = { 'node_modules', '.git' },
-
     winblend = 10,
 
     layout_config = {
@@ -26,7 +18,7 @@ telescope.setup {
   pickers = {
     find_files = {
       prompt_title = 'All Files',
-      find_command = {'rg', '--files', '--no-ignore', 'hidden'},
+      find_command = {'rg', '--files', '--no-ignore', '--hidden'},
       hidden = true,
       no_ignore = true,
     },

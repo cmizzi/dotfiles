@@ -39,6 +39,7 @@ conky.config = {
 	font = 'Source Code Pro for Powerline:size=8',
 	-- gap_x = -3840,
 	gap_x = -1920,
+	-- gap_x = 0,
 	gap_y = 0,
 	minimum_height = 1080,
 	minimum_width = 240,
@@ -93,6 +94,10 @@ ${goto 30}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}CPU 4${got
 ${goto 30}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}CPU 5${goto 70}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}${cpubar cpu5 10,120}${goto 200}${cpu cpu5}%${color}
 ${goto 30}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}CPU 6${goto 70}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}${cpubar cpu6 10,120}${goto 200}${cpu cpu6}%${color}
 ${goto 30}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}CPU 7${goto 70}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}${cpubar cpu7 10,120}${goto 200}${cpu cpu7}%${color}
+${goto 30}${if_match ${cpu cpu8} > 50}${color1}${else}${color}${endif}CPU 8${goto 70}${if_match ${cpu cpu8} > 50}${color1}${else}${color}${endif}${cpubar cpu8 10,120}${goto 200}${cpu cpu8}%${color}
+${goto 30}${if_match ${cpu cpu9} > 50}${color1}${else}${color}${endif}CPU 9${goto 70}${if_match ${cpu cpu9} > 50}${color1}${else}${color}${endif}${cpubar cpu9 10,120}${goto 200}${cpu cpu9}%${color}
+${goto 30}${if_match ${cpu cpu10} > 50}${color1}${else}${color}${endif}CPU 10${goto 70}${if_match ${cpu cpu10} > 50}${color1}${else}${color}${endif}${cpubar cpu10 10,120}${goto 200}${cpu cpu10}%${color}
+${goto 30}${if_match ${cpu cpu11} > 50}${color1}${else}${color}${endif}CPU 11${goto 70}${if_match ${cpu cpu11} > 50}${color1}${else}${color}${endif}${cpubar cpu11 10,120}${goto 200}${cpu cpu11}%${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}CPU PROCESSES${font}${color}
 
