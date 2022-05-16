@@ -58,3 +58,5 @@ if [ -f '/home/cmizzi/Code/neo9/google-cloud-sdk/completion.zsh.inc' ]; then . '
 source <(stern --completion=zsh)
 source <(helm completion zsh)
 
+
+[ -s "/home/cmizzi/.jabba/jabba.sh" ] && source "/home/cmizzi/.jabba/jabba.sh"

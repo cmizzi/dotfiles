@@ -39,16 +39,14 @@ k9s:
       portForwardAddress: localhost
     gke_ebusiness-ita864ff708_europe-west1_delfingen-dev:
       namespace:
-        active: integration
+        active: default
         favorites:
-        - validation
-        - vault
-        - external-secrets
-        - secrets
-        - integration
-        - crossplane-system
-        - all
         - default
+        - integration
+        - validation
+        - crossplane-system
+        - external-secrets
+        - all
       view:
         active: pods
       featureGates:
@@ -112,12 +110,12 @@ k9s:
       portForwardAddress: localhost
     kind-kind:
       namespace:
-        active: all
+        active: default
         favorites:
         - all
         - default
       view:
-        active: pod
+        active: secrets
       featureGates:
         nodeShell: false
       shellPod:
