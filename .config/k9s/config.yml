@@ -39,7 +39,7 @@ k9s:
       portForwardAddress: localhost
     gke_ebusiness-ita864ff708_europe-west1_delfingen-dev:
       namespace:
-        active: default
+        active: integration
         favorites:
         - default
         - integration

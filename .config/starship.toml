@@ -56,12 +56,12 @@ $crystal\
 $custom\
 $sudo\
 $cmd_duration\
-$line_break\
 $jobs\
 $battery\
 $time\
 $status\
 $shell\
+$line_break\
 $character"""
 
 [kubernetes]
@@ -70,3 +70,14 @@ disabled = false
 
 [kubernetes.context_aliases]
 "gke_.*_(?P<cluster>[\\w-]+)" = "gke-$cluster"
+
+[git_metrics]
+disabled = false
+
+[git_commit]
+disabled = false
+only_detached = false
+tag_disabled = false
+
+[git_status]
+ignore_submodules = true
