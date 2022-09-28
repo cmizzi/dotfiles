@@ -128,4 +128,28 @@ function certdates() {
 	echo | openssl s_client -servername $1 -connect $1:443 2>/dev/null | openssl x509 -noout -dates
 }
 
+function docker-run() {
+	docker run -ti --rm $1 --volume $PWD:/app --entrypoint sh ${@:2}
+}
+
+function kube-core() {
+	docker run \
+		-v "$HOME/.kube:/kube" \
+		-v "$HOME/.config/gcloud":/gcloud \
+		-v "$PWD/..":/app/dev \
+		-v $(readlink -f $SSH_AUTH_SOCK):/ssh-agent \
+		-e SSH_AUTH_SOCK=/ssh-agent \
+		-ti \
+		--rm \
+		--workdir /app/dev/cluster \
+		kube-core \
+		bash -c "mkdir -p ~/.ssh; echo \"UserKnownHostsFile=/dev/null\" >> ~/.ssh/config; echo \"StrictHostKeyChecking=no\" >> ~/.ssh/config; helmfile repos; git config --global --add safe.directory /app/dev; kube-core ${@:1}"
+}
+
+function __kube-core() {
+	source $HOME/.cache/kube-core/autocomplete/functions/zsh/_kube-core
+}
+
+compdef __kube-core kube-core
+
 # vim: ft=zsh

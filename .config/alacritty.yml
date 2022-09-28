@@ -47,10 +47,10 @@ window:
   # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 10
-    y: 5
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -61,13 +61,13 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Background opacity
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.85
+  opacity: 0.98
 
   # Startup Mode (changes require restart)
   #
@@ -120,8 +120,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+
+    family: Comic Code Ligatures
     # family: JetBrains Mono Nerd Font
-    family: MonoLisa
+    # family: MonoLisa
 
   # Bold font face
   #bold:
@@ -879,43 +881,38 @@ font:
   #highlight_damage: false
 
 colors:
+  # Default colors
   primary:
-    background: '0x232136'
-    foreground: '0xe0def4'
+    background: '0x1E1D2F'
+    foreground: '0xD9E0EE'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x232136'
-    cursor: '0x825B65'
-  vi_mode_cursor:
-    text: '0x191724'
-    cursor: '0x825B65'
-  line_indicator:
-    foreground: None
-    background: None
-  selection:
-    text: CellForeground
-    background: '0x312E45'
+    text: '0x1E1D2F'
+    cursor: '0xF5E0DC'
+
+  # Normal colors
   normal:
-    black:   '0x817c9c'
-    red:     '0xeb6f92'
-    green:   '0x9ccfd8'
-    yellow:  '0xf6c177'
-    blue:    '0x3e8fb0'
-    magenta: '0xc4a7e7'
-    cyan:    '0xea9a97'
-    white:   '0xe0def4'
+    black:   '0x6E6C7E'
+    red:     '0xF28FAD'
+    green:   '0xABE9B3'
+    yellow:  '0xFAE3B0'
+    blue:    '0x96CDFB'
+    magenta: '0xF5C2E7'
+    cyan:    '0x89DCEB'
+    white:   '0xD9E0EE'
+
+  # Bright colors
   bright:
-    black:   '0x6e6a86'
-    red:     '0xeb6f92'
-    green:   '0x9ccfd8'
-    yellow:  '0xf6c177'
-    blue:    '0x31748f'
-    magenta: '0xc4a7e7'
-    cyan:    '0xebbcba'
-    white:   '0xe0def4'
-  hints:
-    start:
-     foreground: '#817c9c'
-     background: '#393552'
-    end:
-     foreground: '#59546d'
-     background: '#393552'
+    black:   '0x988BA2'
+    red:     '0xF28FAD'
+    green:   '0xABE9B3'
+    yellow:  '0xFAE3B0'
+    blue:    '0x96CDFB'
+    magenta: '0xF5C2E7'
+    cyan:    '0x89DCEB'
+    white:   '0xD9E0EE'
+
+  indexed_colors:
+    - { index: 16, color: '0xF8BD96' }
+    - { index: 17, color: '0xF5E0DC' }

@@ -11,6 +11,7 @@ autocutsel -selection PRIMARY -fork &
 greenclip daemon &
 compton &
 xautolock -time 30 -locker 'i3lock' -corners 0000 &
+xsetroot -cursor_name left_ptr &
 copyq &
 /home/cyril/.local/bin/synconfig
 sleep 1

@@ -40,9 +40,10 @@ nnoremap <silent> <leader>dg <cmd>lua require'telescope.builtin'.lsp_document_di
 
 " LSP
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<cr>
 nnoremap <silent> <leader>sr <cmd>lua vim.lsp.buf.rename()<cr>
 nnoremap <silent> <leader>sh <cmd>lua vim.lsp.buf.signature_help()<cr>
-nnoremap <silent> <leader>a <cmd>lua require'telescope.builtin'.lsp_code_actions{}<cr>
+nnoremap <silent> <leader>a <cmd>lua vim.lsp.buf.code_action()<cr>
 nnoremap <silent> <leader>sd <cmd>lua vim.lsp.buf.declaration()<cr>
 
 nnoremap <silent> <Leader>doc <cmd>lua require('neogen').generate()<cr>

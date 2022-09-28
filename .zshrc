@@ -60,3 +60,6 @@ source <(helm completion zsh)
 
 
 [ -s "/home/cmizzi/.jabba/jabba.sh" ] && source "/home/cmizzi/.jabba/jabba.sh"
+[ -s "/home/cmizzi/.phpbrew/bashrc" ] && source "/home/cmizzi/.phpbrew/bashrc"
+
+[[ -s "/home/cmizzi/.gvm/scripts/gvm" ]] && source "/home/cmizzi/.gvm/scripts/gvm"

@@ -31,8 +31,12 @@ require('packer').startup(function()
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-lua/popup.nvim' },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-    }
+    },
+    config = function()
+      require("telescope").load_extension("ui-select")
+    end
   }
 
   -- nvim abstraction for tree-sitter (parser generator)
@@ -146,7 +150,6 @@ require('packer').startup(function()
   -- Various plugins.
   use 'yamatsum/nvim-cursorline'
   use 'f-person/git-blame.nvim'
-  use 'romgrk/barbar.nvim'
   use 'junegunn/vim-easy-align'
   use 'benmills/vimux'
   use 'christoomey/vim-tmux-navigator'
@@ -178,6 +181,7 @@ require('packer').startup(function()
       require("gitsigns").setup()
     end
   }
+  use 'simrat39/rust-tools.nvim'
 end)
 
 vim.call('sourcery#init')

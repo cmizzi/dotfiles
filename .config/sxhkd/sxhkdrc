@@ -22,9 +22,6 @@ super + Escape
 alt + {minus,equal}
 	bspc config -d focused right_padding {250,0}
 
-alt + space
-	~/.config/sxhkd/toggle_keyboard
-
 ##################
 ##### VOLUME #####
 ##################

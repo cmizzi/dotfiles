@@ -3,8 +3,19 @@
 	name = Cyril Mizzi
 
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	whitespace = trailing-space,space-before-tab
+
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+
+
+[delta]
+	line-numbers = true
+
+[mergetool "gitmerger"]
+	cmd = /home/cmizzi/Code/git-merger/target/debug/git-merger "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	trustExitCode = true
 
 [alias]
 	fs  = !git fetch && git status -sb
@@ -66,7 +77,9 @@
 
 [gui]
 	editor = vim
+
 [commit]
 	# gpgsign = true
+
 [init]
 	defaultBranch = main

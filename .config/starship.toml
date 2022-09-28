@@ -65,7 +65,8 @@ $line_break\
 $character"""
 
 [kubernetes]
-format = 'on [⛵ $context \($namespace\)](dimmed green) '
+style = "italic bright-black"
+format = 'on [⛵ $context \($namespace\)]($style) '
 disabled = false
 
 [kubernetes.context_aliases]
