@@ -110,7 +110,7 @@ window:
 # Font configuration
 font:
   # Point size
-  size: 15.0
+  size: 16.0
 
   # Normal (roman) font face
   normal:
@@ -124,6 +124,7 @@ font:
     family: Comic Code Ligatures
     # family: JetBrains Mono Nerd Font
     # family: MonoLisa
+    # family: Sligoil
 
   # Bold font face
   #bold:
