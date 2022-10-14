@@ -71,18 +71,7 @@ conky.config = {
 }
 
 conky.text = [[
-${voffset 20}
-${font Ubuntu:size=20}${alignc}${time %k:%M:%S}${font Ubuntu:size=8}
-${alignc}${time %a %b %d %Y}
-
-${goto 20}${color1}${font Ubuntu:size=11}SYSTEM${font}${color}
-
-${goto 30}${exec cat /etc/issue.net}
-${goto 30}${exec cat /proc/cpuinfo|grep "model name"|sed -e "s/model name.*: //"| uniq | cut -c 1-32}
-
-${goto 30}Kernel $kernel
-${goto 30}CPU Speed ${freq_g 1}GHz
-
+${voffset 10}
 ${goto 20}${color1}${font Ubuntu:size=11}CPU LOAD${font}${color}
 
 ${goto 30}${if_match ${cpu cpu0} > 50}${color1}${else}${color}${endif}CPU 0${goto 70}${if_match ${cpu cpu0} > 50}${color1}${else}${color}${endif}${cpubar cpu0 10,120}${goto 200}${cpu cpu0}%${color}
@@ -110,8 +99,17 @@ ${goto 30}${if_match ${top cpu 3} > 10}${color1}${else}${color}${endif}${top nam
 ${goto 30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top name 4}${goto 185}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top cpu 4}%${color}
 ${goto 30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top name 5}${goto 185}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top cpu 5}%${color}
 
-${offset 10}${cpugraph 50,220 color1 color s}
+${offset 10}${cpugraph 30,220 color1 color s}
 ${goto 30}${loadavg 1} | ${loadavg 2} | ${loadavg 3}
+
+${goto 20}${color1}${font Ubuntu:size=11}GPU${font}${color}
+
+${goto 30}GPU Temperature${goto 185}${color}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t | xargs}°C
+${goto 30}VRAM Utilization${goto 185}${color}${exec nvidia-smi | grep % | cut -c 37-40 | xargs}MB
+${goto 30}GPU Power Draw${goto 185}${color}${exec nvidia-smi | grep % | cut -c 21-23 | xargs}W
+
+${offset 10}${execigraph 1 "exec nvidia-smi | grep % | cut -c 61-63 | xargs" }
+${goto 30}${exec nvidia-smi | grep % | cut -c 61-63 | xargs}% usage${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}MEM PROCESSES${font}${color}
 
