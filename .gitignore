@@ -22,3 +22,4 @@
 !/.conkyrc
 ~/.stalonetrayrc
 !.gitkeep
+/.vim/plugin/packer_compiled.lua

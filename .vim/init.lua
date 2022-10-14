@@ -21,69 +21,69 @@ require('packer').startup(function()
   })
 
   -- Noice.
-  use({
-    "folke/noice.nvim",
-    event = "VimEnter",
-    config = function()
-      require("noice").setup({
-        views = {
-          cmdline_popup = {
-            position = {
-              row = 5,
-              col = "50%",
-            },
-            size = {
-              width = 60,
-              height = "auto",
-            },
-          },
-          popupmenu = {
-            relative = "editor",
-            position = {
-              row = 8,
-              col = "50%",
-            },
-            size = {
-              width = 60,
-              height = 10,
-            },
-            border = {
-              style = "rounded",
-              padding = { 0, 1 },
-            },
-            win_options = {
-              winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-            },
-          },
-        },
-        routes = {
-          {
-            filter = {
-              event = "msg_show",
-              kind = "",
-              find = "written",
-            },
-            opts = { skip = true },
-          },
-        },
-      })
-    end,
-    requires = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      use({
-        "rcarriga/nvim-notify",
-        config = {
-          require("notify").setup {
-            stages = 'fade_in_slide_out',
-            timeout = 3000,
-            max_width = 50,
-            top_down = false,
-          }
-        }
-      }),
-    }
-  })
+--  use({
+--    "folke/noice.nvim",
+--    event = "VimEnter",
+--    config = function()
+--      require("noice").setup({
+--        views = {
+--          cmdline_popup = {
+--            position = {
+--              row = 5,
+--              col = "50%",
+--            },
+--            size = {
+--              width = 60,
+--              height = "auto",
+--            },
+--          },
+--          popupmenu = {
+--            relative = "editor",
+--            position = {
+--              row = 8,
+--              col = "50%",
+--            },
+--            size = {
+--              width = 60,
+--              height = 10,
+--            },
+--            border = {
+--              style = "rounded",
+--              padding = { 0, 1 },
+--            },
+--            win_options = {
+--              winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+--            },
+--          },
+--        },
+--        routes = {
+--          {
+--            filter = {
+--              event = "msg_show",
+--              kind = "",
+--              find = "written",
+--            },
+--            opts = { skip = true },
+--          },
+--        },
+--      })
+--    end,
+--    requires = {
+--      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+--      "MunifTanjim/nui.nvim",
+--      use({
+--        "rcarriga/nvim-notify",
+--        config = {
+--          require("notify").setup {
+--            stages = 'fade_in_slide_out',
+--            timeout = 3000,
+--            max_width = 50,
+--            top_down = false,
+--          }
+--        }
+--      }),
+--    }
+--  })
 
   -- Statusbar.
   use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
@@ -101,8 +101,6 @@ require('packer').startup(function()
     },
     config = function()
       require("telescope")
-        .load_extension("ui-select")
-        .load_extension("noice")
     end
   }
 

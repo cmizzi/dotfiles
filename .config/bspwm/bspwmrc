@@ -1,6 +1,6 @@
 #! /bin/sh
 
-xrandr --output eDP-1 --off --output DP-2 --auto --primary --output DP-3 --auto --right-of DP-2
+xrandr --output DP-0 --mode 1920x1080 --rate 165.00 --primary --output DP-1 ---mode 1920x1080 --rate 165.00 --right-of DP-2
 # xrandr --output eDP-1 --auto --primary --output DP-2 --auto --right-of eDP-1
 
 # Startup scripts {{{
@@ -19,7 +19,7 @@ sleep 1
 feh --randomize --bg-fill ~/Pictures/Wallpapers/*
 conky &
 stalonetray &
-polybar main &
+polybar --config=~/.config/polybar/config.ini main
 # }}}
 
 # Monitor configuration {{{
@@ -28,8 +28,8 @@ bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
 
 # Tree screens, disabled lid.
-bspc monitor DP-2 -n left -d I II III IV V
-bspc monitor DP-3 -n right -d VI VII VIII IX X
+bspc monitor DP-0 -n left -d I II III IV V
+bspc monitor DP-1 -n right -d VI VII VIII IX X
 
 # Single screen
 # bspc monitor DP-2 -n right -d I II III IV V
