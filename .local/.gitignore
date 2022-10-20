@@ -3,7 +3,9 @@
 
 !/.gitignore
 !/bin/
+!/share/
 /bin/*
+/share/*
 !/bin/fzf
 !/bin/fzf-tmux
 !/bin/dockershell
@@ -11,4 +13,5 @@
 !/bin/fd
 !/bin/rg
 !/bin/wallheaven
+!/share/rofi
 !/highlight.awk

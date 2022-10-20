@@ -11,7 +11,6 @@
 # Files
 !/.Xresources.default
 !/.conkyrc.default
-!/.stalonetrayrc.default
 !/.screenrc
 !/.vimrc
 !/.zshrc
@@ -20,6 +19,7 @@
 !/.psqlrc
 !/.screenrc
 !/.conkyrc
-~/.stalonetrayrc
+!/.stalonetrayrc
+!/.local/share/rofi/themes/catppuccin-macchiato.rasi
 !.gitkeep
 /.vim/plugin/packer_compiled.lua

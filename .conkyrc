@@ -38,7 +38,7 @@ conky.config = {
 	use_xft = true,
 	font = 'Source Code Pro for Powerline:size=8',
 	-- gap_x = -3840,
-	-- gap_x = -1920,
+	gap_x = -1920,
 	-- gap_x = 0,
 	gap_y = 0,
 	minimum_height = 1080,
