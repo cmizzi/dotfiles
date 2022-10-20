@@ -20,4 +20,4 @@ alias htop="btm"
 alias diff="delta"
 
 source <(kubectl completion zsh)
-source <(stern --completion zsh)
+source <(helm completion zsh)
