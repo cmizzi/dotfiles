@@ -110,7 +110,7 @@ window:
 # Font configuration
 font:
   # Point size
-  size: 16.0
+  size: 15.0
 
   # Normal (roman) font face
   normal:
@@ -121,8 +121,8 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
 
-    family: Comic Code Ligatures
-    # family: JetBrains Mono Nerd Font
+    # family: Comic Code Ligatures
+    family: JetBrains Mono For Powerline
     # family: MonoLisa
     # family: Sligoil
 
