@@ -7,9 +7,6 @@
 !/.vim/
 !/.local/
 !/.config/
-!/.cargo
-/.cargo/*
-!/.cargo/bin/
 
 # Files
 !/.Xresources.default
@@ -25,5 +22,3 @@
 !/.stalonetrayrc
 !.gitkeep
 /.vim/plugin/packer_compiled.lua
-/.cargo/bin/*
-!/.cargo/bin/starship
