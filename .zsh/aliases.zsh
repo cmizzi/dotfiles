@@ -21,8 +21,7 @@ alias nah="git reset --hard && git clean -df"
 alias k=kubectl
 alias phpunit="./vendor/bin/phpunit"
 alias clock="clockify-cli"
-alias vim="nvim"
-alias vi="nvim"
+alias docker-compose="docker compose"
 compdef __start_kubectl k
 
 # vim: ft=zsh

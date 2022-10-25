@@ -19,6 +19,7 @@ feh --randomize --bg-max ~/Pictures/Wallpapers
 conky &
 stalonetray &
 polybar --config=~/.config/polybar/config.ini main &
+dropbox start &
 # }}}
 
 # Monitor configuration {{{
@@ -53,6 +54,7 @@ bspc rule -a git-cola state=floating
 bspc rule -a zazu state=floating
 bspc rule -a gnome-calculator state=floating
 bspc rule -a copyq state=floating
+bspc rule -a dunst state=floating
 # }}}
 
 # vim: syn=sh

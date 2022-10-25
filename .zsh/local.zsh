@@ -18,6 +18,8 @@ alias ps="procs"
 alias top="btm"
 alias htop="btm"
 alias diff="delta"
+alias vim="nvim"
+alias vi="nvim"
 
 source <(kubectl completion zsh)
 source <(helm completion zsh)
