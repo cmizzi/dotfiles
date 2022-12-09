@@ -121,8 +121,8 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
 
-    # family: Comic Code Ligatures
-    family: JetBrains Mono For Powerline
+    family: Comic Code Ligatures NerdFont
+    # family: JetBrains Mono For Powerline
     # family: MonoLisa
     # family: Sligoil
 
