@@ -5,14 +5,9 @@ shrink = no
 padding = 20
 horizontal_padding = 20
 
-geometry = 300x100-300+40
-width = 30
-height = 100
 offset = 40x80
 origin = top-right
 
-frame_width = 0
-separator_height = 0
 frame_color = "#151515"
 separator_color = "#151515"
 

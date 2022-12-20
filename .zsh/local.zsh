@@ -3,7 +3,7 @@
 
 (( ${+commands[keychain]} )) && eval `keychain --eval --quiet id_rsa`
 
-export EDITOR="neovim"
+export EDITOR="vim"
 export PGHOST=127.0.0.1
 export PGUSER=postgres
 export MYSQL_HOST=127.0.0.1
@@ -18,8 +18,6 @@ alias ps="procs"
 alias top="btm"
 alias htop="btm"
 alias diff="delta"
-alias vim="nvim"
-alias vi="nvim"
 
 source <(kubectl completion zsh)
 source <(helm completion zsh)
