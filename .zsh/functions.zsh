@@ -89,9 +89,9 @@ __dockershell() {
 		(kind) compadd "$@" service container ;;
 		(*)
 			if [ "$words[2]" = "service" ]; then
-				_arguments "*:services:($((docker info 2> /dev/null | grep -i 'swarm: active') && docker service ls -q --format '{{.Name}}'))"
+				_arguments "*:services:($((docker info 2> /dev/null | grep -i 'swarm: active') && docker service ls --format '{{.Name}}'))"
 			else
-				_arguments "*:containers:($(docker ps -q --format '{{.Names}}'))"
+				_arguments "*:containers:($(docker ps --format '{{.Names}}'))"
 			fi;
 		;;
 	esac
@@ -106,7 +106,7 @@ server () {
 
 __server () {
 	_arguments \
-		"1: :($(cat ~/.ssh/config | grep -Ei '^host' | grep -v '*' | sed 's/host \(.*\)/\1/i'))"
+		"1: :($(cat ~/.ssh/config ~/.ssh/config.d/* | grep -Ei '^host' | grep -v '*' | sed 's/host \(.*\)/\1/i'))"
 }
 
 compdef __server server
@@ -148,6 +148,10 @@ function kube-core() {
 
 function __kube-core() {
 	source $HOME/.cache/kube-core/autocomplete/functions/zsh/_kube-core
+}
+
+function helmfile() {
+	[[ -f helmfile ]] && ./helmfile $@ || echo "Not a Helmfile repository."
 }
 
 compdef __kube-core kube-core

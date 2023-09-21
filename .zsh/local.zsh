@@ -9,6 +9,9 @@ export PGUSER=postgres
 export MYSQL_HOST=127.0.0.1
 export MAIL=/var/spool/mail/$USERNAME
 export JAVA_HOME=/home/.java
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin"
 
 alias ls="exa -F"
 alias ll="exa -lah"

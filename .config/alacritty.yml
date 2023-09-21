@@ -121,6 +121,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
 
+    # family: SFMono Nerd Font
     family: Comic Code Ligatures NerdFont
     # family: JetBrains Mono For Powerline
     # family: MonoLisa

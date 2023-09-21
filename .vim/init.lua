@@ -110,7 +110,9 @@ require('packer').startup(function()
     run = ':TSUpdate',
     requires = {
       { 'nvim-treesitter/playground' },
-      { "IndianBoy42/tree-sitter-just", opt = true },
+      { 'nvim-treesitter/nvim-treesitter-context' },
+      { 'JoosepAlviste/nvim-ts-context-commentstring' },
+      { "IndianBoy42/tree-sitter-just", opt = true }
     },
     config = function()
       require'nvim-treesitter.configs'.setup {
@@ -148,9 +150,28 @@ require('packer').startup(function()
         }
       }
 
-      local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-
-      parser_config.php.filetype_to_parsername = "blade";
+      require('treesitter-context').setup({
+        patterns = {
+          default = {
+            'class',
+            'function',
+            'method',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
+          },
+          yaml = {
+            "block_mapping_pair",
+            "block_sequence_item",
+          },
+          helm = {
+            "block_mapping_pair",
+            "block_sequence_item",
+          },
+        },
+      })
     end
   }
 
@@ -222,7 +243,6 @@ require('packer').startup(function()
   use 'jiangmiao/auto-pairs'
   use 'steelsojka/headwind.nvim'
   use 'triglav/vim-visual-increment'
-  use 'towolf/vim-helm'
   use 'roryokane/detectindent'
   use { 'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup() end }
   use { 'kana/vim-textobj-user' , requires = {'whatyouhide/vim-textobj-xmlattr'} }

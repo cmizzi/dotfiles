@@ -29,20 +29,17 @@ alt + {minus,equal}
 # Raise volume
 # note: also ensures audio is enabled
 XF86AudioRaiseVolume
-	amixer --card 1 sset "Master" 5+; \
-	amixer --card 2 sset "Master" 5+;
+	pulsemixer --change-volume +1
 
 # Lower volume
 # note: intentionally does not unmute
 XF86AudioLowerVolume
-	amixer --card 1 sset "Master" 5-; \
-	amixer --card 2 sset "Master" 5-;
-
+	pulsemixer --change-volume -1
 
 # Mute audio
 # note: mute always sets audio off (intentially no toggle)
 XF86AudioMute
-	amixer -q set Master off
+	pulsemixer --set-volume 0
 
 XF86AudioPlay
 	playerctl play-pause --player=spotify

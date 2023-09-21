@@ -25,6 +25,7 @@ dropbox start &
 # Monitor configuration {{{
 
 # Tree screens, disabled lid.
+# bspc monitor DP-0 -n left -d I II III IV V VI VII VIII IX X
 bspc monitor DP-0 -n left -d I II III IV V
 bspc monitor DP-2 -n right -d VI VII VIII IX X
 

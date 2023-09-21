@@ -37,7 +37,6 @@ conky.config = {
 	draw_shades = false,
 	use_xft = true,
 	font = 'Source Code Pro for Powerline:size=8',
-	-- gap_x = -3840,
 	gap_x = -1920,
 	-- gap_x = 0,
 	gap_y = 0,
@@ -125,19 +124,20 @@ ${goto 30}${mem} / ${memmax} (${memperc}%)
 ${goto 20}${color1}${font Ubuntu:size=11}DISCS${font}${color}
 
 ${goto 30}/${goto 80}${fs_used /}${goto 135} on ${fs_size /}
+${goto 30}/mnt/data${goto 80}${fs_used /mnt/data}${goto 135} on ${fs_size /mnt/data}
 ${goto 30}SWAP${goto 80}${swap}${goto 135} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
-${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp6s0} ${goto 120}/ ${totaldown enp6s0}
-${offset 10}${downspeedgraph enp6s0 30,220 color1 color 100 -l -t}
+${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp4s0} ${goto 120}/ ${totaldown enp4s0}
+${offset 10}${downspeedgraph enp4s0 30,220 color1 color 100 -l -t}
 
-${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp6s0} ${goto 120}/ ${totalup enp6s0}
-${offset 10}${upspeedgraph enp6s0 30,220 color1 color 100 -l -t}
+${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp4s0} ${goto 120}/ ${totalup enp4s0}
+${offset 10}${upspeedgraph enp4s0 30,220 color1 color 100 -l -t}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
-${goto 30}${color}Lan IP${color}${goto 130}${addr enp6s0}
+${goto 30}${color}Lan IP${color}${goto 130}${addr enp4s0}
 ${goto 30}${color}Inbound Ports${color}${goto 130}${tcp_portmon 1 32767 count}
 ${goto 30}${color}Outbound Ports${color}${goto 130}${tcp_portmon 32768 61000 count}
 ]]
