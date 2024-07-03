@@ -1,6 +1,6 @@
 #! /bin/sh
 
-xrandr --output DP-0 --mode 1920x1080 --rate 165.00 --primary --output DP-2 --mode 1920x1080 --rate 165.00 --right-of DP-0
+xrandr --output DP-0 --mode 1920x1080 --rate 59.94 --primary --output HDMI-0 --mode 1920x1080 --right-of DP-0
 
 # Startup scripts {{{
 setxkbmap -layout us,fr -option ''
@@ -18,8 +18,8 @@ sleep 1
 feh --randomize --bg-max ~/Pictures/Wallpapers
 conky &
 stalonetray &
+blueman-applet &
 polybar --config=~/.config/polybar/config.ini main &
-dropbox start &
 # }}}
 
 # Monitor configuration {{{
@@ -27,7 +27,8 @@ dropbox start &
 # Tree screens, disabled lid.
 # bspc monitor DP-0 -n left -d I II III IV V VI VII VIII IX X
 bspc monitor DP-0 -n left -d I II III IV V
-bspc monitor DP-2 -n right -d VI VII VIII IX X
+bspc monitor HDMI-0 -n right -d VI VII VIII IX X
+# bspc monitor HDMI-0 -n tablet -d X
 
 # Global configuration {{{
 bspc config initial_polarity      second_child

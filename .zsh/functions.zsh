@@ -23,12 +23,6 @@ function dps () {
 	docker ps -a --format 'table {{ .ID }}\t{{ .Names }}\t{{ .Status }}'
 }
 
-# Edit file from fzf registry
-function v() {
-	local file
-	file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
-}
-
 # Shortcut to access Docker logs
 dl() {
 	if [ "$1" = "service" ]; then
@@ -148,10 +142,6 @@ function kube-core() {
 
 function __kube-core() {
 	source $HOME/.cache/kube-core/autocomplete/functions/zsh/_kube-core
-}
-
-function helmfile() {
-	[[ -f helmfile ]] && ./helmfile $@ || echo "Not a Helmfile repository."
 }
 
 compdef __kube-core kube-core

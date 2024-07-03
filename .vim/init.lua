@@ -182,7 +182,8 @@ require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      { 'williamboman/nvim-lsp-installer' },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
       { 'jose-elias-alvarez/null-ls.nvim' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
@@ -267,6 +268,10 @@ require('packer').startup(function()
     end
   }
   use 'simrat39/rust-tools.nvim'
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 vim.call('sourcery#init')

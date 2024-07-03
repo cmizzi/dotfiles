@@ -10,7 +10,7 @@ source "$CURDIR/.zsh/bindkeys.zsh"
 source "$CURDIR/.zsh/history.zsh"
 source "$CURDIR/.zsh/aliases.zsh"
 source "$CURDIR/.zsh/functions.zsh"
-source "$CURDIR/.zsh/fzf.zsh"
+# source "$CURDIR/.zsh/fzf.zsh"
 
 # Preferred ssh or local configuration
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -19,7 +19,7 @@ else
 	source "$CURDIR/.zsh/local.zsh"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 
 export NVM_DIR="$CURDIR/.nvm"
@@ -33,7 +33,6 @@ export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export ANDROID_HOME="/home/cyril/.android/sdk"
 export PATH="${ANDROID_HOME}/emulator:/opt/gradle/gradle-5.2.1/bin:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:{$PATH}"
 export _JAVA_AWT_WM_NONREPARENTING=1
-export GO111MODULE=on
 
 if [ -f /home/cyril/.tnsrc ]; then
     source /home/cyril/.tnsrc
@@ -48,3 +47,4 @@ export RUBYOPT='-W:no-deprecated -W:no-experimental'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"

@@ -1,7 +1,7 @@
 *
 !.gitignore
 !starship.toml
-!alacritty.yml
+!alacritty.toml
 !dunst/
 !sxhkd/
 !bspwm/

@@ -21,6 +21,8 @@ alias nah="git reset --hard && git clean -df"
 alias k=kubectl
 alias phpunit="./vendor/bin/phpunit"
 alias clock="clockify-cli"
+alias dog="docker run -it --rm dog"
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias docker-compose="docker compose"
 compdef __start_kubectl k
 
