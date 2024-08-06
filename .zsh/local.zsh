@@ -14,8 +14,8 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:/opt/emsdk/:/opt/emsdk/upstream/emscripten"
 export GIT_PAGER="delta -s"
 
-alias ls="exa -F --icons"
-alias ll="exa -lah --icons --git"
+alias ls="eza -F --icons"
+alias ll="eza --long --all --icons --git --group-directories-first"
 alias cat="bat"
 alias du="dust"
 alias ps="procs"
