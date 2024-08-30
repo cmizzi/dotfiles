@@ -5,6 +5,7 @@
 [core]
 	pager = delta
 	whitespace = trailing-space,space-before-tab
+	autocrlf = input
 
 [interactive]
 	diffFilter = delta --color-only --features=interactive
