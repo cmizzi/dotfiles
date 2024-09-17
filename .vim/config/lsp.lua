@@ -25,7 +25,8 @@ require("mason-lspconfig").setup_handlers({
 
   ["crystalline"] = function()
     lspconfig.crystalline.setup({
-      single_file_support = false
+      cmd = { "/usr/local/bin/crystalline", "--stdio" },
+      single_file_support = true,
     })
   end,
 })

@@ -37,11 +37,11 @@ conky.config = {
 	draw_shades = false,
 	use_xft = true,
 	font = 'Source Code Pro for Powerline:size=8',
-	gap_x = -1920,
+	gap_x = -2560,
 	-- gap_x = 0,
 	gap_y = 0,
-	minimum_height = 1080,
-	minimum_width = 240,
+	minimum_height = 1440,
+	minimum_width = 300,
 	net_avg_samples = 2,
 	no_buffers = true,
 	double_buffer = true,
@@ -61,6 +61,8 @@ conky.config = {
 	update_interval = 1.0,
 	uppercase = false,
 	use_spacer = 'none',
+	default_graph_size = "30 170",
+	default_bar_size = "30 170",
 	show_graph_scale = false,
 	show_graph_range = false,
 	default_color = "#FFFFFF",
@@ -73,71 +75,71 @@ conky.text = [[
 ${voffset 10}
 ${goto 20}${color1}${font Ubuntu:size=11}CPU LOAD${font}${color}
 
-${goto 30}${if_match ${cpu cpu0} > 50}${color1}${else}${color}${endif}CPU 0${goto 70}${if_match ${cpu cpu0} > 50}${color1}${else}${color}${endif}${cpubar cpu0 10,120}${goto 200}${cpu cpu0}%${color}
-${goto 30}${if_match ${cpu cpu1} > 50}${color1}${else}${color}${endif}CPU 1${goto 70}${if_match ${cpu cpu1} > 50}${color1}${else}${color}${endif}${cpubar cpu1 10,120}${goto 200}${cpu cpu1}%${color}
-${goto 30}${if_match ${cpu cpu2} > 50}${color1}${else}${color}${endif}CPU 2${goto 70}${if_match ${cpu cpu2} > 50}${color1}${else}${color}${endif}${cpubar cpu2 10,120}${goto 200}${cpu cpu2}%${color}
-${goto 30}${if_match ${cpu cpu3} > 50}${color1}${else}${color}${endif}CPU 3${goto 70}${if_match ${cpu cpu3} > 50}${color1}${else}${color}${endif}${cpubar cpu3 10,120}${goto 200}${cpu cpu3}%${color}
-${goto 30}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}CPU 4${goto 70}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}${cpubar cpu4 10,120}${goto 200}${cpu cpu4}%${color}
-${goto 30}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}CPU 5${goto 70}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}${cpubar cpu5 10,120}${goto 200}${cpu cpu5}%${color}
-${goto 30}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}CPU 6${goto 70}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}${cpubar cpu6 10,120}${goto 200}${cpu cpu6}%${color}
-${goto 30}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}CPU 7${goto 70}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}${cpubar cpu7 10,120}${goto 200}${cpu cpu7}%${color}
-${goto 30}${if_match ${cpu cpu8} > 50}${color1}${else}${color}${endif}CPU 8${goto 70}${if_match ${cpu cpu8} > 50}${color1}${else}${color}${endif}${cpubar cpu8 10,120}${goto 200}${cpu cpu8}%${color}
-${goto 30}${if_match ${cpu cpu9} > 50}${color1}${else}${color}${endif}CPU 9${goto 70}${if_match ${cpu cpu9} > 50}${color1}${else}${color}${endif}${cpubar cpu9 10,120}${goto 200}${cpu cpu9}%${color}
-${goto 30}${if_match ${cpu cpu10} > 50}${color1}${else}${color}${endif}CPU 10${goto 70}${if_match ${cpu cpu10} > 50}${color1}${else}${color}${endif}${cpubar cpu10 10,120}${goto 200}${cpu cpu10}%${color}
-${goto 30}${if_match ${cpu cpu11} > 50}${color1}${else}${color}${endif}CPU 11${goto 70}${if_match ${cpu cpu11} > 50}${color1}${else}${color}${endif}${cpubar cpu11 10,120}${goto 200}${cpu cpu11}%${color}
-${goto 30}${if_match ${cpu cpu12} > 50}${color1}${else}${color}${endif}CPU 12${goto 70}${if_match ${cpu cpu12} > 50}${color1}${else}${color}${endif}${cpubar cpu12 10,120}${goto 200}${cpu cpu12}%${color}
-${goto 30}${if_match ${cpu cpu13} > 50}${color1}${else}${color}${endif}CPU 13${goto 70}${if_match ${cpu cpu13} > 50}${color1}${else}${color}${endif}${cpubar cpu13 10,120}${goto 200}${cpu cpu13}%${color}
-${goto 30}${if_match ${cpu cpu14} > 50}${color1}${else}${color}${endif}CPU 14${goto 70}${if_match ${cpu cpu14} > 50}${color1}${else}${color}${endif}${cpubar cpu14 10,120}${goto 200}${cpu cpu14}%${color}
-${goto 30}${if_match ${cpu cpu15} > 50}${color1}${else}${color}${endif}CPU 15${goto 70}${if_match ${cpu cpu15} > 50}${color1}${else}${color}${endif}${cpubar cpu15 10,120}${goto 200}${cpu cpu15}%${color}
+${goto 30}${if_match ${cpu cpu0} > 50}${color1}${else}${color}${endif}CPU 0${goto 80}${if_match ${cpu cpu0} > 50}${color1}${else}${color}${endif}${cpubar cpu0 10,150}$alignr${offset -30}${cpu cpu0}%${color}
+${goto 30}${if_match ${cpu cpu1} > 50}${color1}${else}${color}${endif}CPU 1${goto 80}${if_match ${cpu cpu1} > 50}${color1}${else}${color}${endif}${cpubar cpu1 10,150}$alignr${offset -30}${cpu cpu1}%${color}
+${goto 30}${if_match ${cpu cpu2} > 50}${color1}${else}${color}${endif}CPU 2${goto 80}${if_match ${cpu cpu2} > 50}${color1}${else}${color}${endif}${cpubar cpu2 10,150}$alignr${offset -30}${cpu cpu2}%${color}
+${goto 30}${if_match ${cpu cpu3} > 50}${color1}${else}${color}${endif}CPU 3${goto 80}${if_match ${cpu cpu3} > 50}${color1}${else}${color}${endif}${cpubar cpu3 10,150}$alignr${offset -30}${cpu cpu3}%${color}
+${goto 30}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}CPU 4${goto 80}${if_match ${cpu cpu4} > 50}${color1}${else}${color}${endif}${cpubar cpu4 10,150}$alignr${offset -30}${cpu cpu4}%${color}
+${goto 30}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}CPU 5${goto 80}${if_match ${cpu cpu5} > 50}${color1}${else}${color}${endif}${cpubar cpu5 10,150}$alignr${offset -30}${cpu cpu5}%${color}
+${goto 30}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}CPU 6${goto 80}${if_match ${cpu cpu6} > 50}${color1}${else}${color}${endif}${cpubar cpu6 10,150}$alignr${offset -30}${cpu cpu6}%${color}
+${goto 30}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}CPU 7${goto 80}${if_match ${cpu cpu7} > 50}${color1}${else}${color}${endif}${cpubar cpu7 10,150}$alignr${offset -30}${cpu cpu7}%${color}
+${goto 30}${if_match ${cpu cpu8} > 50}${color1}${else}${color}${endif}CPU 8${goto 80}${if_match ${cpu cpu8} > 50}${color1}${else}${color}${endif}${cpubar cpu8 10,150}$alignr${offset -30}${cpu cpu8}%${color}
+${goto 30}${if_match ${cpu cpu9} > 50}${color1}${else}${color}${endif}CPU 9${goto 80}${if_match ${cpu cpu9} > 50}${color1}${else}${color}${endif}${cpubar cpu9 10,150}$alignr${offset -30}${cpu cpu9}%${color}
+${goto 30}${if_match ${cpu cpu10} > 50}${color1}${else}${color}${endif}CPU 10${goto 80}${if_match ${cpu cpu10} > 50}${color1}${else}${color}${endif}${cpubar cpu10 10,150}$alignr${offset -30}${cpu cpu10}%${color}
+${goto 30}${if_match ${cpu cpu11} > 50}${color1}${else}${color}${endif}CPU 11${goto 80}${if_match ${cpu cpu11} > 50}${color1}${else}${color}${endif}${cpubar cpu11 10,150}$alignr${offset -30}${cpu cpu11}%${color}
+${goto 30}${if_match ${cpu cpu12} > 50}${color1}${else}${color}${endif}CPU 12${goto 80}${if_match ${cpu cpu12} > 50}${color1}${else}${color}${endif}${cpubar cpu12 10,150}$alignr${offset -30}${cpu cpu12}%${color}
+${goto 30}${if_match ${cpu cpu13} > 50}${color1}${else}${color}${endif}CPU 13${goto 80}${if_match ${cpu cpu13} > 50}${color1}${else}${color}${endif}${cpubar cpu13 10,150}$alignr${offset -30}${cpu cpu13}%${color}
+${goto 30}${if_match ${cpu cpu14} > 50}${color1}${else}${color}${endif}CPU 14${goto 80}${if_match ${cpu cpu14} > 50}${color1}${else}${color}${endif}${cpubar cpu14 10,150}$alignr${offset -30}${cpu cpu14}%${color}
+${goto 30}${if_match ${cpu cpu15} > 50}${color1}${else}${color}${endif}CPU 15${goto 80}${if_match ${cpu cpu15} > 50}${color1}${else}${color}${endif}${cpubar cpu15 10,150}$alignr${offset -30}${cpu cpu15}%${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}CPU PROCESSES${font}${color}
 
-${goto 30}${if_match ${top cpu 1} > 10}${color1}${else}${color}${endif}${top name 1}${goto 185}${if_match ${top cpu 1} > 10}${color1}${else}${color}${endif}${top cpu 1}%${color}
-${goto 30}${if_match ${top cpu 2} > 10}${color1}${else}${color}${endif}${top name 2}${goto 185}${if_match ${top cpu 2} > 10}${color1}${else}${color}${endif}${top cpu 2}%${color}
-${goto 30}${if_match ${top cpu 3} > 10}${color1}${else}${color}${endif}${top name 3}${goto 185}${if_match ${top cpu 3} > 10}${color1}${else}${color}${endif}${top cpu 3}%${color}
-${goto 30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top name 4}${goto 185}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top cpu 4}%${color}
-${goto 30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top name 5}${goto 185}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top cpu 5}%${color}
+${goto 30}${if_match ${top cpu 1} > 10}${color1}${else}${color}${endif}${top name 1}$alignr${offset -30}${if_match ${top cpu 1} > 10}${color1}${else}${color}${endif}${top cpu 1}%${color}
+${goto 30}${if_match ${top cpu 2} > 10}${color1}${else}${color}${endif}${top name 2}$alignr${offset -30}${if_match ${top cpu 2} > 10}${color1}${else}${color}${endif}${top cpu 2}%${color}
+${goto 30}${if_match ${top cpu 3} > 10}${color1}${else}${color}${endif}${top name 3}$alignr${offset -30}${if_match ${top cpu 3} > 10}${color1}${else}${color}${endif}${top cpu 3}%${color}
+${goto 30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top name 4}$alignr${offset -30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top cpu 4}%${color}
+${goto 30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top name 5}$alignr${offset -30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top cpu 5}%${color}
 
-${offset 10}${cpugraph 30,220 color1 color s}
+${offset 10}${cpugraph 30,270 color1 color s}
 ${goto 30}${loadavg 1} | ${loadavg 2} | ${loadavg 3}
 
 ${goto 20}${color1}${font Ubuntu:size=11}GPU${font}${color}
 
-${goto 30}GPU Temperature${goto 185}${color}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t | xargs}°C
-${goto 30}VRAM Utilization${goto 185}${color}${exec nvidia-smi | grep % | cut -c 37-40 | xargs}MB
-${goto 30}GPU Power Draw${goto 185}${color}${exec nvidia-smi | grep % | cut -c 21-23 | xargs}W
+${goto 30}GPU Temperature${goto 215}${color}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t | xargs}°C
+${goto 30}VRAM Utilization${goto 215}${color}${exec nvidia-smi | grep % | cut -c 37-40 | xargs}MB
+${goto 30}GPU Power Draw${goto 215}${color}${exec nvidia-smi | grep % | cut -c 21-23 | xargs}W
 
-${offset 10}${execigraph 1 "exec nvidia-smi | grep % | cut -c 61-63 | xargs" }
+${goto 30}${execigraph 1 "exec nvidia-smi | grep % | cut -c 61-63 | xargs" }
 ${goto 30}${exec nvidia-smi | grep % | cut -c 61-63 | xargs}% usage${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}MEM PROCESSES${font}${color}
 
-${goto 30}${if_match ${top_mem mem 1} > 10}${color1}${else}${color}${endif}${top_mem name 1}${goto 185}${if_match ${top_mem mem 1} > 10}${color1}${else}${color}${endif}${top_mem mem 1}%${color}
-${goto 30}${if_match ${top_mem mem 2} > 10}${color1}${else}${color}${endif}${top_mem name 2}${goto 185}${if_match ${top_mem mem 2} > 10}${color1}${else}${color}${endif}${top_mem mem 2}%${color}
-${goto 30}${if_match ${top_mem mem 3} > 10}${color1}${else}${color}${endif}${top_mem name 3}${goto 185}${if_match ${top_mem mem 3} > 10}${color1}${else}${color}${endif}${top_mem mem 3}%${color}
-${goto 30}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top_mem name 4}${goto 185}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top_mem mem 4}%${color}
-${goto 30}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem name 5}${goto 185}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem mem 5}%${color}
+${goto 30}${if_match ${top_mem mem 1} > 10}${color1}${else}${color}${endif}${top_mem name 1}$alignr${offset -30}${if_match ${top_mem mem 1} > 10}${color1}${else}${color}${endif}${top_mem mem 1}%${color}
+${goto 30}${if_match ${top_mem mem 2} > 10}${color1}${else}${color}${endif}${top_mem name 2}$alignr${offset -30}${if_match ${top_mem mem 2} > 10}${color1}${else}${color}${endif}${top_mem mem 2}%${color}
+${goto 30}${if_match ${top_mem mem 3} > 10}${color1}${else}${color}${endif}${top_mem name 3}$alignr${offset -30}${if_match ${top_mem mem 3} > 10}${color1}${else}${color}${endif}${top_mem mem 3}%${color}
+${goto 30}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top_mem name 4}$alignr${offset -30}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top_mem mem 4}%${color}
+${goto 30}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem name 5}$alignr${offset -30}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem mem 5}%${color}
 
-${offset 10}${memgraph 30,220 color1 color 100 -l -t}
+${offset 10}${memgraph 30,270 color1 color 100 -l -t}
 ${goto 30}${mem} / ${memmax} (${memperc}%)
 
 ${goto 20}${color1}${font Ubuntu:size=11}DISCS${font}${color}
 
-${goto 30}/${goto 80}${fs_used /}${goto 135} on ${fs_size /}
-${goto 30}/mnt/data${goto 80}${fs_used /mnt/data}${goto 135} on ${fs_size /mnt/data}
-${goto 30}SWAP${goto 80}${swap}${goto 135} on ${swapmax}
+${goto 30}/${goto 120}${fs_used /}$alignr${offset -30} on ${fs_size /}
+${goto 30}/mnt/data${goto 120}${fs_used /mnt/data}$alignr${offset -30} on ${fs_size /mnt/data}
+${goto 30}SWAP${goto 120}${swap}$alignr${offset -30} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
 ${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp4s0} ${goto 120}/ ${totaldown enp4s0}
-${offset 10}${downspeedgraph enp4s0 30,220 color1 color 100 -l -t}
+${offset 10}${downspeedgraph enp4s0 30,270 color1 color 100 -l -t}
 
 ${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp4s0} ${goto 120}/ ${totalup enp4s0}
-${offset 10}${upspeedgraph enp4s0 30,220 color1 color 100 -l -t}
+${offset 10}${upspeedgraph enp4s0 30,270 color1 color 100 -l -t}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
-${goto 30}${color}Lan IP${color}${goto 130}${addr enp4s0}
-${goto 30}${color}Inbound Ports${color}${goto 130}${tcp_portmon 1 32767 count}
-${goto 30}${color}Outbound Ports${color}${goto 130}${tcp_portmon 32768 61000 count}
+${goto 30}${color}Lan IP$alignr${offset -30}${color}${addr enp4s0}
+${goto 30}${color}Inbound ports$alignr${offset -37}${color}${tcp_portmon 1 32767 count}
+${goto 30}${color}Outbound ports$alignr${offset -30}${color}${tcp_portmon 32768 61000 count}
 ]]
