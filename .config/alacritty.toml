@@ -41,7 +41,6 @@ TERM = "xterm-256color"
 size = 12.0
 
 [font.normal]
-# family = "Comic Code Ligatures NerdFont"
 family = "JetBrainsMono NerdFont"
 
 [window]
