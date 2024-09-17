@@ -61,8 +61,8 @@ conky.config = {
 	update_interval = 1.0,
 	uppercase = false,
 	use_spacer = 'none',
-	default_graph_size = "30 170",
-	default_bar_size = "30 170",
+	default_graph_size = "30,170",
+	default_bar_size = "30,170",
 	show_graph_scale = false,
 	show_graph_range = false,
 	default_color = "#FFFFFF",
@@ -100,7 +100,7 @@ ${goto 30}${if_match ${top cpu 3} > 10}${color1}${else}${color}${endif}${top nam
 ${goto 30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top name 4}$alignr${offset -30}${if_match ${top cpu 4} > 10}${color1}${else}${color}${endif}${top cpu 4}%${color}
 ${goto 30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top name 5}$alignr${offset -30}${if_match ${top cpu 5} > 10}${color1}${else}${color}${endif}${top cpu 5}%${color}
 
-${offset 10}${cpugraph 30,270 color1 color s}
+${offset 10}${cpugraph 30,270 #FFF #FFF -l}
 ${goto 30}${loadavg 1} | ${loadavg 2} | ${loadavg 3}
 
 ${goto 20}${color1}${font Ubuntu:size=11}GPU${font}${color}
@@ -109,7 +109,7 @@ ${goto 30}GPU Temperature${goto 215}${color}${execi 60 nvidia-settings -query [g
 ${goto 30}VRAM Utilization${goto 215}${color}${exec nvidia-smi | grep % | cut -c 37-40 | xargs}MB
 ${goto 30}GPU Power Draw${goto 215}${color}${exec nvidia-smi | grep % | cut -c 21-23 | xargs}W
 
-${goto 30}${execigraph 1 "exec nvidia-smi | grep % | cut -c 61-63 | xargs" }
+${goto 30}${execigraph 30 "exec nvidia-smi | grep % | cut -c 61-63 | xargs" }
 ${goto 30}${exec nvidia-smi | grep % | cut -c 61-63 | xargs}% usage${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}MEM PROCESSES${font}${color}
@@ -120,22 +120,21 @@ ${goto 30}${if_match ${top_mem mem 3} > 10}${color1}${else}${color}${endif}${top
 ${goto 30}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top_mem name 4}$alignr${offset -30}${if_match ${top_mem mem 4} > 10}${color1}${else}${color}${endif}${top_mem mem 4}%${color}
 ${goto 30}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem name 5}$alignr${offset -30}${if_match ${top_mem mem 5} > 10}${color1}${else}${color}${endif}${top_mem mem 5}%${color}
 
-${offset 10}${memgraph 30,270 color1 color 100 -l -t}
+${offset 10}${memgraph 30,270 #FFF #FFF -l}
 ${goto 30}${mem} / ${memmax} (${memperc}%)
 
 ${goto 20}${color1}${font Ubuntu:size=11}DISCS${font}${color}
 
 ${goto 30}/${goto 120}${fs_used /}$alignr${offset -30} on ${fs_size /}
-${goto 30}/mnt/data${goto 120}${fs_used /mnt/data}$alignr${offset -30} on ${fs_size /mnt/data}
 ${goto 30}SWAP${goto 120}${swap}$alignr${offset -30} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
 ${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp4s0} ${goto 120}/ ${totaldown enp4s0}
-${offset 10}${downspeedgraph enp4s0 30,270 color1 color 100 -l -t}
+${offset 10}${downspeedgraph enp4s0 30,270 100 #FFF #FFF -l}
 
 ${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp4s0} ${goto 120}/ ${totalup enp4s0}
-${offset 10}${upspeedgraph enp4s0 30,270 color1 color 100 -l -t}
+${offset 10}${upspeedgraph enp4s0 30,270 100 #FFF #FFF -l}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
