@@ -10,6 +10,7 @@
 
 # Files
 !/.Xresources.default
+!/.conkyrc
 !/.conkyrc.default
 !/.screenrc
 !/.vimrc
