@@ -1,6 +1,7 @@
 #! /bin/sh
 
-xrandr --output DP-0 --auto --primary --output DP-2 --auto --right-of DP-0
+xrandr --output DP-0 --mode 2560x1440 --rate 180 --auto --primary --output DP-2 --mode 2560x1440 --rate 180 --auto --right-of DP-0
+# xrandr --output DP-2 --off --output DP-0 --mode 2560x1440 --rate 180 --auto --primary --output HDMI-0 --mode 1920x1080 --rate 60 --auto --right-of DP-0
 
 # Startup scripts {{{
 setxkbmap -layout us,fr -option ''
@@ -13,7 +14,7 @@ xsetroot -cursor_name left_ptr &
 copyq &
 sleep 1
 
-feh --randomize --bg-max ~/Pictures/Wallpapers
+feh --randomize --bg-fill ~/Pictures/Wallpapers
 conky &
 stalonetray &
 blueman-applet &
@@ -24,6 +25,7 @@ polybar --config=~/.config/polybar/config.ini main &
 
 bspc monitor DP-0 -n left -d I II III IV V
 bspc monitor DP-2 -n right -d VI VII VIII IX X
+# bspc monitor HDMI-0 -n right -d VI VII VIII IX X
 
 # Global configuration {{{
 bspc config initial_polarity      second_child
@@ -36,11 +38,14 @@ bspc config gapless_monocle       false
 bspc config focus_follows_pointer true
 bspc config focused_border_color '#e1b2d4'
 bspc config normal_border_color '#1A1826'
-bspc config top_padding 0
-bspc config left_padding 0
-bspc config right_padding 0
-bspc config bottom_padding 0
+bspc config -m right top_padding 0
+bspc config -m right left_padding 0
+bspc config -m right right_padding 0
+bspc config -m right bottom_padding 0
 bspc config -m left top_padding 51
+bspc config -m left left_padding 0
+bspc config -m left right_padding 0
+bspc config -m left bottom_padding 0
 # }}}
 
 # Internal rules {{{
@@ -52,6 +57,8 @@ bspc rule -a zazu state=floating
 bspc rule -a gnome-calculator state=floating
 bspc rule -a copyq state=floating follow=on
 bspc rule -a dunst state=floating
+bspc rule -a dunst state=floating
+bspc rule -a UnrealEditor state=floating
 # }}}
 
 # vim: syn=sh

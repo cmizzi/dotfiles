@@ -1,6 +1,7 @@
 configuration{
     modi: "run,drun,emoji,window";
     icon-theme: "Oranchelo";
+    font: "JetBrainsMono NerdFont 16";
     show-icons: true;
     terminal: "alacritty";
     drun-display-format: "{icon} {name}";

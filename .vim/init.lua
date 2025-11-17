@@ -268,6 +268,39 @@ require('packer').startup(function()
     end
   }
   use 'simrat39/rust-tools.nvim'
+  use {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup({
+        indent = {
+          enable = true,
+        },
+        chunk = {
+          enable = true,
+          priority = 15,
+          style = {
+            { fg = "#806d9c" },
+            { fg = "#c21f30" },
+          },
+          use_treesitter = true,
+          chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+          },
+          textobject = "",
+          max_file_size = 1024 * 1024,
+          error_sign = true,
+          -- animation related
+          duration = 200,
+          delay = 300,
+        }
+      })
+    end
+  }
 
   if packer_bootstrap then
     require('packer').sync()

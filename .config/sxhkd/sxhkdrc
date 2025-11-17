@@ -8,11 +8,11 @@ super + Return
 
 # Program launcher
 super + space
-	rofi -show run
+	rofi -modes "drun,run,emoji,calc" -show drun
 
 # Print screen
 @Print
-    maim -s | xclip -selection clipboard -t image/png
+    flameshot gui
 
 # Reload sxhkdr configuration file
 super + Escape

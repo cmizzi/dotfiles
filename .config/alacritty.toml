@@ -41,7 +41,7 @@ TERM = "xterm-256color"
 size = 12.0
 
 [font.normal]
-family = "JetBrainsMono NerdFont"
+family = "ComicShannsMono Nerd Font Mono"
 
 [window]
 decorations = "none"

@@ -43,6 +43,7 @@ conky.config = {
 	minimum_height = 1440,
 	minimum_width = 300,
 	net_avg_samples = 2,
+	default_graph_width = 270,
 	no_buffers = true,
 	double_buffer = true,
 	out_to_console = false,
@@ -105,12 +106,13 @@ ${goto 30}${loadavg 1} | ${loadavg 2} | ${loadavg 3}
 
 ${goto 20}${color1}${font Ubuntu:size=11}GPU${font}${color}
 
-${goto 30}GPU Temperature${goto 215}${color}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t | xargs}°C
-${goto 30}VRAM Utilization${goto 215}${color}${exec nvidia-smi | grep % | cut -c 37-40 | xargs}MB
-${goto 30}GPU Power Draw${goto 215}${color}${exec nvidia-smi | grep % | cut -c 21-23 | xargs}W
+${goto 30}Temperature$alignr${offset -30}${color}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t | xargs}°C
+${goto 30}Fan usage$alignr${offset -30}${color}${exec nvidia-smi | grep % | cut -c 2-4 | xargs}%
+${goto 30}VRAM Utilization$alignr${offset -30}${color}${exec nvidia-smi | grep % | cut -c 44-51 | xargs}MB
+${goto 30}Power Draw$alignr${offset -30}${color}${exec nvidia-smi | grep % | cut -c 28-32 | xargs}W
 
-${goto 30}${execigraph 30 "exec nvidia-smi | grep % | cut -c 61-63 | xargs" }
-${goto 30}${exec nvidia-smi | grep % | cut -c 61-63 | xargs}% usage${color}
+${offset 10}${execigraph 30 "exec nvidia-smi | grep % | cut -c 73-75 | xargs" }
+${goto 30}${exec nvidia-smi | grep % | cut -c 73-75 | xargs}% usage${color}
 
 ${goto 20}${color1}${font Ubuntu:size=11}MEM PROCESSES${font}${color}
 
@@ -130,15 +132,16 @@ ${goto 30}SWAP${goto 120}${swap}$alignr${offset -30} on ${swapmax}
 
 ${goto 20}${color1}${font Ubuntu:size=11}NETWORK${font}${color}
 
-${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed enp4s0} ${goto 120}/ ${totaldown enp4s0}
-${offset 10}${downspeedgraph enp4s0 30,270 100 #FFF #FFF -l}
+${goto 30}${color}Down${color}${goto 60}${offset 5}${downspeed eno1} ${goto 120}/ ${totaldown eno1}
+${offset 10}${downspeedgraph eno1 30,270 100 #FFF #FFF -l}
 
-${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed enp4s0} ${goto 120}/ ${totalup enp4s0}
-${offset 10}${upspeedgraph enp4s0 30,270 100 #FFF #FFF -l}
+${goto 30}${color}UP${color}${goto 60}${offset 5}${upspeed eno1} ${goto 120}/ ${totalup eno1}
+${offset 10}${upspeedgraph eno1 30,270 100 #FFF #FFF -l}
 
 ${goto 20}${color1}${font Ubuntu:size=11}ADDRESS${font}${color}
 
-${goto 30}${color}Lan IP$alignr${offset -30}${color}${addr enp4s0}
+${goto 30}${color}Cable speed$alignr${offset -30}${color}${exec "ethtool eno1 | grep Speed | awk '{print $2}'"}${color}
+${goto 30}${color}Lan IP$alignr${offset -30}${color}${addr eno1}
 ${goto 30}${color}Inbound ports$alignr${offset -37}${color}${tcp_portmon 1 32767 count}
 ${goto 30}${color}Outbound ports$alignr${offset -30}${color}${tcp_portmon 32768 61000 count}
 ]]

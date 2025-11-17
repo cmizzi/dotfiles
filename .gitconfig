@@ -59,6 +59,7 @@
 
 [rerere]
 	enabled = true
+	autoupdate = true
 
 [color "branch"]
 	current = yellow reverse
@@ -80,7 +81,31 @@
 	editor = vim
 
 [commit]
+	verbose = true
 	# gpgsign = true
 
 [init]
 	defaultBranch = main
+[safe]
+	directory = /mnt/data/Games/Gauntlet
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[tag]
+	sort = version:refname
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+	autosetuprebase = always
+[push]
+	autoSetupRemote = true
+	followTags = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
